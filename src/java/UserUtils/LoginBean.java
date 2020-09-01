@@ -12,7 +12,6 @@ package UserUtils;
 import Abst.UsersFacade;
 import Entities.Users;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
