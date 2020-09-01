@@ -24,9 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pc.findAll", query = "SELECT p FROM Pc p")
-    , @NamedQuery(name = "Pc.findByPcName", query = "SELECT p FROM Pc p WHERE p.pcName = :pcName")
-    , @NamedQuery(name = "Pc.findByPcType", query = "SELECT p FROM Pc p WHERE p.pcType = :pcType")
-    , @NamedQuery(name = "Pc.findByAvailable", query = "SELECT p FROM Pc p WHERE p.available = :available")})
+    ,@NamedQuery(name = "Pc.findByPcName", query = "SELECT p FROM Pc p WHERE p.pcName = :pcName")
+    ,@NamedQuery(name = "Pc.findByPcType", query = "SELECT p FROM Pc p WHERE p.pcType = :pcType")
+    ,@NamedQuery(name = "Pc.findByFilter", query = "SELECT p FROM Pc p WHERE p.available = 'Yes'")
+    ,@NamedQuery(name = "Pc.findByAvailable", query = "SELECT p FROM Pc p WHERE p.available = :available")})
 public class Pc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -100,7 +101,7 @@ public class Pc implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Pc[ pcName=" + pcName + " ]";
+        return pcName + " " + pcType;
     }
     
 }

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:form id="myform">
+            <h:selectOneMenu value="#{select.pcName}" >
+                <f:selectItem itemLabel="Välj ett" />
+                <f:selectItems value="#{select.pcs}" var="pcName" itemValue="#{pcName}"/>
+            </h:selectOneMenu>
+    <h:messages globalOnly="true" style="color:red;margin:8px;" />
+    
+    <h:outputText value="Datum: "/>
+    <p:calendar  id="conDate" value="#{select.idate}"  pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se"/>
+    <h:commandButton value="login" action="#{select.sendPcName()}" />
+    </h:form>
+        
+        <script type="text/javascript">
+     PrimeFaces.locales['se'] = {
+        closeText: 'stäng',
+        prevText: 'före',
+        nextText: 'nästa',
+        currentText: 'nuvarande',
+        monthNames: ['Januari','Februari','Mars','April','Maj','Juni',
+            'Juli','Augusti','September','Oktober','November','December'],
+        monthNamesShort: ['Jan','Feb','Mar','Apr','Maj','Jun',
+            'Jul','Aug','Sep','Okt','Nov','Dec'],
+        dayNames: ['Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag','Söndag'],
+        dayNamesShort: ['sön', 'mån', 'tis', 'ons', 'tor', 'fre', 'lör'],
+        dayNamesMin: ['sö', 'må', 'ti', 'on', 'to', 'fr', 'lö'],
+        weekHeader: 'V',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        month: 'Månad',
+        week: 'Vecka',
+        day: 'Dag',
+        allDayText : 'Hela dag'
+    };
+        </script>
+    </h:body>
+</html>

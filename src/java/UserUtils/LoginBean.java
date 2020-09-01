@@ -48,6 +48,7 @@ public class LoginBean {
   }
 
   public String getSurname() {
+    
     return surname;
   }
 
@@ -66,15 +67,16 @@ public class LoginBean {
   @PostConstruct
   public void init() {
       
+  
     users = uFacade.findAll();
 
   }
   
   public String sentUsername (){
       username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        String[] vals1 = username.split(" ");
-    if (vals1.length > 1){
-        username = vals1[0];
+        String[] val = username.split(" ");
+    if (val.length > 1){
+        username = val[0];
     }
     return username;
   }
