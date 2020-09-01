@@ -8,7 +8,6 @@ package CaseUtils;
 import Abst.PcFacade;
 import Beans.PcBean;
 import Entities.Pc;
-import Entities.Pcloan;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -34,6 +33,19 @@ public class EditPcBean implements Serializable {
     
     public int count(){
         return pcFacade.count();
+    }
+    
+    public String edit(Pc p){
+        pcBean.setPcName(p.getPcName());
+        pcBean.setAvailable(p.getAvailable());
+        return "pcs";
+    }
+    
+    public String save(){
+        Pc p = new Pc(pcBean.getPcName());
+        p.setAvailable(pcBean.getAvailable());
+        pcFacade.edit(p);
+        return "pcs";
     }
     
 }
