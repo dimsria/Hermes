@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:form id="myform">
+            <h:selectOneMenu value="#{login.username}" >
+                <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}"/>
+            </h:selectOneMenu>
+    <h:messages globalOnly="true" style="color:red;margin:8px;" />
+    
+    <h:outputText value="Username: "/>
+   
+    <h:commandButton value="login" action="#{login.login}" />
+    </h:form>
+    </h:body>
+</html>
+
