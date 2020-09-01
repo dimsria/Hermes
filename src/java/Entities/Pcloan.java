@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Pcloan.findByDescrip", query = "SELECT p FROM Pcloan p WHERE p.descrip = :descrip")
     , @NamedQuery(name = "Pcloan.findByPcName", query = "SELECT p FROM Pcloan p WHERE p.pcName = :pcName")
     , @NamedQuery(name = "Pcloan.findByDatecreated", query = "SELECT p FROM Pcloan p WHERE p.datecreated = :datecreated")
+    , @NamedQuery(name = "Pcloan.findByArStatus", query = "SELECT p FROM Pcloan p WHERE p.arStatus = :arStatus")
     , @NamedQuery(name = "Pcloan.findByReturndate", query = "SELECT p FROM Pcloan p WHERE p.returndate = :returndate")})
 public class Pcloan implements Serializable {
 
@@ -63,6 +64,9 @@ public class Pcloan implements Serializable {
     @Column(name = "returndate")
     @Temporal(TemporalType.DATE)
     private Date returndate;
+    @Basic(optional = false)
+    @Column(name = "ar_status")
+    private String arStatus;
 
     public Pcloan() {
     }
@@ -71,13 +75,14 @@ public class Pcloan implements Serializable {
         this.id = id;
     }
 
-    public Pcloan(Integer id, String username, String arType, String descrip, String pcName, Date returndate) {
+    public Pcloan(Integer id, String username, String arType, String descrip, String pcName, Date returndate, String arStatus) {
         this.id = id;
         this.username = username;
         this.arType = arType;
         this.descrip = descrip;
         this.pcName = pcName;
         this.returndate = returndate;
+        this.arStatus = arStatus;
     }
 
     public Integer getId() {
@@ -134,6 +139,14 @@ public class Pcloan implements Serializable {
 
     public void setReturndate(Date returndate) {
         this.returndate = returndate;
+    }
+
+    public String getArStatus() {
+        return arStatus;
+    }
+
+    public void setArStatus(String arStatus) {
+        this.arStatus = arStatus;
     }
 
     @Override

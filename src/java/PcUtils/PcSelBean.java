@@ -33,23 +33,19 @@ public class PcSelBean {
     private String available;
     private List<Pc>pcs;
     private Date idate;
-    private java.sql.Date sqlDate;
     
     @PostConstruct
     public void init() {
         
      pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
      System.out.println(pcs);
+     System.out.print(idate);
     }
-    
-    public java.sql.Date sqlDate(java.util.Date idate){
-        return new java.sql.Date(idate.getTime());
-    }
+
     
     public String sendPcName(){
         System.out.print(pcName);
         System.out.print(getIdate());
-        System.out.print(sqlDate(idate));
         return pcName;
     }
     
@@ -95,14 +91,5 @@ public class PcSelBean {
     public void setIdate(Date idate) {
         this.idate = idate;
     }
-
-    public java.sql.Date getSqlDate() {
-        return sqlDate;
-    }
-
-    public void setSqlDate(java.sql.Date sqlDate) {
-        this.sqlDate = sqlDate;
-    }
-     
-    
+  
 }
