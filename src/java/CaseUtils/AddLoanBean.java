@@ -7,6 +7,7 @@ package CaseUtils;
 
 import Abst.PcloanFacade;
 import Beans.LoanBean;
+import Entities.Arende;
 import Entities.Pcloan;
 import PcUtils.PcSelBean;
 import UserUtils.LoginBean;
@@ -55,5 +56,16 @@ public class AddLoanBean implements Serializable{
         pcloanFacade.create(b);
        
         return "welcomePrimefaces";
+    }
+    public String edit(Arende a){
+        loanBean.setArStatus(a.getArStatus());
+        return "questions";
+    }
+    
+    public String save (){
+        
+        Pcloan b = new Pcloan(loanBean.getId());
+        b.setArStatus(loanBean.getArStatus());
+        return "pcloans";
     }
 }
