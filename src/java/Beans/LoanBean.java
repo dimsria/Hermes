@@ -25,6 +25,7 @@ public class LoanBean implements Serializable {
     private String pcName;
     private Date datecreated;
     private Date returndate;
+    private String arStatus;
 
     public Integer getId() {
         return id;
@@ -80,6 +81,14 @@ public class LoanBean implements Serializable {
 
     public void setReturndate(Date returndate) {
         this.returndate = returndate;
+    }
+
+    public String getArStatus() {
+        return arStatus;
+    }
+
+    public void setArStatus(String arStatus) {
+        this.arStatus = arStatus;
     }
     
     
