@@ -38,8 +38,7 @@ public class PcSelBean {
         
      pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
      System.out.println(pcs);
-     System.out.print(idate);
-     System.out.print(available);
+
     }
 
     
