@@ -19,10 +19,15 @@
                 
                 <p:layoutUnit position="center">
                     Welcome to PrimeFaces, #{user} #{firstname} #{surname}
+                    <br></br>
                     <p:link value="Fråga" outcome="question.xhtml"/>
                     <br></br>
                     <p:link value="Felanmälan" outcome="incident.xhtml"/>
+                    <br></br>
                     <p:link value="Låna dator" outcome="borrowpc.xhtml"/>
+                    <br></br>
+                    <p:link value="Hämta Aktiveringskod" outcome="activation.xhtml"/>
+                    <br></br>
                     <h:form>
                     <h:commandButton value="logout" action="#{login.logout}" />
                     </h:form>
