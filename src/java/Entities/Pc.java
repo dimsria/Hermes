@@ -25,7 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pc.findAll", query = "SELECT p FROM Pc p")
     ,@NamedQuery(name = "Pc.findByPcName", query = "SELECT p FROM Pc p WHERE p.pcName = :pcName")
-    ,@NamedQuery(name = "Pc.findByPcType", query = "SELECT p FROM Pc p WHERE p.pcType = :pcType")
     ,@NamedQuery(name = "Pc.findByFilter", query = "SELECT p FROM Pc p WHERE p.available = 'Yes'")
     ,@NamedQuery(name = "Pc.findByAvailable", query = "SELECT p FROM Pc p WHERE p.available = :available")})
 public class Pc implements Serializable {
@@ -35,9 +34,7 @@ public class Pc implements Serializable {
     @Basic(optional = false)
     @Column(name = "pc_name")
     private String pcName;
-    @Basic(optional = false)
-    @Column(name = "pc_type")
-    private String pcType;
+
     @Basic(optional = false)
     @Column(name = "available")
     private String available;
@@ -49,9 +46,8 @@ public class Pc implements Serializable {
         this.pcName = pcName;
     }
 
-    public Pc(String pcName, String pcType, String available) {
+    public Pc(String pcName, String available) {
         this.pcName = pcName;
-        this.pcType = pcType;
         this.available = available;
     }
 
@@ -63,13 +59,6 @@ public class Pc implements Serializable {
         this.pcName = pcName;
     }
 
-    public String getPcType() {
-        return pcType;
-    }
-
-    public void setPcType(String pcType) {
-        this.pcType = pcType;
-    }
 
     public String getAvailable() {
         return available;
@@ -101,7 +90,7 @@ public class Pc implements Serializable {
 
     @Override
     public String toString() {
-        return pcName + " " + pcType;
+        return pcName;
     }
     
 }

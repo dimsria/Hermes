@@ -10,10 +10,9 @@ import Beans.ArendeBean;
 import Entities.Arende;
 import UserUtils.LoginBean;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,8 +22,8 @@ import javax.inject.Named;
  * @author srvmng
  */
 @Named(value="qBean")
-@SessionScoped
-public class AddQuestionBean implements Serializable{
+@RequestScoped
+public class AddQuestionBean {
 
 
     

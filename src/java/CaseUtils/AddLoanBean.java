@@ -5,17 +5,19 @@
  */
 package CaseUtils;
 
+import Abst.PcFacade;
 import Abst.PcloanFacade;
 import Beans.LoanBean;
+import Beans.PcBean;
 import Entities.Arende;
+import Entities.Pc;
 import Entities.Pcloan;
 import PcUtils.PcSelBean;
 import UserUtils.LoginBean;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,14 +26,16 @@ import javax.inject.Named;
  * @author srvmng
  */
 @Named(value="aloanBean")
-@SessionScoped
-public class AddLoanBean implements Serializable{
+@RequestScoped
+
+public class AddLoanBean{
     
     @EJB PcloanFacade pcloanFacade;
-    
+    @EJB PcFacade pcFacade;
     @Inject LoanBean loanBean;
     @Inject LoginBean login;
     @Inject PcSelBean select;
+    @Inject PcBean pcBean;
     
     public List <Pcloan> getAll(){
         
@@ -45,6 +49,9 @@ public class AddLoanBean implements Serializable{
     public String add() throws IOException{
         
         Pcloan b = new Pcloan();
+        Pc p = new Pc(select.sendPcName());
+        
+        
         b.setUsername(login.sentUsername());
         b.setArType("Datorlån");
         b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
@@ -52,20 +59,22 @@ public class AddLoanBean implements Serializable{
         b.setPcName(select.sendPcName());
         b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
         b.setArStatus("Öppet");
-        
+        p.setAvailable("No");
+        pcFacade.edit(p);
         pcloanFacade.create(b);
-       
+        
         return "welcomePrimefaces";
     }
     public String edit(Arende a){
         loanBean.setArStatus(a.getArStatus());
-        return "questions";
+        return "pcloans";
     }
     
     public String save (){
         
         Pcloan b = new Pcloan(loanBean.getId());
         b.setArStatus(loanBean.getArStatus());
+        pcloanFacade.edit(b);
         return "pcloans";
     }
 }

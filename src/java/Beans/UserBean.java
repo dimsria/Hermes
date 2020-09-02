@@ -5,8 +5,7 @@
  */
 package Beans;
 
-import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -14,8 +13,8 @@ import javax.inject.Named;
  * @author srvmng
  */
 @Named(value="userBean")
-@SessionScoped
-public class UserBean implements Serializable{
+@RequestScoped
+public class UserBean {
 
     public String getUsername() {
         return username;

@@ -5,9 +5,8 @@
  */
 package Beans;
 
-import java.io.Serializable;
 import java.util.Date;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -15,8 +14,8 @@ import javax.inject.Named;
  * @author srvmng
  */
 @Named(value="aBean")
-@SessionScoped
-public class ArendeBean implements Serializable {
+@RequestScoped
+public class ArendeBean {
     
     private Integer id;
     private String username;

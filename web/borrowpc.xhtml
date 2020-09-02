@@ -12,14 +12,14 @@
         <br />
         <h:form id="myform">
             <h:selectOneMenu value="#{select.pcName}" >
-                <f:selectItem itemLabel="Välj ett" />
+                <f:selectItem itemLabel="Välj en" />
                 <f:selectItems value="#{select.pcs}" var="pcName" itemValue="#{pcName}"/>
             </h:selectOneMenu>
     <h:messages globalOnly="true" style="color:red;margin:8px;" />
     <p:inputText value="#{loanBean.descrip}" />
     <h:outputText value="Datum: "/>
     <p:calendar  id="returndate" value="#{select.idate}"  pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se"/>
-    <h:commandButton value="login" action="#{aloanBean.add()}" />
+    <h:commandButton value="login" action="#{aloanBean.add()}"  />
     </h:form>
         
         <script type="text/javascript">

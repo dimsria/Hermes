@@ -6,12 +6,14 @@
 package PcUtils;
 
 import Abst.PcFacade;
+import Beans.PcBean;
 import Entities.Pc;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -21,15 +23,12 @@ import javax.inject.Named;
 @RequestScoped
 @Named(value="select")
 public class PcSelBean {
-
-
-    
-    
+ 
     
     @EJB PcFacade pcFacade;
+    @Inject PcBean pcBean;
     
     private String pcName;
-    private String pcType;
     private String available;
     private List<Pc>pcs;
     private Date idate;
@@ -40,12 +39,12 @@ public class PcSelBean {
      pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
      System.out.println(pcs);
      System.out.print(idate);
+     System.out.print(available);
     }
 
     
     public String sendPcName(){
-        System.out.print(pcName);
-        System.out.print(getIdate());
+        
         return pcName;
     }
     
@@ -60,13 +59,6 @@ public class PcSelBean {
         this.pcName = pcName;
     }
 
-    public String getPcType() {
-        return pcType;
-    }
-
-    public void setPcType(String pcType) {
-        this.pcType = pcType;
-    }
 
     public String getAvailable() {
         return available;

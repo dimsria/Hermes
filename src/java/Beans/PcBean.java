@@ -5,17 +5,16 @@
  */
 package Beans;
 
-import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author srvmng
  */
-@SessionScoped
+@RequestScoped
 @Named(value="pcBean")
-public class PcBean implements Serializable{
+public class PcBean {
     
     private String pcName;
     private String pcType;
