@@ -87,7 +87,7 @@ public class LoginBean {
     context.getExternalContext().getSessionMap().put("user", username);
     context.getExternalContext().getSessionMap().put("firstname", firstname);
     context.getExternalContext().getSessionMap().put("surname", surname);
-    context.getExternalContext().redirect("welcomePrimefaces.xhtml");
+    context.getExternalContext().redirect("menu.xhtml");
     
     
   }

@@ -22,7 +22,7 @@ public class ActivationBean {
     @Inject LoginBean login;
     
     private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private String username;
+   
    
     
     public String activationCode(int count) {
@@ -36,16 +36,6 @@ public class ActivationBean {
             return builder.toString();
             
         }
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-
 
 
 }

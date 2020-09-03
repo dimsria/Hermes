@@ -22,16 +22,28 @@
                 </div>
         </header>
         <main>
-        <h:form class="aform">   
+           
             <p:panelGrid columns="2" class="pgrid">
                 
                 Användarnamn: #{login.sentUsername()}
                 <br></br>
-		Aktiveringskod: #{activation.activationCode(8)}  #{firstname} #{surname}
+		Aktiveringskod: #{activation.activationCode(8)}
 
          </p:panelGrid>
-            <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
-        </h:form>
+            
+       
+           
             </main>
+        <div class="footer">
+             <h:form class="aform">
+                    
+                <p:button outcome="menu" value="Hem" style="margin-right:20px;"></p:button>
+    
+                    <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
+              
+                    </h:form>
+            <p><h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten </p>
+        
+    </div>
     </h:body>
 </html>
