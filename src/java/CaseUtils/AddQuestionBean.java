@@ -51,7 +51,7 @@ public class AddQuestionBean {
         
         aFacade.create(a);
        
-        return "welcomePrimefaces";
+        return "menu";
     }
     
     public String edit(Arende a){

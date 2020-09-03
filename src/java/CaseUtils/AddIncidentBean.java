@@ -48,7 +48,7 @@ public class AddIncidentBean{
         
         aFacade.create(a);
         
-        return "welcomePrimefaces";
+        return "menu";
     }
     
     public String edit(Arende a){
