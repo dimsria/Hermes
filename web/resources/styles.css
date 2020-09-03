@@ -1,0 +1,82 @@
+html {
+  height: 100%;
+}
+
+h1, h2, h3 {
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 30px;
+  color: grey;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+header {
+  padding-top: 20px;
+  display: block;
+  border: 2px solid red;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+img{
+  max-width: 100%;
+  margin:auto;
+  display: block;
+}
+
+.logo-img {
+  height: 100px;
+  width: 75px;
+  margin: auto;
+}
+
+.footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  display: block;
+  border: 2px solid red;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  padding-top: 15px;
+  margin-bottom: 30px;
+}
+
+.form {
+
+  display: flex;
+  justify-content: center;
+  border: 2px solid red;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.cButton{
+  font-size: 18px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+    
+}
+
+.aform {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid red;
+  
+  padding-bottom: 10px;
+}

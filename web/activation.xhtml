@@ -5,19 +5,33 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Aktiveringskod</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="/styles.css"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        
+        <title>Hämta Aktiveringskod</title>
     </h:head>
     <h:body>
+        
+        <header>
+            <h1> Hermes- Kiosk </h1>
+                <div class="logo-img">
+                    <img src="img/logo.png"></img>
+                </div>
+        </header>
+        <main>
+        <h:form class="aform">   
+            <p:panelGrid columns="2" class="pgrid">
+                
+                Användarnamn: #{login.sentUsername()}
+                <br></br>
+		Aktiveringskod: #{activation.activationCode(8)}  #{firstname} #{surname}
 
-        <h:form>
-        <p:growl id="messages" showDetail="true" />   
-        <p:panelGrid columns="2" style="auto">
-         Inloggad som #{user} #{firstname} #{surname}
-         <br></br>
-         Din aktiveringskod är: #{activation.activationCode(8)}
-         <br></br>
-         <p:commandButton value="Logga ut" action="#{login.logout()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
          </p:panelGrid>
-</h:form>
+            <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
+        </h:form>
+            </main>
     </h:body>
 </html>
