@@ -25,7 +25,7 @@
     <h:form class="form">
         <h:panelGrid columns="2" style="auto">
         <p:selectOneListbox value="#{login.username}">
-          <f:selectItem itemLabel="Välj ett" />
+          <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
           <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
         </p:selectOneListbox>
 

@@ -25,11 +25,11 @@ h3 {
 header {
   padding-top: 5px;
   display: block;
-  border: 2px solid red;
+  border: 1px solid red;
   text-align: center;
   margin: auto;
   position: relative;
-  padding-bottom: 15px;
+  
 }
 
 img{
@@ -126,11 +126,24 @@ td {
 li{
     margin: auto;
     display: flex;
-    padding: 5px;
-    align-items: center;
+    padding: 2px;
     justify-content: center;
     text-align: center;
     font-weight: bolder;
-    font-size: 18px;
+    font-size: 16px;
     list-style: none;
+}
+ul{
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    display: block;
+    list-style-type: disc;
+    padding-left: 0px;
+}
+textarea{
+    font-size: 14px;
+}
+#returndate{
+    font-size: 16px;
 }

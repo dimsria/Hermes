@@ -55,7 +55,7 @@ public class AddLoanBean{
         b.setUsername(login.sentUsername());
         b.setArType("Datorlån");
         b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-        b.setDescrip(loanBean.getDescrip());
+        b.setDescrip("Låna en dator.");
         b.setPcName(select.sendPcName());
         b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
         b.setArStatus("Öppet");
@@ -63,7 +63,7 @@ public class AddLoanBean{
         pcFacade.edit(p);
         pcloanFacade.create(b);
         
-        return "welcomePrimefaces";
+        return "menu";
     }
     public String edit(Arende a){
         loanBean.setArStatus(a.getArStatus());

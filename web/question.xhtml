@@ -27,13 +27,15 @@
             <ul>
                 <li>
                     <p>Inloggad som: #{login.sentUsername()}</p>
+                    
+                    
                 </li>
                 <li>
                     <p>Ställ din fråga här:</p>
                 </li>
                 <li>
-                
-                    <p:inputTextarea rows="6" cols="33" value="#{aBean.descrip}" autoResize="true" />
+                    <p:inputTextarea value="#{aBean.descrip}" rows="5" cols="30" autoResize="true" class="textarea" />
+                    
                 </li>
                 <li>
                     <p:commandButton value="Bekräfta" action="#{qBean.add()}"/>
