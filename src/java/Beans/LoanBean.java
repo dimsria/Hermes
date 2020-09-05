@@ -13,83 +13,80 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@RequestScoped
-@Named(value="loanBean")
+@RequestScoped@Named(value = "loanBean")
 public class LoanBean {
-    
-    private Integer id;
-    private String username;
-    private String arType;
-    private String descrip;
-    private String pcName;
-    private Date datecreated;
-    private Date returndate;
-    private String arStatus;
 
-    public Integer getId() {
-        return id;
-    }
+  private Integer id;
+  private String username;
+  private String arType;
+  private String descrip;
+  private String pcName;
+  private Date datecreated;
+  private Date returndate;
+  private String arStatus;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public String getArType() {
-        return arType;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public void setArType(String arType) {
-        this.arType = arType;
-    }
+  public String getArType() {
+    return arType;
+  }
 
-    public String getDescrip() {
-        return descrip;
-    }
+  public void setArType(String arType) {
+    this.arType = arType;
+  }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
-    }
+  public String getDescrip() {
+    return descrip;
+  }
 
-    public String getPcName() {
-        return pcName;
-    }
+  public void setDescrip(String descrip) {
+    this.descrip = descrip;
+  }
 
-    public void setPcName(String pcName) {
-        this.pcName = pcName;
-    }
+  public String getPcName() {
+    return pcName;
+  }
 
-    public Date getDatecreated() {
-        return datecreated;
-    }
+  public void setPcName(String pcName) {
+    this.pcName = pcName;
+  }
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
-    }
+  public Date getDatecreated() {
+    return datecreated;
+  }
 
-    public Date getReturndate() {
-        return returndate;
-    }
+  public void setDatecreated(Date datecreated) {
+    this.datecreated = datecreated;
+  }
 
-    public void setReturndate(Date returndate) {
-        this.returndate = returndate;
-    }
+  public Date getReturndate() {
+    return returndate;
+  }
 
-    public String getArStatus() {
-        return arStatus;
-    }
+  public void setReturndate(Date returndate) {
+    this.returndate = returndate;
+  }
 
-    public void setArStatus(String arStatus) {
-        this.arStatus = arStatus;
-    }
-    
-    
-    
+  public String getArStatus() {
+    return arStatus;
+  }
+
+  public void setArStatus(String arStatus) {
+    this.arStatus = arStatus;
+  }
+
 }
