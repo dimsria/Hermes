@@ -18,33 +18,32 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value="ePcBean")
-@RequestScoped
+@Named(value = "ePcBean")@RequestScoped
 public class EditPcBean {
-    
-    @EJB PcFacade pcFacade;
-    @Inject PcBean pcBean;
-    
-    public List <Pc> getAll(){
-        
-        return pcFacade.findAll();
-    }
-    
-    public int count(){
-        return pcFacade.count();
-    }
-    
-    public String edit(Pc p){
-        pcBean.setPcName(p.getPcName());
-        pcBean.setAvailable(p.getAvailable());
-        return "pcs";
-    }
-    
-    public String save(){
-        Pc p = new Pc(pcBean.getPcName());
-        p.setAvailable(pcBean.getAvailable());
-        pcFacade.edit(p);
-        return "pcs";
-    }
-    
+
+  @EJB PcFacade pcFacade;
+  @Inject PcBean pcBean;
+
+  public List < Pc > getAll() {
+
+    return pcFacade.findAll();
+  }
+
+  public int count() {
+    return pcFacade.count();
+  }
+
+  public String edit(Pc p) {
+    pcBean.setPcName(p.getPcName());
+    pcBean.setAvailable(p.getAvailable());
+    return "pcs";
+  }
+
+  public String save() {
+    Pc p = new Pc(pcBean.getPcName());
+    p.setAvailable(pcBean.getAvailable());
+    pcFacade.edit(p);
+    return "pcs";
+  }
+
 }

@@ -25,56 +25,55 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value="aloanBean")
-@RequestScoped
+@Named(value = "aloanBean")@RequestScoped
 
-public class AddLoanBean{
-    
-    @EJB PcloanFacade pcloanFacade;
-    @EJB PcFacade pcFacade;
-    @Inject LoanBean loanBean;
-    @Inject LoginBean login;
-    @Inject PcSelBean select;
-    @Inject PcBean pcBean;
-    
-    public List <Pcloan> getAll(){
-        
-        return pcloanFacade.findAll();
-    }
-    
-    public int count(){
-        return pcloanFacade.count();
-    }
-    
-    public String add() throws IOException{
-        
-        Pcloan b = new Pcloan();
-        Pc p = new Pc(select.sendPcName());
-        
-        
-        b.setUsername(login.sentUsername());
-        b.setArType("Datorlån");
-        b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-        b.setDescrip("Låna en dator.");
-        b.setPcName(select.sendPcName());
-        b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
-        b.setArStatus("Öppet");
-        p.setAvailable("No");
-        pcFacade.edit(p);
-        pcloanFacade.create(b);
-        
-        return "menu";
-    }
-    public String edit(Arende a){
-        loanBean.setArStatus(a.getArStatus());
-        return "pcloans";
-    }
-    
-    public String save (){
-        
-        Pcloan b = new Pcloan(loanBean.getId());
-        b.setArStatus(loanBean.getArStatus());
-        pcloanFacade.edit(b);
-        return "pcloans";
-    }
+public class AddLoanBean {
+
+  @EJB PcloanFacade pcloanFacade;
+  @EJB PcFacade pcFacade;
+  
+  @Inject LoanBean loanBean;
+  @Inject LoginBean login;
+  @Inject PcSelBean select;
+  @Inject PcBean pcBean;
+
+  public List < Pcloan > getAll() {
+
+    return pcloanFacade.findAll();
+  }
+
+  public int count() {
+    return pcloanFacade.count();
+  }
+
+  public String add() throws IOException {
+
+    Pcloan b = new Pcloan();
+    Pc p = new Pc(select.sendPcName());
+
+    b.setUsername(login.sentUsername());
+    b.setArType("Datorlån");
+    b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
+    b.setDescrip("Låna en dator.");
+    b.setPcName(select.sendPcName());
+    b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
+    b.setArStatus("Öppet");
+    p.setAvailable("No");
+    pcFacade.edit(p);
+    pcloanFacade.create(b);
+
+    return "menu";
+  }
+  public String edit(Arende a) {
+    loanBean.setArStatus(a.getArStatus());
+    return "pcloans";
+  }
+
+  public String save() {
+
+    Pcloan b = new Pcloan(loanBean.getId());
+    b.setArStatus(loanBean.getArStatus());
+    pcloanFacade.edit(b);
+    return "pcloans";
+  }
 }
