@@ -29,9 +29,17 @@ public class AddQuestionBean implements Serializable {
   @Inject ArendeBean aBean;
   @Inject LoginBean login;
 
-  public List < Arende > getAllQs() {
+  private static final long serialVersionUID = 1L;
+  
+  public List < Arende > getAllQs(){
 
-    return aFacade.findWithNamedQuery("Arende.findByQuestion");
+    return aFacade.findWithNamedQuery("Arende.findBytest2");
+    
+  }
+  
+  public List <Arende> getall(){
+      
+      return aFacade.findWithNamedQuery("Arende.findByQuestion");
   }
 
   public int count() {

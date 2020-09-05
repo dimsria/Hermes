@@ -29,7 +29,8 @@ import javax.inject.Named;
 @SessionScoped
 
 public class AddLoanBean implements Serializable {
-
+  private static final long serialVersionUID = 1L;
+  
   @EJB PcloanFacade pcloanFacade;
   @EJB PcFacade pcFacade;
   
@@ -37,6 +38,11 @@ public class AddLoanBean implements Serializable {
   @Inject LoginBean login;
   @Inject PcSelBean select;
   @Inject PcBean pcBean;
+  
+  public List <Pcloan> getClosed(){
+      
+      return pcloanFacade.findWithNamedQuery("Pcloan.findByClosed");
+  }
 
   public List < Pcloan > getAllPcLoans() {
 

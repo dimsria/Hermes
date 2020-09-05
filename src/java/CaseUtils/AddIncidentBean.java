@@ -28,7 +28,13 @@ public class AddIncidentBean implements Serializable {
   @EJB ArendeFacade aFacade;
   @Inject ArendeBean aBean;
   @Inject LoginBean login;
+  
+ private static final long serialVersionUID = 1L;
 
+  public List <Arende> getClosed(){
+      return aFacade.findWithNamedQuery("Arende.findBytest");
+  }
+  
   public List < Arende > getAllIncs() {
 
     return aFacade.findWithNamedQuery("Arende.findByIncident");
