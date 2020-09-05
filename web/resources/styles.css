@@ -147,3 +147,10 @@ textarea{
 #returndate{
     font-size: 16px;
 }
+.dataTable{
+    table-layout: auto;
+    text-align: center;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+}

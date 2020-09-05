@@ -1,58 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-        <h:outputStylesheet name="/styles.css"/>
-        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        
-        <title>Låna Dator</title>
-    </h:head>
-    <h:body>
-        <header>
-            <h1> Hermes- Kiosk </h1>
-                <div class="logo-img">
-                    <img src="img/logo.png"></img>
-                </div>
-        </header>
-        <main> 
-            <ul>
-                <li>
-                    <p>Inloggad som: #{login.sentUsername()}</p>
-                </li>
-        </ul>
-            
-        <h:form class="aform">
-            <table>
-                <tr>
-                    <td>
-                        <p:selectOneListbox value="#{select.pcName}" >
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Låna Dator</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1> Hermes- Kiosk </h1>
+      <div class="logo-img">
+        <img src="img/logo.png"></img>
+      </div>
+    </header>
+    <main>
+      <ul>
+        <li>
+          <p>Inloggad som: #{login.sentUsername()}</p>
+        </li>
+      </ul>
+      <h:form class="aform">
+        <table>
+          <tr>
+            <td>
+              <p:selectOneListbox value="#{select.pcName}" >
                 <f:selectItem itemLabel="Välj en dator" noSelectionOption="true" itemDisabled="true" />
                 <f:selectItems value="#{select.pcs}" var="pcName" itemValue="#{pcName}"/>
-                </p:selectOneListbox>
-                    </td>
-                    <td>
-          
-                    <p:calendar  id="returndate" value="#{select.idate}"  pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se" showOn="button" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" class="cButton" />
-                    </td>
-                </tr>
-            </table>
-            
-    
-            
-            </h:form>
-        
-        <script type="text/javascript">
+              </p:selectOneListbox>
+            </td>
+            <td>
+              <p:calendar  id="returndate" value="#{select.idate}"  pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se" showOn="button" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" class="cButton" />
+            </td>
+          </tr>
+        </table>
+      </h:form>
+      <script type="text/javascript">
      PrimeFaces.locales['se'] = {
         closeText: 'stäng',
         prevText: 'före',
@@ -76,17 +70,15 @@
         allDayText : 'Hela dag'
     };
         </script>
-        </main>
-                     <div class="footer">
-             <h:form class="aform">
-                    
-                <p:button outcome="menu" value="Hem" style="margin-right:20px;"></p:button>
-    
-                    <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
-              
-                    </h:form>
-            <p><h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten </p>
-        
+    </main>
+    <div class="footer">
+      <h:form class="aform">
+        <p:button outcome="menu" value="Hem" style="margin-right:10px;"></p:button>
+        <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
+      </h:form>
+      <p>
+        <h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten 
+      </p>
     </div>
-    </h:body>
+  </h:body>
 </html>

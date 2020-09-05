@@ -1,42 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-        <h:outputStylesheet name="/styles.css"/>
-        
-        <title>Logga In</title>
-    </h:head>
-
-    <h:body>
-   <header>
-            <h1> Hermes- Kiosk </h1>
-                <div class="logo-img">
-                    <img src="img/logo.png"></img>
-                </div>
-        </header>
-        <main>    
-    
-    <h:form class="form">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <title>Logga In</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1> Hermes- Kiosk </h1>
+      <div class="logo-img">
+        <img src="img/logo.png"></img>
+      </div>
+    </header>
+    <main>
+      <h:form class="form">
         <h:panelGrid columns="2" style="auto">
-        <p:selectOneListbox value="#{login.username}">
-          <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
-          <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
-        </p:selectOneListbox>
-
-                <p:commandButton value="Logga in" action="#{login.login}"  class="cButton"/>
-                </h:panelGrid>
-    </h:form>
-    
-            </main>
-        
-        <div class="footer">
-        <p><h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten </p>
+          <p:selectOneListbox value="#{login.username}">
+            <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
+            <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
+          </p:selectOneListbox>
+          <p:commandButton value="Logga in" action="#{login.login}"  class="cButton"/>
+        </h:panelGrid>
+      </h:form>
+    </main>
+    <div class="footer">
+      <p>
+        <h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten 
+      </p>
     </div>
-    </h:body>
+  </h:body>
 </html>

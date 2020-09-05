@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="/styles.css"/>
+        
+        
+        <title>Arenden</title>
+    </h:head>
+    <h:body>
+        
+        
+ 
+ 
+<h:form>        
+    <p:commandButton value="Redigera" type="button" onclick="PF('eventDialog').show();" />
+       
+     
+    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+     
+    <p:dialog id="eventDialog" header="Redigera" widgetVar="dlg" resizable="false">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="arStatus" value="Status" />
+            <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+             
+            <p:selectOneListbox id="basic" value="#{aBean.arStatus}">
+            <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
+            <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
+            </p:selectOneListbox>
+             
+            <f:facet name="footer">
+                <p:commandButton value="Ok" update="growl" action="#{iBean.save()}" />
+            </f:facet>  
+        </h:panelGrid>
+    </p:dialog>    
+</h:form>
+   
+        
+    </h:body>
+    
+
+</html>

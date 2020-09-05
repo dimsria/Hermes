@@ -1,61 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-        <h:outputStylesheet name="/styles.css"/>
-        
-        <title>Meny</title>
-    </h:head>
-
-        <h:body>
-            <header>
-            <h1> Hermes- Kiosk </h1>
-                <div class="logo-img">
-                    <img src="img/logo.png"></img>
-                </div>
-        </header>
-            <main>  
-                
-               
-                <h2>Välkommen #{user}</h2>
-                    <h2>Hur kan vi hjälpa dig?</h2>
-                    
-                    <table>
-          <tr>
-          <td><a href="activation.xhtml" ><button class="btn">Hämta aktiveringskod<i class="fas fa-mobile-alt fa-3x"></i></button></a></td>
-          <td><a href="h_order.xhtml" ><button class="btn">Hämta en beställning<i class="fas fa-people-carry fa-3x"></i></button></a></td>
-          <td><a href="incident.xhtml"><button class="btn">Göra en felanmälan<i class="fas fa-tools fa-3x"></i></button></a></td>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <title>Meny</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1> Hermes- Kiosk </h1>
+      <div class="logo-img">
+        <img src="img/logo.png"></img>
+      </div>
+    </header>
+    <main>
+      <h2>Välkommen #{user}</h2>
+      <h2>Hur kan vi hjälpa dig?</h2>
+      <table>
+        <tr>
+          <td>
+            <a href="activation.xhtml" >
+              <button class="btn">Hämta aktiveringskod
+                <i class="fas fa-mobile-alt fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="h_order.xhtml" >
+              <button class="btn">Hämta en beställning
+                <i class="fas fa-people-carry fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="incident.xhtml">
+              <button class="btn">Göra en felanmälan
+                <i class="fas fa-tools fa-3x"></i>
+              </button>
+            </a>
+          </td>
         </tr>
         <tr>
-          <td><a href="question.xhtml"><button class="btn">IT-Frågor<i class="far fa-question-circle fa-3x"></i></button></a></td>
-          <td><a href="borrowpc.xhtml"><button class="btn">Låna en dator<i class="fas fa-laptop fa-3x"></i></button></a></td>
-          <td><a href="webshop.xhtml"><button class="btn">Beställa IT-Tillbehör<i class="fas fa-shopping-cart fa-3x"></i></button></a></td>
+          <td>
+            <a href="question.xhtml">
+              <button class="btn">IT-Frågor
+                <i class="far fa-question-circle fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="borrowpc.xhtml">
+              <button class="btn">Låna en dator
+                <i class="fas fa-laptop fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="webshop.xhtml">
+              <button class="btn">Beställa IT-Tillbehör
+                <i class="fas fa-shopping-cart fa-3x"></i>
+              </button>
+            </a>
+          </td>
         </tr>
-        </table>
-                    
-               
-
-            
-            </main>
-             <div class="footer">
-             <h:form class="aform">
-                    
-               
-    
-                    <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
-              
-                    </h:form>
-            <p><h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten </p>
-        
+      </table>
+    </main>
+    <div class="footer">
+      <h:form class="aform">
+        <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
+      </h:form>
+      <p>
+        <h:link outcome="about">&copy; Dimitrios Sria</h:link>, IT-avdelning, Polismyndigheten 
+      </p>
     </div>
-        </h:body>
-
-   
+  </h:body>
 </html>
 
