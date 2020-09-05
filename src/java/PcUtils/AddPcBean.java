@@ -43,7 +43,7 @@ public class AddPcBean implements Serializable{
         pcBean.setPcName(p.getPcName());
         pcBean.setAvailable(p.getAvailable());
         
-        return "update";
+        return "updatepc";
     }
     public String save(){
         Pc p = new Pc(pcBean.getPcName());

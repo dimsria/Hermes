@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Pcloan.findByDescrip", query = "SELECT p FROM Pcloan p WHERE p.descrip = :descrip")
     , @NamedQuery(name = "Pcloan.findByPcName", query = "SELECT p FROM Pcloan p WHERE p.pcName = :pcName")
     , @NamedQuery(name = "Pcloan.findByDatecreated", query = "SELECT p FROM Pcloan p WHERE p.datecreated = :datecreated")
-    , @NamedQuery(name = "Pcloan.findByArStatus", query = "SELECT p FROM Pcloan p WHERE p.arStatus = :arStatus")
+    , @NamedQuery(name = "Pcloan.findByArStatus", query = "SELECT p FROM Pcloan p WHERE p.arStatus = 'Öppet'")
     , @NamedQuery(name = "Pcloan.findByReturndate", query = "SELECT p FROM Pcloan p WHERE p.returndate = :returndate")})
 public class Pcloan implements Serializable {
 

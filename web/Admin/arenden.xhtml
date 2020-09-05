@@ -1,48 +1,133 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-        <h:outputStylesheet name="/styles.css"/>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Arenden</title>
+  </h:head>
+  <h:body>
+    <main>
+      <header>
+        <h1> Administration </h1>
+        <div class="logo-img">
+          <img src="../img/logo.png"></img>
+        </div>
+      </header>
+      <h:form>
+        <p:dataTable value="#{iBean.allIncs}" var="arende" resizableColumns="true" class="dataTable">
+          <f:facet name="header">Incidenter</f:facet>
+          <p:column>
+            <f:facet name="header">ÄrendeId</f:facet>
+                        #{arende.id}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Användare</f:facet>
+                        #{arende.username}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Beskrivning</f:facet>
+                        #{arende.descrip}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Datum Skapat</f:facet>
+                        #{arende.datecreated}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Status</f:facet>
+                        #{arende.arStatus}
+                
+          </p:column>
+          <p:column>
+            <p:commandButton  value="Redigera" action="#{iBean.edit(arende)}" />
+          </p:column>
+        </p:dataTable>
+      </h:form>
         
-        
-        <title>Arenden</title>
-    </h:head>
-    <h:body>
-        
-        
- 
- 
-<h:form>        
-    <p:commandButton value="Redigera" type="button" onclick="PF('eventDialog').show();" />
-       
-     
-    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-     
-    <p:dialog id="eventDialog" header="Redigera" widgetVar="dlg" resizable="false">
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputLabel for="arStatus" value="Status" />
-            <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
-             
-            <p:selectOneListbox id="basic" value="#{aBean.arStatus}">
-            <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
-            <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
-            </p:selectOneListbox>
-             
-            <f:facet name="footer">
-                <p:commandButton value="Ok" update="growl" action="#{iBean.save()}" />
-            </f:facet>  
-        </h:panelGrid>
-    </p:dialog>    
-</h:form>
-   
-        
-    </h:body>
-    
-
+      <h:form>
+        <p:dataTable value="#{qBean.allQs}" var="arende" resizableColumns="true" class="dataTable">
+          <f:facet name="header">IT-Frågor</f:facet>
+          <p:column>
+            <f:facet name="header">ÄrendeId</f:facet>
+                        #{arende.id}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Användare</f:facet>
+                        #{arende.username}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Beskrivning</f:facet>
+                        #{arende.descrip}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Datum Skapat</f:facet>
+                        #{arende.datecreated}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Status</f:facet>
+                        #{arende.arStatus}
+                
+          </p:column>
+          <p:column>
+            <p:commandButton value="Redigera" action="#{qBean.edit(arende)}" />
+          </p:column>
+          
+        </p:dataTable>
+      </h:form>
+        <h:form>
+          <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" resizableColumns="true" class="dataTable">
+          <f:facet name="header">Lånade Datorer</f:facet>
+          <p:column>
+            <f:facet name="header">ÄrendeId</f:facet>
+                        #{pcloan.id}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Användare</f:facet>
+                        #{pcloan.username}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Datornamn</f:facet>
+                        #{pcloan.pcName}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Lånedatum</f:facet>
+                        #{pcloan.datecreated}
+                
+          </p:column>
+          <p:column>
+            <f:facet name="header">Status</f:facet>
+                        #{pcloan.arStatus}
+                
+          </p:column>
+          
+          <p:column>
+            <f:facet name="header">Returdatum</f:facet>
+                        #{pcloan.returndate}
+                
+          </p:column>
+          <p:column>
+            <p:commandButton  value="Redigera" action="#{aloanBean.edit(pcloan)}" />
+          </p:column>
+        </p:dataTable>
+      </h:form>
+    </main>
+  </h:body>
 </html>

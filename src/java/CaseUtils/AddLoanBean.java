@@ -9,15 +9,15 @@ import Abst.PcFacade;
 import Abst.PcloanFacade;
 import Beans.LoanBean;
 import Beans.PcBean;
-import Entities.Arende;
 import Entities.Pc;
 import Entities.Pcloan;
 import PcUtils.PcSelBean;
 import UserUtils.LoginBean;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,9 +25,10 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value = "aloanBean")@RequestScoped
+@Named(value = "aloanBean")
+@SessionScoped
 
-public class AddLoanBean {
+public class AddLoanBean implements Serializable {
 
   @EJB PcloanFacade pcloanFacade;
   @EJB PcFacade pcFacade;
@@ -37,9 +38,9 @@ public class AddLoanBean {
   @Inject PcSelBean select;
   @Inject PcBean pcBean;
 
-  public List < Pcloan > getAll() {
+  public List < Pcloan > getAllPcLoans() {
 
-    return pcloanFacade.findAll();
+    return pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
   }
 
   public int count() {
@@ -64,16 +65,39 @@ public class AddLoanBean {
 
     return "menu";
   }
-  public String edit(Arende a) {
-    loanBean.setArStatus(a.getArStatus());
-    return "pcloans";
+  public String edit(Pcloan b) {
+      
+    loanBean.setId(b.getId());
+    loanBean.setDatecreated(b.getDatecreated());
+    loanBean.setArType(b.getArType());
+    loanBean.setArStatus(b.getArStatus());
+    loanBean.setDescrip(b.getDescrip());
+    loanBean.setUsername(b.getUsername());
+    loanBean.setReturndate(b.getReturndate());
+    loanBean.setPcName(b.getPcName());
+    
+    return "updateloan";
   }
 
   public String save() {
-
+        
     Pcloan b = new Pcloan(loanBean.getId());
+    Pc p = new Pc(loanBean.getPcName());
+    
+    p.setPcName(loanBean.getPcName());
+    p.setAvailable("Yes");
+    
+    b.setPcName(loanBean.getPcName());
     b.setArStatus(loanBean.getArStatus());
+    b.setArType(loanBean.getArType());
+    b.setDatecreated(loanBean.getDatecreated());
+    b.setReturndate(loanBean.getReturndate());
+    b.setUsername(loanBean.getUsername());
+    b.setDescrip(loanBean.getDescrip());
+    
+    pcFacade.edit(p);
     pcloanFacade.edit(b);
-    return "pcloans";
+    
+    return "arenden";
   }
 }

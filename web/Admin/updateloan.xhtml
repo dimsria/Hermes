@@ -6,26 +6,33 @@
   xmlns:f="http://java.sun.com/jsf/core"
   xmlns:p="http://primefaces.org/ui">
   <h:head>
+      
+      <script type="text/javascript">
+    window.onunload = function(){
+  window.opener.location.reload();
+  window.close(); 
+};
+</script>
+
     <meta charset="utf-8"></meta>
     <title>Adminlistor</title>
   </h:head>
-  <h:body>
-    <h:form class="form">
+    <h:body>
+            
+      <h:form class="form">
       <p:panelGrid columns="2" style="auto">
         <p:column>
           <f:facet name="header">Status</f:facet>
-          <p:selectOneListbox value="#{aBean.arStatus}">
+          <p:selectOneListbox value="#{loanBean.arStatus}">
             <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
             <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
           </p:selectOneListbox>
         </p:column>
         <p:column>
           <p:commandButton value="Ändra" 
-                             action="#{iBean.save()}" />
+                           action="#{aloanBean.save()}" />
         </p:column>
-        <p:column>
-          <h:link outcome="Incidents" value="Tillbaka"/>
-        </p:column>
+
       </p:panelGrid>
     </h:form>
   </h:body>

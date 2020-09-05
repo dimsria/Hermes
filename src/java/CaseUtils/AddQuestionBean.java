@@ -61,7 +61,7 @@ public class AddQuestionBean implements Serializable {
     aBean.setDescrip(a.getDescrip());
     aBean.setUsername(a.getUsername());
 
-    return "qupdate";
+    return "updateq";
   }
 
   public String save() {

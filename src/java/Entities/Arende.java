@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Arende.findByUsername", query = "SELECT a FROM Arende a WHERE a.username = :username")
     , @NamedQuery(name = "Arende.findByArType", query = "SELECT a FROM Arende a WHERE a.arType = :arType")
     , @NamedQuery(name = "Arende.findByDescrip", query = "SELECT a FROM Arende a WHERE a.descrip = :descrip")
-    ,@NamedQuery(name = "Arende.findByIncident", query = "SELECT a FROM Arende a WHERE a.arType = 'Incident'")
-    ,@NamedQuery(name = "Arende.findByQuestion", query = "SELECT a FROM Arende a WHERE a.arType = 'Question'")
+    ,@NamedQuery(name = "Arende.findByIncident", query = "SELECT a FROM Arende a WHERE a.arType = 'Incident' and a.arStatus = 'Öppet' ")
+    ,@NamedQuery(name = "Arende.findByQuestion", query = "SELECT a FROM Arende a WHERE a.arType = 'Question' and a.arStatus='Öppet'")
     , @NamedQuery(name = "Arende.findByDatecreated", query = "SELECT a FROM Arende a WHERE a.datecreated = :datecreated")
     , @NamedQuery(name = "Arende.findByArStatus", query = "SELECT a FROM Arende a WHERE a.arStatus = :arStatus")})
 public class Arende implements Serializable {

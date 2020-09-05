@@ -14,7 +14,8 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value = "aBean")@SessionScoped
+@Named(value = "aBean")
+@SessionScoped
 public class ArendeBean implements Serializable {
 
   private static final long serialVersionUID = 1L;

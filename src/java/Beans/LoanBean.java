@@ -5,17 +5,21 @@
  */
 package Beans;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author srvmng
  */
-@RequestScoped@Named(value = "loanBean")
-public class LoanBean {
-
+@SessionScoped
+@Named(value = "loanBean")
+public class LoanBean implements Serializable {
+    
+  private static final long serialVersionUID = 1L; 
+  
   private Integer id;
   private String username;
   private String arType;

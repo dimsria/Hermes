@@ -60,8 +60,9 @@ public class AddIncidentBean implements Serializable {
     aBean.setDatecreated(a.getDatecreated());
     aBean.setDescrip(a.getDescrip());
     aBean.setUsername(a.getUsername());
-
-    return "update";
+    
+    return "updateinc" ;
+  
   }
 
   public String save() {
@@ -74,7 +75,7 @@ public class AddIncidentBean implements Serializable {
     a.setDatecreated(aBean.getDatecreated());
 
     aFacade.edit(a);
-    return "Incidents";
+    return "arenden";
   }
 
 }

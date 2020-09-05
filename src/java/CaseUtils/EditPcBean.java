@@ -8,9 +8,10 @@ package CaseUtils;
 import Abst.PcFacade;
 import Beans.PcBean;
 import Entities.Pc;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,8 +19,9 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value = "ePcBean")@RequestScoped
-public class EditPcBean {
+@Named(value = "ePcBean")
+@SessionScoped
+public class EditPcBean implements Serializable{
 
   @EJB PcFacade pcFacade;
   @Inject PcBean pcBean;
