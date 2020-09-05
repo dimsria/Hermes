@@ -16,7 +16,7 @@ import javax.inject.Named;
 public class PcBean {
 
   private String pcName;
-  private String pcType;
+  
   private String available;
 
   public String getPcName() {
@@ -25,14 +25,6 @@ public class PcBean {
 
   public void setPcName(String pcName) {
     this.pcName = pcName;
-  }
-
-  public String getPcType() {
-    return pcType;
-  }
-
-  public void setPcType(String pcType) {
-    this.pcType = pcType;
   }
 
   public String getAvailable() {

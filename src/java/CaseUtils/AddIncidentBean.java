@@ -21,10 +21,13 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value = "iBean")@SessionScoped
+@Named(value = "iBean")
+@SessionScoped
 public class AddIncidentBean implements Serializable {
 
-  @EJB ArendeFacade aFacade;@Inject ArendeBean aBean;@Inject LoginBean login;
+  @EJB ArendeFacade aFacade;
+  @Inject ArendeBean aBean;
+  @Inject LoginBean login;
 
   public List < Arende > getAllIncs() {
 
