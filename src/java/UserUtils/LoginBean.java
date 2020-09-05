@@ -22,14 +22,14 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 @Named(value = "login")
 public class LoginBean {
-    
+
   @EJB UsersFacade uFacade;
 
   private String username;
   private String firstname;
   private String surname;
 
-  private List < Users > users;  
+  private List < Users > users;
 
   public String getUsername() {
     return username;
@@ -48,7 +48,7 @@ public class LoginBean {
   }
 
   public String getSurname() {
-    
+
     return surname;
   }
 
@@ -66,17 +66,16 @@ public class LoginBean {
 
   @PostConstruct
   public void init() {
-      
-  
+
     users = uFacade.findAll();
 
   }
-  
-  public String sentUsername (){
-      username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        String[] val = username.split(" ");
-    if (val.length > 1){
-        username = val[0];
+
+  public String sentUsername() {
+    username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    String[] val = username.split(" ");
+    if (val.length > 1) {
+      username = val[0];
     }
     return username;
   }
@@ -88,8 +87,7 @@ public class LoginBean {
     context.getExternalContext().getSessionMap().put("firstname", firstname);
     context.getExternalContext().getSessionMap().put("surname", surname);
     context.getExternalContext().redirect("menu.xhtml");
-    
-    
+
   }
 
   public void logout() {
@@ -99,7 +97,7 @@ public class LoginBean {
     try {
       context.getExternalContext().redirect("index.xhtml");
     } catch(IOException e) {}
-    
+
   }
 
 }

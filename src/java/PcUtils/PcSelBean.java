@@ -20,67 +20,61 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@RequestScoped
-@Named(value="select")
+@RequestScoped@Named(value = "select")
 public class PcSelBean {
- 
-    
-    @EJB PcFacade pcFacade;
-    @Inject PcBean pcBean;
-    
-    private String pcName;
-    private String available;
-    private List<Pc>pcs;
-    private Date idate;
-    
-    @PostConstruct
-    public void init() {
-        
-     pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
-     System.out.println(pcs);
 
-    }
+  @EJB PcFacade pcFacade;
+  @Inject PcBean pcBean;
 
-    
-    public String sendPcName(){
-        
-        return pcName;
-    }
-    
+  private String pcName;
+  private String available;
+  private List < Pc > pcs;
+  private Date idate;
 
-    
-    public String getPcName() {
-        return pcName;
-        
-    }
+  @PostConstruct
+  public void init() {
 
-    public void setPcName(String pcName) {
-        this.pcName = pcName;
-    }
+    pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
+    System.out.println(pcs);
 
+  }
 
-    public String getAvailable() {
-        return available;
-    }
+  public String sendPcName() {
 
-    public void setAvailable(String available) {
-        this.available = available;
-    }
+    return pcName;
+  }
 
-    public List<Pc> getPcs() {
-        return pcs;
-    }
+  public String getPcName() {
+    return pcName;
 
-    public void setPcs(List<Pc> pcs) {
-        this.pcs = pcs;
-    }
+  }
 
-    public Date getIdate() {
-        return idate;
-    }
+  public void setPcName(String pcName) {
+    this.pcName = pcName;
+  }
 
-    public void setIdate(Date idate) {
-        this.idate = idate;
-    }
-  
+  public String getAvailable() {
+    return available;
+  }
+
+  public void setAvailable(String available) {
+    this.available = available;
+  }
+
+  public List < Pc > getPcs() {
+    return pcs;
+  }
+
+  public void setPcs(List < Pc > pcs) {
+    this.pcs = pcs;
+  }
+
+  public Date getIdate() {
+    return idate;
+  }
+
+  public void setIdate(Date idate) {
+    this.idate = idate;
+  }
+
 }
