@@ -35,7 +35,7 @@ public class AddPcBean implements Serializable{
         p.setPcName(pcBean.getPcName());
         p.setAvailable(pcBean.getAvailable());
         pcFacade.create(p);
-        return "pclist";
+        return "editpc";
     }
     
     public String edit(Pc p){
@@ -50,13 +50,13 @@ public class AddPcBean implements Serializable{
         p.setPcName(pcBean.getPcName());
         p.setAvailable(pcBean.getAvailable());
         pcFacade.edit(p);
-        return "pclist";
+        return "editpc";
     }
     
     public String delete (Pc p){
-        
+    
         pcFacade.remove(p);
-        return "null";
+        return null;
     }
     
 }

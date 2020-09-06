@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Arenden</title>
+  </h:head>
+  <h:body> 
+      <header>
+        <h1> Administration </h1>
+        <div class="logo-img">
+          <img src="img/logo.png"></img>
+        </div>
+      </header>
+      <main>
+          <h:form>
+              <p:dataTable value="#{pBean.all}" var="pc" resizableColumns="true" class="dataTable">
+                  <f:facet name="header">Lånedatorer</f:facet>
+                  <p:column>
+                       <f:facet name="header">Redigera</f:facet>
+                    <p:commandButton value="Redigera" 
+                                   action="#{pBean.edit(pc)}" />
+                  </p:column>
+             
+                  <p:column>
+                      <f:facet name="header">Datornamn</f:facet>
+                      #{pc.pcName}
+                      
+                  </p:column>  
+                  
+                <p:column>
+                      <f:facet name="header">Tillgänglig</f:facet>
+                      #{pc.available}
+                      
+                  </p:column>  
+                  <p:column>
+                      
+                      <h:commandButton value="Ta bort" action="#{pBean.delete(pc)}">
+                          <f:ajax execute="@form" render="@form" />
+                      </h:commandButton>
+                  </p:column>
+
+              </p:dataTable>
+              
+          </h:form>
+          <h:form>
+            <p:commandButton value="Lägg till en ny" 
+                             action="addpc"/>
+        </h:form>
+      </main>
+        
+       <div class="footer">
+      <h:form class="aform">
+        <p:button outcome="admin" value="Tillbaka" style="margin-right:20px;"></p:button>
+        
+      </h:form>
+ 
+    </div>  
+        
+    </h:body>
+        
+    
+</html>

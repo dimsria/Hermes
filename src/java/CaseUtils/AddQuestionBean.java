@@ -37,7 +37,7 @@ public class AddQuestionBean implements Serializable {
     
   }
   
-  public List <Arende> getall(){
+  public List <Arende> getQuestions(){
       
       return aFacade.findWithNamedQuery("Arende.findByQuestion");
   }

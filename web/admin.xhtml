@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <title>Admin Meny</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1> Hermes- Kiosk </h1>
+      <div class="logo-img">
+        <img src="img/logo.png"></img>
+      </div>
+    </header>
+    <main>
+      <h2>Välj en</h2>
+      
+      <table>
+        <tr>
+          <td>
+            <a href="arenden.xhtml" >
+              <button class="btn">Öppna Ärende
+                <i class="fas fa-user-edit fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="closed.xhtml" >
+              <button class="btn">Stängda Ärende
+                <i class="fas fa-check-circle fa-3x"></i>
+              </button>
+            </a>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <a href="editpc.xhtml">
+              <button class="btn">Lånedatorer
+                <i class="fas fa-laptop fa-3x"></i>
+              </button>
+            </a>
+          </td>
+          <td>
+            <a href="products.xhtml">
+              <button class="btn">Produkter
+                <i class="fas fa-store-alt fa-3x"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </main>
+  </h:body>
+</html>

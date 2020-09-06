@@ -14,15 +14,16 @@
     <title>Arenden</title>
   </h:head>
   <h:body>
-    <main>
+    
       <header>
         <h1> Administration </h1>
         <div class="logo-img">
-          <img src="../img/logo.png"></img>
+          <img src="img/logo.png"></img>
         </div>
       </header>
+      <main>
       <h:form>
-          <p:dataTable value="#{iBean.closed}" var="arende" resizableColumns="true" class="dataTable">
+        <p:dataTable value="#{iBean.allIncs}" var="arende" resizableColumns="true" class="dataTable">
           <f:facet name="header">Incidenter</f:facet>
           <p:column>
             <f:facet name="header">ÄrendeId</f:facet>
@@ -49,12 +50,14 @@
                         #{arende.arStatus}
                 
           </p:column>
-
+          <p:column>
+            <p:commandButton  value="Redigera" action="#{iBean.edit(arende)}" />
+          </p:column>
         </p:dataTable>
       </h:form>
         
       <h:form>
-          <p:dataTable value="#{qBean.allQs}" var="arende" resizableColumns="true" class="dataTable">
+          <p:dataTable value="#{qBean.questions}" var="arende" resizableColumns="true" class="dataTable">
           <f:facet name="header">IT-Frågor</f:facet>
           <p:column>
             <f:facet name="header">ÄrendeId</f:facet>
@@ -81,13 +84,15 @@
                         #{arende.arStatus}
                 
           </p:column>
-
+          <p:column>
+            <p:commandButton value="Redigera" action="#{qBean.edit(arende)}" />
+          </p:column>
           
         </p:dataTable>
       </h:form>
         
         <h:form>
-            <p:dataTable value="#{aloanBean.closed}" var="pcloan" resizableColumns="true" class="dataTable">
+          <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" resizableColumns="true" class="dataTable">
           <f:facet name="header">Lånade Datorer</f:facet>
           <p:column>
             <f:facet name="header">ÄrendeId</f:facet>
@@ -109,20 +114,32 @@
                         #{pcloan.datecreated}
                 
           </p:column>
+          
+                    <p:column>
+            <f:facet name="header">Returdatum</f:facet>
+                        #{pcloan.returndate}
+                
+          </p:column>
+          
           <p:column>
             <f:facet name="header">Status</f:facet>
                         #{pcloan.arStatus}
                 
           </p:column>
           
-          <p:column>
-            <f:facet name="header">Returdatum</f:facet>
-                        #{pcloan.returndate}
-                
-          </p:column>
 
+          <p:column>
+            <p:commandButton  value="Redigera" action="#{aloanBean.edit(pcloan)}" />
+          </p:column>
         </p:dataTable>
       </h:form>
     </main>
+         <div class="footer">
+      <h:form class="aform">
+        <p:button outcome="admin" value="Tillbaka" style="margin-right:20px;"></p:button>
+        
+      </h:form>
+ 
+    </div>
   </h:body>
 </html>

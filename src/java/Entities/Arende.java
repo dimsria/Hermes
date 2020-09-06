@@ -148,7 +148,11 @@ public class Arende implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Arende[ id=" + id + " ]";
+        return "Arendeid:" + id + " " + "\n"
+                + "Användarnamn:" + username + " " + "\n"
+                + "Beskrivning:" + descrip + " " + "\n"
+                + "Datum skapat:" + datecreated + " " ;
+              
     }
     
 }
