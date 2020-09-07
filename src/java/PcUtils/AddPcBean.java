@@ -26,6 +26,8 @@ public class AddPcBean implements Serializable{
     @EJB PcFacade pcFacade;
     @Inject PcBean pcBean;
     
+     private static final long serialVersionUID = 1L;
+     
     public List<Pc> getAll(){
         return pcFacade.findAll();
     }

@@ -8,11 +8,13 @@ package PcUtils;
 import Abst.PcFacade;
 import Beans.PcBean;
 import Entities.Pc;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,8 +22,9 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@RequestScoped@Named(value = "select")
-public class PcSelBean {
+@SessionScoped
+@Named(value = "select")
+public class PcSelBean implements Serializable{
 
   @EJB PcFacade pcFacade;
   @Inject PcBean pcBean;
@@ -30,7 +33,7 @@ public class PcSelBean {
   private String available;
   private List < Pc > pcs;
   private Date idate;
-
+ private static final long serialVersionUID = 1L;
   @PostConstruct
   public void init() {
 
