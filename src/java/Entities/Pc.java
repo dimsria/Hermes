@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pc.findAll", query = "SELECT p FROM Pc p")
     ,@NamedQuery(name = "Pc.findByPcName", query = "SELECT p FROM Pc p WHERE p.pcName = :pcName")
-    ,@NamedQuery(name = "Pc.findByFilter", query = "SELECT p FROM Pc p WHERE p.available = 'Yes'")
+    ,@NamedQuery(name = "Pc.findByFilter", query = "SELECT p FROM Pc p WHERE p.available = 'Ja'")
     ,@NamedQuery(name = "Pc.findByAvailable", query = "SELECT p FROM Pc p WHERE p.available = :available")})
 public class Pc implements Serializable {
 

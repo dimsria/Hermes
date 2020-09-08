@@ -30,12 +30,19 @@ public class AddQuestionBean implements Serializable {
   @Inject LoginBean login;
 
   private static final long serialVersionUID = 1L;
+  private Arende ar;
   
   public List < Arende > getAllQs(){
 
     return aFacade.findWithNamedQuery("Arende.findBytest2");
     
   }
+  
+ public String searchById(Integer id)
+{
+    return aFacade.find(id).toString();
+    
+}
   
   public List <Arende> getQuestions(){
       
@@ -84,5 +91,13 @@ public class AddQuestionBean implements Serializable {
     aFacade.edit(a);
     return "arenden";
   }
+
+    public Arende getAr() {
+        return ar;
+    }
+
+    public void setAr(Arende ar) {
+        this.ar = ar;
+    }
 
 }
