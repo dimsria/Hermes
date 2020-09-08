@@ -22,12 +22,13 @@ import javax.inject.Named;
 @Named(value = "pBean")
 @SessionScoped
 public class AddPcBean implements Serializable{
+
     
     @EJB PcFacade pcFacade;
     @Inject PcBean pcBean;
     
-     private static final long serialVersionUID = 1L;
-     
+    private static final long serialVersionUID = 1L;
+    
     public List<Pc> getAll(){
         return pcFacade.findAll();
     }
@@ -60,5 +61,7 @@ public class AddPcBean implements Serializable{
         pcFacade.remove(p);
         return null;
     }
+    
+
     
 }

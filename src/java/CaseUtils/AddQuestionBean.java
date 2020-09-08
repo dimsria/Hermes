@@ -25,12 +25,13 @@ import javax.inject.Named;
 @Named(value = "qBean")@SessionScoped
 public class AddQuestionBean implements Serializable {
 
+private static final long serialVersionUID = 1L;
+
   @EJB ArendeFacade aFacade;
   @Inject ArendeBean aBean;
   @Inject LoginBean login;
 
-  private static final long serialVersionUID = 1L;
-  private Arende ar;
+
   
   public List < Arende > getAllQs(){
 
@@ -92,12 +93,6 @@ public class AddQuestionBean implements Serializable {
     return "arenden";
   }
 
-    public Arende getAr() {
-        return ar;
-    }
-
-    public void setAr(Arende ar) {
-        this.ar = ar;
-    }
+    
 
 }

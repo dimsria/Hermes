@@ -64,5 +64,8 @@ public abstract class AbstractFacade<T> {
     public List<T> findWithNamedQuery(String namedQueryName) {
     return getEntityManager().createNamedQuery(namedQueryName).getResultList();
   }
+      public List<T> findByNativeQuery(String sql) {
+    return getEntityManager().createNativeQuery(sql, entityClass).getResultList();
+  }
     
 }

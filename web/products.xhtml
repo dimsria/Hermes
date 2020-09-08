@@ -1,16 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/styles.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Webbshop</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1> Hermes- Kiosk </h1>
+      <div class="logo-img">
+        <img src="img/logo.png"></img>
+      </div>
+    </header>
+    <main>
+      <h1>Under bearbetning. Kommer snart! :-)</h1>
+      
+      <h:form>
+          <h:inputText id="search" value="#{qBean.userName}"></h:inputText>
+          <h:commandButton value="Search by title" action="#{qBean.searchByName(qBean.userName)}">
+        <f:ajax execute="search" render="output"></f:ajax>
+    </h:commandButton>
+          <h2><h:outputText id="output" value="#{qBean.ar}"></h:outputText>
+    </h2>
+    </h:form>
+      
+    </main>
+    <div class="footer">
+      <i class="fas fa-shopping-basket fa-5x" style="auto"></i>
+      <h:form class="aform">
+        <p:button outcome="menu" value="Hem" style="margin-right:20px;"></p:button>
+        <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
+      </h:form>
+      <p>
+        <h:link outcome="about">&copy; Dimitrios Sria</h:link>
+      </p>
+    </div>
+  </h:body>
 </html>
