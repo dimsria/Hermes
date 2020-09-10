@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByFirstname", query = "SELECT u FROM Users u WHERE u.firstname = :firstname")
     , @NamedQuery(name = "Users.findBySurname", query = "SELECT u FROM Users u WHERE u.surname = :surname")
     , @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")
-    , @NamedQuery(name = "Users.findByTelephone", query = "SELECT u FROM Users u WHERE u.telephone = :telephone")})
+    , @NamedQuery(name = "Users.findByTelephone", query = "SELECT u FROM Users u WHERE u.telephone = :telephone")
+    , @NamedQuery(name = "Users.findByHasAccess", query = "SELECT u FROM Users u WHERE u.hasAccess = :hasAccess")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,6 +47,8 @@ public class Users implements Serializable {
     private String email;
     @Column(name = "telephone")
     private String telephone;
+    @Column(name = "hasAccess")
+    private String hasAccess;
 
     public Users() {
     }
@@ -100,6 +103,14 @@ public class Users implements Serializable {
         this.telephone = telephone;
     }
 
+    public String getHasAccess() {
+        return hasAccess;
+    }
+
+    public void setHasAccess(String hasAccess) {
+        this.hasAccess = hasAccess;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -122,7 +133,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return username + " " +firstname + " " + surname;
+        return "Entities.Users[ username=" + username + " ]";
     }
     
 }

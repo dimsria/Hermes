@@ -15,6 +15,14 @@ import javax.inject.Named;
 @Named(value = "userBean")@RequestScoped
 public class UserBean {
 
+    public String getHasAccess() {
+        return hasAccess;
+    }
+
+    public void setHasAccess(String hasAccess) {
+        this.hasAccess = hasAccess;
+    }
+
   public String getUsername() {
     return username;
   }
@@ -60,5 +68,6 @@ public class UserBean {
   private String surname;
   private String email;
   private String telephone;
+  private String hasAccess;
 
 }

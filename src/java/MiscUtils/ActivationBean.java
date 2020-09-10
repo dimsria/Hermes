@@ -18,7 +18,7 @@ import javax.inject.Named;
 public class ActivationBean {
 
   @Inject LoginBean login;
-
+  
   private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
   public String activationCode(int count) {
