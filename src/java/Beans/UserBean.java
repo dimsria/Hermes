@@ -12,7 +12,8 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@Named(value = "userBean")@RequestScoped
+@Named(value = "userBean")
+@RequestScoped
 public class UserBean {
 
     public String getHasAccess() {

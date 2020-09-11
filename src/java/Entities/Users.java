@@ -57,10 +57,11 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public Users(String username, String firstname, String surname) {
+    public Users(String username, String firstname, String surname, String hasAccess) {
         this.username = username;
         this.firstname = firstname;
         this.surname = surname;
+        this.hasAccess = hasAccess;
     }
 
     public String getUsername() {
@@ -131,9 +132,9 @@ public class Users implements Serializable {
         return true;
     }
 
-    @Override
+        @Override
     public String toString() {
-        return "Entities.Users[ username=" + username + " ]";
+        return username + " " +firstname + " " + surname;
     }
     
 }

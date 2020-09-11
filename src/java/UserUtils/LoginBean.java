@@ -83,11 +83,12 @@ public class LoginBean {
   public void login() throws IOException {
 
     FacesContext context = FacesContext.getCurrentInstance();
+   
     context.getExternalContext().getSessionMap().put("user", username);
     context.getExternalContext().getSessionMap().put("firstname", firstname);
     context.getExternalContext().getSessionMap().put("surname", surname);
     context.getExternalContext().redirect("menu.xhtml");
-
+      
   }
 
   public void logout() {

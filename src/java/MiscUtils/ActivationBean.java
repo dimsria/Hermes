@@ -10,8 +10,6 @@ import Entities.Users;
 import UserUtils.LoginBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -27,36 +25,41 @@ public class ActivationBean {
     
   @EJB UsersFacade uFacade;
   
+  private String activationString;
   
   private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-  public String checkUser(){
+
+  public String activationCode() {
       
-    Users u = uFacade.find(login.sentUsername());
-    System.out.println(u.getHasAccess());
-    if (("Yes").equals(u.getHasAccess())){
-     return "activation";   
-    }
-    
-    else {
+        int count = 8;
+        Users u = uFacade.find(login.sentUsername());
+        if (u.getHasAccess().contains("No")){
+        activationString = "Fel:"+ u.getFirstname() +" saknar behörighet";   
         
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-        return null;
-    }
-  }
-  
-  public String activationCode(int count) {
-      
-    
-        StringBuilder builder = new StringBuilder();
+        }
+        else {
+            StringBuilder builder = new StringBuilder();
         while (count--!=0) {
         int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
         builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-        }
+        activationString = builder.toString();
+            
+                }
+        
+            }
 
-            System.out.print(builder.toString());
-            return builder.toString();
+          return activationString;  
+      
+        }
+  
+    public String getActivationString() {
+        return activationString;
     }
- 
+
+    public void setActivationString(String activationString) {
+        this.activationString = activationString;
+    }
+
   }
 
