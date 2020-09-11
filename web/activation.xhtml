@@ -21,15 +21,20 @@
       </div>
     </header>
     <main>
-      <p:panelGrid columns="2" class="pgrid">
+        <h:form class="aform">
+            
+            <p:panelGrid columns="2" class="pgrid">
                 
                 Användarnamn: #{login.sentUsername()}
                 
         <br></br>
-		Aktiveringskod: #{activation.activationCode(8)}
+        Aktiveringskod: #{activation.activationCode()}
 
          
       </p:panelGrid>
+            
+        </h:form>
+      
     </main>
     <div class="footer">
       <h:form class="aform">
