@@ -23,15 +23,29 @@
     <main>
         <h:form class="aform">
             
-            <p:panelGrid columns="2" class="pgrid">
+            <p:panelGrid  class="pgrid">
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Användarnamn:" />   
+                    </p:column>   
+                    <p:column>
+                        <p:outputLabel value="#{login.sentUsername()}" />
+                    </p:column>  
+                </p:row>
                 
-                Användarnamn: #{login.sentUsername()}
+                <p:row>
+                    <p:column>
+                    <p:outputLabel value="Aktiveringskod:"/>
+                </p:column>
+                    <p:column>
+                        <p:outputLabel value= "#{activation.activationCode()}"/>
+                    </p:column>
+                </p:row>
                 
-        <br></br>
-        Aktiveringskod: #{activation.activationCode()}
+                <br></br>
+                
 
-         
-      </p:panelGrid>
+            </p:panelGrid>
             
         </h:form>
       

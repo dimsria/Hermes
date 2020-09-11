@@ -65,7 +65,7 @@ public class AddLoanBean implements Serializable {
     b.setPcName(select.sendPcName());
     b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
     b.setArStatus("Öppet");
-    p.setAvailable("No");
+    p.setAvailable("Nej");
     pcFacade.edit(p);
     pcloanFacade.create(b);
 
@@ -91,7 +91,7 @@ public class AddLoanBean implements Serializable {
     Pc p = new Pc(loanBean.getPcName());
     
     p.setPcName(loanBean.getPcName());
-    p.setAvailable("Yes");
+    p.setAvailable("Ja");
     
     b.setPcName(loanBean.getPcName());
     b.setArStatus(loanBean.getArStatus());
