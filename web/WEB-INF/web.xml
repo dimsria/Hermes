@@ -9,9 +9,17 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>DisplayImage</servlet-name>
+        <servlet-class>ProdUtils.DisplayImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayImage</servlet-name>
+        <url-pattern>/DisplayImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,7 +27,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <resource-ref>
