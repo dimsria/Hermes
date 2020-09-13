@@ -9,9 +9,8 @@ import Abst.ItineraryFacade;
 import Abst.ProductsFacade;
 import Beans.ItineraryBean;
 import Beans.ProductBean;
-import Beans.UserBean;
-import Entities.Itinerary;
 import Entities.Products;
+import UserUtils.LoginBean;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -35,12 +34,13 @@ public class AddOrder implements Serializable {
     @EJB ItineraryFacade itFacade;
     @EJB ProductsFacade pFacade;
     @Inject ProductBean prodBean;
-    @Inject UserBean uBean;
+    @Inject LoginBean login;
     @Inject ItineraryBean itBean;
     
     private List <Products> products;
     private List <Products> selectedProducts;
     private Products selectedProduct;
+    
     @PostConstruct
     public void init (){
         
@@ -48,10 +48,7 @@ public class AddOrder implements Serializable {
         
     }
     
-    public List<Itinerary> getAll(){
-        
-        return itFacade.findAll();
-    }
+
     
   
 

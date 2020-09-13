@@ -50,7 +50,9 @@
        
         <f:facet name="footer">
             <p:commandButton process="selTable" update=":form:multiProdDetail" icon="pi pi-search" value="Visa Produkter" oncomplete="PF('multiProdDialog').show()" />
+          
         </f:facet>
+
     </p:dataTable>
               <p:dialog header="Valda Produkter" widgetVar="multiProdDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="300" fitViewport="true">
         <p:outputPanel id="multiProdDetail" style="text-align:center; font-size: 14px; column-count: auto; justify-content: center;">
