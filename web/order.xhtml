@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   <h:head>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type">
+      </meta>
+       <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+      <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+      <h:outputStylesheet name="/styles.css"/>
+      <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+      <title>Beställa</title>
+   </h:head>
+   <h:body>
+      <header>
+         <h1> Administration </h1>
+         <div class="logo-img">
+            <img src="img/logo.png"></img>
+         </div>
+      </header>
+      <main>
+          <h:form class="aform" id="form" >
+              <p:dataTable id="selTable"  var="item" value="#{orderBean.products}" selection="#{orderBean.selectedProducts}" rowKey="#{item.prodid}">
+        <f:facet name="header">
+            Mini Webbshop
+        </f:facet>
+        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+        <p:column headerText="Id">
+            <h:outputText value="#{item.prodid}" />
+        </p:column>
+        <p:column headerText="Titel">
+            <h:outputText value="#{item.title}" />
+        </p:column>
+        <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Bild" />
+                    </f:facet>
+                    <h:outputLink value="DisplayImage?prodid=#{item.prodid}" target="_blank" >
+                    <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"  onclick="PF('imageDialog').show();"/>
+                    </h:outputLink>
+                </p:column>
+       
+        <f:facet name="footer">
+            <p:commandButton process="selTable" update=":form:multiProdDetail" icon="pi pi-search" value="Visa Produkter" oncomplete="PF('multiProdDialog').show()" />
+        </f:facet>
+    </p:dataTable>
+              <p:dialog header="Valda Produkter" widgetVar="multiProdDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="220">
+        <p:outputPanel id="multiProdDetail" style="text-align:center;">
+            <ui:repeat value="#{orderBean.selectedProducts}" var="item"> 
+                <h:outputText value="#{item.title} - #{item.descrip}" style="display:block"/>
+            </ui:repeat>
+        </p:outputPanel>
+    </p:dialog>
+              
+       </h:form>
+      </main>
+      <div class="footer">
+         <h:link outcome="about">&copy; Dimitrios Sria</h:link>
+      </div>
+   </h:body>
+</html>

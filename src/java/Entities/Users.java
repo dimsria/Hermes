@@ -6,14 +6,18 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByTelephone", query = "SELECT u FROM Users u WHERE u.telephone = :telephone")
     , @NamedQuery(name = "Users.findByHasAccess", query = "SELECT u FROM Users u WHERE u.hasAccess = :hasAccess")})
 public class Users implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    private Collection<Itinerary> itineraryCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -135,6 +142,15 @@ public class Users implements Serializable {
         @Override
     public String toString() {
         return username + " " +firstname + " " + surname;
+    }
+
+    @XmlTransient
+    public Collection<Itinerary> getItineraryCollection() {
+        return itineraryCollection;
+    }
+
+    public void setItineraryCollection(Collection<Itinerary> itineraryCollection) {
+        this.itineraryCollection = itineraryCollection;
     }
     
 }

@@ -34,10 +34,10 @@ public class DisplayImage extends HttpServlet {
         Statement stmt = null;
         ResultSet rs;
         InputStream sImage;
+        
         response.setContentType("image/jpeg");
-        response.setCharacterEncoding("UTF-8");
          try {
-            
+            response.setCharacterEncoding("UTF-8");
             String idString = request.getParameter("prodid");
             Class.forName("com.mysql.cj.jdbc.Driver");
             

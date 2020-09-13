@@ -6,7 +6,9 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +37,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Products.findByQuantity", query = "SELECT p FROM Products p WHERE p.quantity = :quantity")})
 public class Products implements Serializable {
 
+    @Lob
+    @Column(name = "img")
+    private byte[] img;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prodid")
+    private Collection<Itinerary> itineraryCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +55,6 @@ public class Products implements Serializable {
     @Basic(optional = false)
     @Column(name = "descrip")
     private String descrip;
-    @Lob
-    @Column(name = "img")
-    private byte[] img;
     @Basic(optional = false)
     @Column(name = "quantity")
     private int quantity;
@@ -90,13 +97,6 @@ public class Products implements Serializable {
         this.descrip = descrip;
     }
 
-    public byte[] getImg() {
-        return img;
-    }
-
-    public void setImg(byte[] img) {
-        this.img = img;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -129,6 +129,23 @@ public class Products implements Serializable {
     @Override
     public String toString() {
         return "Entities.Products[ prodid=" + prodid + " ]";
+    }
+
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
+
+    @XmlTransient
+    public Collection<Itinerary> getItineraryCollection() {
+        return itineraryCollection;
+    }
+
+    public void setItineraryCollection(Collection<Itinerary> itineraryCollection) {
+        this.itineraryCollection = itineraryCollection;
     }
     
 }
