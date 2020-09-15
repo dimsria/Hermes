@@ -7,10 +7,7 @@
    xmlns:p="http://primefaces.org/ui"
    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
    <h:head>
-      
-      <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type">
-      </meta>
-       <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+       <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
       <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
       <h:outputStylesheet name="/styles.css"/>
       <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
@@ -37,7 +34,7 @@
             <h:outputText value="#{item.title}" />
         </p:column>
         <p:column headerText="Antal">
-            <p:inputNumber value="#{item.quantity}"/>
+            <p:inputNumber value="#{orderBean.quantity}"/>
         </p:column>
         <p:column>
                     <f:facet name="header">
@@ -58,7 +55,9 @@
         <p:outputPanel id="multiProdDetail" style="text-align:center; font-size: 14px; column-count: auto; justify-content: center;">
             <ui:repeat value="#{orderBean.selectedProducts}" var="item"> 
                 <h:outputText value="#{item.descrip} - Antal: #{item.quantity}  " style="display:block"/>
+                
             </ui:repeat>
+            <p:commandButton value="Test" action="#{orderBean.placeOrder()}" /> 
         </p:outputPanel>
     </p:dialog>
               

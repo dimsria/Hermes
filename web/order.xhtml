@@ -4,17 +4,13 @@
    xmlns="http://www.w3.org/1999/xhtml"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:p="http://primefaces.org/ui"
-   xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   xmlns:p="http://primefaces.org/ui">
    <h:head>
-      
-      <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type">
-      </meta>
-       <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"/>
       <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
       <h:outputStylesheet name="/styles.css"/>
       <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-      <title>Beställa</title>
+      <title>Lägga till Produkter</title>
    </h:head>
    <h:body>
       <header>
@@ -24,19 +20,32 @@
          </div>
       </header>
       <main>
-          <h:form class="aform" id="form" >
-              <p:dataTable id="selTable"  var="item" value="#{orderBean.products}" selection="#{orderBean.selectedProducts}" rowKey="#{item.prodid}">
-        <f:facet name="header">
-            Mini Webbshop
-        </f:facet>
-        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-        <p:column headerText="Id">
-            <h:outputText value="#{item.prodid}" />
-        </p:column>
-        <p:column headerText="Titel">
-            <h:outputText value="#{item.title}" />
-        </p:column>
-        <p:column>
+          <h:form class="aform" >
+              <p:dataTable value="#{proBean.all}" class="dataTable" var="item"  rows="6" editable="true" editMode="cell">          
+                
+                        <h:outputText value="Mini Webbshop"/>
+                 
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id" style="float:left" />
+                    </f:facet>
+                    <h:outputText value="#{item.prodid}" style="float:left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titel" style="float:left" />
+                    </f:facet>
+                    <h:outputText value="#{item.title}" style="float:left"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Beskrivning" style="float:left" />
+                    </f:facet>
+                    <h:outputText value="#{item.descrip}" style="float:left"/>
+                </p:column>
+     
+                
+                <p:column>
                     <f:facet name="header">
                         <h:outputText value="Bild" />
                     </f:facet>
@@ -44,19 +53,17 @@
                     <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"  onclick="PF('imageDialog').show();"/>
                     </h:outputLink>
                 </p:column>
-       
-        <f:facet name="footer">
-            <p:commandButton process="selTable" update=":form:multiProdDetail" icon="pi pi-search" value="Visa Produkter" oncomplete="PF('multiProdDialog').show()" />
-        </f:facet>
-    </p:dataTable>
-              <p:dialog header="Valda Produkter" widgetVar="multiProdDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="220">
-        <p:outputPanel id="multiProdDetail" style="text-align:center;">
-            <ui:repeat value="#{orderBean.selectedProducts}" var="item"> 
-                <h:outputText value="#{item.title} - #{item.descrip}" style="display:block"/>
-            </ui:repeat>
-        </p:outputPanel>
-    </p:dialog>
-              
+                        
+                        <p:column>
+                    
+                            <p:commandLink value="Lägg till" action="#{orderBean.addToCart(item)}" style="float:left" >
+                                
+                            </p:commandLink>
+                    
+                    
+                </p:column>
+                        
+                </p:dataTable>
        </h:form>
       </main>
       <div class="footer">

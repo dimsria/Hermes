@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,9 +30,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Itinerary.findAll", query = "SELECT i FROM Itinerary i")
     , @NamedQuery(name = "Itinerary.findByOrderid", query = "SELECT i FROM Itinerary i WHERE i.orderid = :orderid")
-    , @NamedQuery(name = "Itinerary.findByQuantity", query = "SELECT i FROM Itinerary i WHERE i.quantity = :quantity")
+    , @NamedQuery(name = "Itinerary.findByUsername", query = "SELECT i FROM Itinerary i WHERE i.username = :username")
     , @NamedQuery(name = "Itinerary.findByDatecreated", query = "SELECT i FROM Itinerary i WHERE i.datecreated = :datecreated")
-    , @NamedQuery(name = "Itinerary.findByOrderstatus", query = "SELECT i FROM Itinerary i WHERE i.orderstatus = :orderstatus")})
+    , @NamedQuery(name = "Itinerary.findByOrderstatus", query = "SELECT i FROM Itinerary i WHERE i.orderstatus = :orderstatus")
+    , @NamedQuery(name = "Itinerary.findByCart", query = "SELECT i FROM Itinerary i WHERE i.cart = :cart")})
 public class Itinerary implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,20 +43,17 @@ public class Itinerary implements Serializable {
     @Column(name = "orderid")
     private Integer orderid;
     @Basic(optional = false)
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "username")
+    private String username;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
     @Basic(optional = false)
     @Column(name = "orderstatus")
     private String orderstatus;
-    @JoinColumn(name = "prodid", referencedColumnName = "prodid")
-    @ManyToOne(optional = false)
-    private Products prodid;
-    @JoinColumn(name = "username", referencedColumnName = "username")
-    @ManyToOne(optional = false)
-    private Users username;
+    @Basic(optional = false)
+    @Column(name = "cart")
+    private String cart;
 
     public Itinerary() {
     }
@@ -66,10 +62,11 @@ public class Itinerary implements Serializable {
         this.orderid = orderid;
     }
 
-    public Itinerary(Integer orderid, int quantity, String orderstatus) {
+    public Itinerary(Integer orderid, String username, String orderstatus, String cart) {
         this.orderid = orderid;
-        this.quantity = quantity;
+        this.username = username;
         this.orderstatus = orderstatus;
+        this.cart = cart;
     }
 
     public Integer getOrderid() {
@@ -80,12 +77,12 @@ public class Itinerary implements Serializable {
         this.orderid = orderid;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getUsername() {
+        return username;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Date getDatecreated() {
@@ -104,20 +101,12 @@ public class Itinerary implements Serializable {
         this.orderstatus = orderstatus;
     }
 
-    public Products getProdid() {
-        return prodid;
+    public String getCart() {
+        return cart;
     }
 
-    public void setProdid(Products prodid) {
-        this.prodid = prodid;
-    }
-
-    public Users getUsername() {
-        return username;
-    }
-
-    public void setUsername(Users username) {
-        this.username = username;
+    public void setCart(String cart) {
+        this.cart = cart;
     }
 
     @Override
