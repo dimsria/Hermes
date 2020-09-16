@@ -161,3 +161,7 @@ textarea{
     font-size: 14px;
     justify-content: center;
 }
+
+.ui-field-contain .ui-controlgroup-controls{
+width: 100%;
+}

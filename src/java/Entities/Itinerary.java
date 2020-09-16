@@ -131,7 +131,10 @@ public class Itinerary implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Itinerary[ orderid=" + orderid + " ]";
+        return "orderid: " + orderid + System.lineSeparator()
+                + "User: " + username + System.lineSeparator()
+                + "Datum: " + datecreated + System.lineSeparator()
+                + "Kundvagn: " + cart;
     }
     
 }

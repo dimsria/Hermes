@@ -9,5 +9,7 @@
     <property name="User" value="root"/>
     <property name="Password" value="22420Kos!!"/>
     <property name="useSSL" value="false"/>
+    <property name="useUnicode" value="true"/>
+    <property name="characterSetResults" value="utf8"/> 
   </jdbc-connection-pool>
 </resources>

@@ -21,47 +21,40 @@
          </div>
       </header>
       <main>
-          <h:form class="aform" id="form" >
-              <p:dataTable id="selTable"  var="item" value="#{orderBean.products}" selection="#{orderBean.selectedProducts}" rowKey="#{item.prodid}">
-        <f:facet name="header">
-            Mini Webbshop
-        </f:facet>
-        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-        <p:column headerText="Id">
-            <h:outputText value="#{item.prodid}" />
-        </p:column>
-        <p:column headerText="Titel">
-            <h:outputText value="#{item.title}" />
-        </p:column>
-        <p:column headerText="Antal">
-            <p:inputNumber value="#{orderBean.quantity}"/>
-        </p:column>
-        <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Bild" />
-                    </f:facet>
-                    <h:outputLink value="DisplayImage?prodid=#{item.prodid}" target="_blank" >
-                    <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"  onclick="PF('imageDialog').show();"/>
-                    </h:outputLink>
-                </p:column>
-       
-        <f:facet name="footer">
-            <p:commandButton process="selTable" update=":form:multiProdDetail" icon="pi pi-search" value="Visa Produkter" oncomplete="PF('multiProdDialog').show()" />
-          
-        </f:facet>
+          <h:form>
+              <p:panelGrid columns="2" style="auto" columnClasses="label, value" class="tst">
 
-    </p:dataTable>
-              <p:dialog header="Valda Produkter" widgetVar="multiProdDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="300" fitViewport="true">
-        <p:outputPanel id="multiProdDetail" style="text-align:center; font-size: 14px; column-count: auto; justify-content: center;">
-            <ui:repeat value="#{orderBean.selectedProducts}" var="item"> 
-                <h:outputText value="#{item.descrip} - Antal: #{item.quantity}  " style="display:block"/>
-                
-            </ui:repeat>
-            <p:commandButton value="Test" action="#{orderBean.placeOrder()}" /> 
-        </p:outputPanel>
+ 
+        
+        <p:selectManyMenu id="advanced" value="#{orderBean.selectedProducts}" converter="#{themeConverter}"
+                          var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
+            <f:selectItems value="#{orderBean.initList}" var="item" itemLabel="#{item.title}" itemValue="#{title}"/>
+ 
+            <p:column>
+                <p:graphicImage value="DisplayImage?prodid=#{t.prodid}" width="40" height="40" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{t.title}"  style=" font-size:12px; align-items: center;"/>
+            </p:column>
+        </p:selectManyMenu>
+    </p:panelGrid>
+ 
+    <p:separator />
+ 
+    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="pi pi-check" />
+ 
+    <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
+        <p:panelGrid columns="2" id="display" columnClasses="label,output">
+            
+ 
+            <h:outputText value="Advanced:" />
+            <p:dataList value="#{orderBean.selectedProducts}" var="t">
+                <h:outputText value="#{t}" />
+            </p:dataList>
+        </p:panelGrid>
     </p:dialog>
-              
-       </h:form>
+</h:form>
       </main>
       <div class="footer">
          <h:link outcome="about">&copy; Dimitrios Sria</h:link>

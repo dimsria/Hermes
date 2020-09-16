@@ -1,30 +1,75 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui">
-  <h:head>
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"></meta>
-    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-    <h:outputStylesheet name="/styles.css"/>
-    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-    <title>Webbshop</title>
-  </h:head>
-  <h:body>
-    <header>
-      <h1> Hermes- Kiosk </h1>
-      <div class="logo-img">
-        <img src="img/logo.png"></img>
-      </div>
-    </header>
-    <main>
-      <h1>Under bearbetning. Kommer snart! :-)</h1>
-    </main>
-    <div class="footer">
-      <i class="fas fa-shopping-basket fa-5x" style="auto"></i>
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type"/>
+      <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+      <h:outputStylesheet name="/styles.css"/>
+      <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+      <title>Lägga till Produkter</title>
+   </h:head>
+   <h:body>
+      <header>
+         <h1> Mini Webbshop </h1>
+         <div class="logo-img">
+            <img src="img/logo.png"></img>
+         </div>
+      </header>
+      <main>
+          <h:form class="aform" >
+              <ul>
+          <li>
+            <p>Inloggad som: #{login.sentUsername()}</p>
+          </li>
+                  <li>
+                      
+                  
+              <p:dataTable value="#{proBean.all}" class="dataTable" var="item" style="table-layout: fixed;"  >          
+                
+         
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titel" />
+                    </f:facet>
+                    <h:outputText value="#{item.title}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Beskrivning" />
+                    </f:facet>
+                    <h:outputText value="#{item.descrip}" />
+                </p:column>
+     
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Bild" />
+                    </f:facet>
+                    
+                    <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"/>
+                    
+                </p:column>
+                        
+                        <p:column>
+                    <p:growl id="growl" life="2000" />
+                            <p:commandButton value="Lägg till" id="ajax" update="growl" action="#{orderBean.addToCart(item)}" style="margin-right:20px;" />
+             
+                </p:column>
+             
+                </p:dataTable>
+                      </li>
+                  <li>
+                      <p:commandButton value="Ok" id="sub" action="#{orderBean.add()}" style="margin-right:20px;" />
+                  </li>
+              </ul>
+              
+       </h:form>
+      </main>
+      <div class="footer">
       <h:form class="aform">
         <p:button outcome="menu" value="Hem" style="margin-right:20px;"></p:button>
         <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
@@ -33,5 +78,5 @@
         <h:link outcome="about">&copy; Dimitrios Sria</h:link>
       </p>
     </div>
-  </h:body>
+   </h:body>
 </html>

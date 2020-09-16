@@ -6,6 +6,7 @@
 package ItineraryUtils;
 
 
+import Abst.ItineraryFacade;
 import Abst.ProductsFacade;
 import Beans.ProductBean;
 import Entities.Itinerary;
@@ -13,10 +14,14 @@ import Entities.Products;
 import UserUtils.LoginBean;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -30,6 +35,7 @@ public class AddOrder implements Serializable {
     
     
     @EJB ProductsFacade pFacade;
+    @EJB ItineraryFacade iFacade;
     
     @Inject ProductBean prodBean;
     @Inject LoginBean login;
@@ -37,8 +43,7 @@ public class AddOrder implements Serializable {
     
     
     private List <Products> initList;
-    private List<String> items;
-    private int quantity;
+    private List<Products> items;
     
     @PostConstruct
     public void init (){
@@ -54,13 +59,37 @@ public class AddOrder implements Serializable {
     public void addQuantityToCart(int quantity){
         System.out.println(quantity);
     }
-    public void addToCart(String product){
+    public void addToCart(Products product){
         
-
+        int a =0;
         items.add(product);
-        System.out.println(items);
+        a++;
+        product.setQuantity(product.getQuantity()-a);
+        pFacade.edit(product);
+        System.out.println(a);
         
         
+        System.out.println(product.getQuantity());
+        addMessage("La till + " + product);
+        
+        
+   
+    }
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public String orderTable(){
+        
+        Map<Products, Integer> countMap = new HashMap<>();
+        for (Products item: items) {
+      if (countMap.containsKey(item))
+          countMap.put(item, countMap.get(item) + 1);
+      else
+          countMap.put(item, 1);
+          }
+        return countMap.toString();
     }
 
     
@@ -69,10 +98,12 @@ public class AddOrder implements Serializable {
         Itinerary i = new Itinerary();
         i.setUsername(login.sentUsername());
         i.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
+        i.setOrderstatus("Öppet");
+        i.setCart(orderTable());
         
-        
-        
-        return "cart";
+        iFacade.create(i);
+        System.out.print(i);
+        return "menu";
     }
 
 
@@ -84,22 +115,13 @@ public class AddOrder implements Serializable {
         this.initList = initList;
     }
 
-    public List<String> getItems() {
+    public List<Products> getItems() {
         return items;
     }
 
-    public void setItems(List<String> items) {
+    public void setItems(List<Products> items) {
         this.items = items;
     }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
 
 
    
