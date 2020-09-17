@@ -108,9 +108,7 @@ table{
   margin-right: auto;
 }
 td {
-  
-  white-space: nowrap;  
-  padding: 5px;
+  padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
 .btn {
@@ -151,15 +149,19 @@ textarea{
     font-size: 16px;
 }
 .dataTable{
-    
+    table-layout: auto;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     justify-content: center;
     align-items: center;
 }
 .upTable{
-    margin: 0 auto;
+    
     table-layout: auto;
     font-size: 14px;
     justify-content: center;
+}
+
+.ui-field-contain .ui-controlgroup-controls{
+width: 100%;
 }

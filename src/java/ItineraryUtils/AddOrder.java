@@ -47,6 +47,7 @@ public class AddOrder implements Serializable {
     
     @PostConstruct
     public void init (){
+        String sql= "SELECT * FROM demo.products WHERE quantity >= 5";
         
         initList= pFacade.findAll();
    
