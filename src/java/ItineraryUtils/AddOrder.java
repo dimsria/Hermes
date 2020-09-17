@@ -22,6 +22,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -44,10 +46,14 @@ public class AddOrder implements Serializable {
     
     private List <Products> initList;
     private List<Products> items;
+    private Itinerary item;
+    private int searchInt;
+   
+    
     
     @PostConstruct
     public void init (){
-        String sql= "SELECT * FROM demo.products WHERE quantity >= 5";
+        
         
         initList= pFacade.findAll();
    
@@ -72,15 +78,9 @@ public class AddOrder implements Serializable {
         
         System.out.println(product.getQuantity());
         addMessage("La till + " + product);
-        
-        
-   
+
     }
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    
+
     public String orderTable(){
         
         Map<Products, Integer> countMap = new HashMap<>();
@@ -101,12 +101,15 @@ public class AddOrder implements Serializable {
         i.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
         i.setOrderstatus("Öppet");
         i.setCart(orderTable());
-        
         iFacade.create(i);
         System.out.print(i);
         return "menu";
     }
-
+    
+    public void updateItinerary (AjaxBehaviorEvent event){
+        item = iFacade.find(searchInt);
+    }
+    
 
     public List <Products> getInitList() {
         return initList;
@@ -124,6 +127,26 @@ public class AddOrder implements Serializable {
         this.items = items;
     }
 
+    public Itinerary getItem() {
+        return item;
+    }
+
+    public void setItem(Itinerary item) {
+        this.item = item;
+    }
+
+    public int getSearchInt() {
+        return searchInt;
+    }
+
+    public void setSearchInt(int searchInt) {
+        this.searchInt = searchInt;
+    }
+    
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
    
 }

@@ -56,7 +56,7 @@
                         
                         <p:column>
                     <p:growl id="growl" life="2000" />
-                            <p:commandButton value="Lägg till" id="ajax" update="growl" action="#{orderBean.addToCart(item)}" style="margin-right:20px;" />
+                    <p:commandButton value="Lägg till" id="ajax" update="growl" action="#{orderBean.addToCart(item)}" style="margin-right:20px;" oncomplete="" />
              
                 </p:column>
              
@@ -66,7 +66,7 @@
                       <p:commandButton value="Ok" id="sub" action="#{orderBean.add()}" style="margin-right:20px;" />
                   </li>
               </ul>
-              
+    
        </h:form>
       </main>
       <div class="footer">

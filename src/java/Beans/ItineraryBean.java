@@ -5,13 +5,18 @@
  */
 package Beans;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author srvmng
  */
-public class ItineraryBean {
+@SessionScoped
+@Named(value="ItiBean")
+public class ItineraryBean implements Serializable{
     
     private Integer orderid;
     private String username;

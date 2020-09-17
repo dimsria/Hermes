@@ -10,27 +10,42 @@
       <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
       <h:outputStylesheet name="styles.css"/>
       <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-    <title>Hämta Aktiveringskod</title>
-  </h:head>
-  <h:body>
-    <header>
-      <h1> Hermes- Kiosk </h1>
-      <div class="logo-img">
-        <img src="img/logo.png"></img>
-      </div>
-    </header>
-    <main>
-      <p:panelGrid columns="2" class="pgrid">
-                
-                Användarnamn: #{login.sentUsername()}
-                
-        <br></br>
-        Aktiveringskod: #{test.activationString()}
-
-         
-      </p:panelGrid>
-    </main>
-    <div class="footer">
+      <title>Lägga till Produkter</title>
+   </h:head>
+   <h:body>
+      <header>Webbshop
+         <h1> Mini Webbshop </h1>
+         <div class="logo-img">
+            <img src="img/logo.png"></img>
+         </div>
+      </header>
+      <main>
+          <h:form class="aform" >
+              <ul>
+          <li>
+            <p>Inloggad som: #{login.sentUsername()}</p>
+          </li>
+                  <li>
+                      <h:inputText id="search" value="#{orderBean.searchInt}"
+                                   onkeypress="if (event.keyCode === 13){onchange(event); return false;}"
+                                   onchange="return event.keyCode !== undefined">
+                          
+                          <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output" />
+                      </h:inputText>
+ 
+                  
+                  </li>
+                  <li>
+                      <div class="card">
+                          <p:outputLabel id="output" value="#{orderBean.item}"/>
+                     
+                      </div>
+                  </li>
+              </ul>
+   
+       </h:form>
+      </main>
+      <div class="footer">
       <h:form class="aform">
         <p:button outcome="menu" value="Hem" style="margin-right:20px;"></p:button>
         <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton"/>
@@ -39,5 +54,5 @@
         <h:link outcome="about">&copy; Dimitrios Sria</h:link>
       </p>
     </div>
-  </h:body>
+   </h:body>
 </html>
