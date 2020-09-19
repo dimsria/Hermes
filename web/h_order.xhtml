@@ -13,8 +13,8 @@
       <title>Lägga till Produkter</title>
    </h:head>
    <h:body>
-      <header>Webbshop
-         <h1> Mini Webbshop </h1>
+      <header>
+         <h1> Hämta en beställning </h1>
          <div class="logo-img">
             <img src="img/logo.png"></img>
          </div>
@@ -24,21 +24,31 @@
               <ul>
           <li>
             <p>Inloggad som: #{login.sentUsername()}</p>
+            
           </li>
                   <li>
-                      <h:inputText id="search" value="#{orderBean.searchInt}"
+                      <p:outputLabel class="searchHead" value="Ange ärendenummer och tryck på 'Enter' "/>
+                  </li>
+                  <li>
+                      <h:inputText class="search" id="search" value="#{orderBean.searchInt}"
                                    onkeypress="if (event.keyCode === 13){onchange(event); return false;}"
                                    onchange="return event.keyCode !== undefined">
                           
-                          <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output" />
+                          <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output1 output2 output3 output4" />
                       </h:inputText>
  
                   
                   </li>
                   <li>
-                      <div class="card">
-                          <p:outputLabel id="output" value="#{orderBean.item}"/>
-                     
+                      <div class="card2">
+                      
+                          <p:outputLabel id="output1" value="Order-Id: #{orderBean.item.orderid}"/>
+                          <br></br>
+                          <p:outputLabel id="output2" value="Användare: #{orderBean.item.username}"/>
+                          <br></br>
+                          <p:outputLabel id="output3" value="Datum: #{orderBean.item.datecreated}"/>
+                          <br></br>
+                          <p:outputLabel id="output4" value="Kundvagn:#{orderBean.item.cart}"/>
                       </div>
                   </li>
               </ul>

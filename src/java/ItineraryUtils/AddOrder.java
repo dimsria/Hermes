@@ -23,7 +23,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -108,6 +107,9 @@ public class AddOrder implements Serializable {
     
     public void updateItinerary (AjaxBehaviorEvent event){
         item = iFacade.find(searchInt);
+    }
+    public String searchedItem(){
+        return this.item.toString();
     }
     
 

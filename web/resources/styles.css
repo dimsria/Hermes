@@ -165,3 +165,31 @@ textarea{
     font-size: 14px;
     justify-content: center;
 }
+
+.card2{
+  text-align: left;  
+  font-weight: bold;
+  display: block;
+  align-items: center;
+  font-size: 14px;
+  padding: 20px;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  max-width: 300px;
+  position: relative;
+}
+
+.searchHead{
+    
+    color: grey;
+    padding-bottom: 5px;
+}
+
+.search {
+      padding: 7px;
+      margin-bottom: 10px;
+      border: none; /* <-- This thing here */
+      border:solid 1px #ccc;
+      border-radius: 10px;
+}
