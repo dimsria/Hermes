@@ -23,7 +23,9 @@ public class ItineraryBean implements Serializable{
     private Date datecreated;
     private String orderstatus;
     private String cart;
-
+    
+    private static final long serialVersionUID = 1L;
+    
     public Integer getOrderid() {
         return orderid;
     }

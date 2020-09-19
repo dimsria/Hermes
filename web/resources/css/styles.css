@@ -1,53 +1,42 @@
-html {
+html{
   margin: 0 auto;  
-
   height: 100%;
 }
-
-h1, h2, h3 {
+h1, h2, h3{
   margin: auto;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   text-align: center;
 }
-
-h1 {
+h1{
   font-size: 32px;
 }
-
-h2 {
+h2{
   font-size: 30px;
   color: grey;
 }
-
-h3 {
+h3{
   font-size: 24px;
 }
-
-header {
+header{
   padding-top: 5px;
   display: block;
   border: 1px solid red;
   text-align: center;
   margin: auto;
   position: relative;
-  
 }
-
-
 img{
   max-width: 100%;
   margin:auto;
   display: block;
 }
-
-.logo-img {
+.logo-img{
   height: 100px;
   width: 75px;
   margin: auto;
 }
-
-.footer {
+.footer{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   display: block;
@@ -58,9 +47,7 @@ img{
   padding-top: 15px;
   margin-bottom: 30px;
 }
-
-.form {
-     
+.form{   
   padding-top: 5px;
   display: flex;
   justify-content: center;
@@ -71,11 +58,9 @@ img{
 .cButton{
   display: block;
   font-size: 14px;
-  text-align: center;
-    
+  text-align: center;    
 }
-
-.aform {
+.aform{
   justify-content: center;
   padding-top: 5px;  
   text-align: center;
@@ -84,8 +69,7 @@ img{
   border: 2px solid red;
   padding-bottom: 10px;
 }
-
-.card {
+.card{
   display: block;
   align-items: center;
   text-align: center;
@@ -96,10 +80,10 @@ img{
   max-width: fit-content;
   position: relative;
 }
-a:link {
+a:link{
   text-decoration: none ;
 }
-.card:hover {
+.card:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 table{
@@ -109,13 +93,13 @@ table{
   margin-left: auto;
   margin-right: auto;
 }
-td {
+td{
   
   white-space: nowrap;  
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.btn {
+.btn{
   color: grey;
   font-weight: bolder;
   text-align: center;
@@ -127,7 +111,6 @@ td {
   align-items: center;
   justify-content: center;
 }
-
 li{
     margin: auto;
     display: flex;
@@ -153,7 +136,6 @@ textarea{
     font-size: 16px;
 }
 .dataTable{
-    
     text-align: center;
     font-size: 14px;
     justify-content: center;
@@ -165,7 +147,6 @@ textarea{
     font-size: 14px;
     justify-content: center;
 }
-
 .card2{
   text-align: left;  
   font-weight: bold;
@@ -179,17 +160,34 @@ textarea{
   max-width: 300px;
   position: relative;
 }
-
 .searchHead{
-    
     color: grey;
     padding-bottom: 5px;
 }
-
 .search {
       padding: 7px;
       margin-bottom: 10px;
       border: none; /* <-- This thing here */
       border:solid 1px #ccc;
       border-radius: 10px;
+}
+
+@media screen and(max-width:640px){
+  main{
+    margin: auto 0;
+    width: auto;
+    overflow-x: hidden;
+  }
+  header{
+    width: auto;
+  }
+  .logo-img{
+  max-width: fit-content;
+  margin: auto 0;
+}
+.footer{
+    width: fit-content;
+    margin: auto 0;
+}
+
 }

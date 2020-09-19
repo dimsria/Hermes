@@ -41,6 +41,7 @@ public class AddOrder implements Serializable {
     @Inject ProductBean prodBean;
     @Inject LoginBean login;
     
+    private static final long serialVersionUID = 1L;
     
     
     private List <Products> initList;
