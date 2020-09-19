@@ -1,77 +1,67 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-   xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:p="http://primefaces.org/ui">
-   <h:head>
-    <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
-      <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-      <h:outputStylesheet name="/css/styles.css"/>
-      <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-    
-    <script type="text/javascript">
-    function handleLoginRequest(xhr, status, args) {
-        if(args.validationFailed || !args.loggedIn) {
-            PF('dlg').jq.effect("shake", {times:5}, 100);
-        }
-        else {
-            PF('dlg').hide();
-            $('#loginLink').fadeOut();
-        }
-    }
-</script>
-    <title>Hermes-Kiosk</title>
-  </h:head>
-  <h:body>
-    <header>
-      <h1> Hermes- Kiosk </h1>
-      <div id="logo-img">
-        <img src="img/logo.png"></img>    
-      </div>
-              
-    </header>
-    <main>
-      <h2> Välkommen till Leverans och Support!</h2>
-      <div class="login-img">
-        <h:link outcome="login">
-          <img src="img/login.jpg"></img>
-        </h:link>
-      </div>
-      <h3> Lägg ditt etjänstekort för att gå vidare</h3>
-      <ul>
-          <li>
-              <h:form>        
-                <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                    <i class="fas fa-users-cog" style="color:#999999"></i>
-    </h:outputLink>
-     
-    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-     
-    <p:dialog header="Login" widgetVar="dlg" resizable="false" >
-        <p:panelGrid columns="2" class="dPanel">
-            <h:outputLabel for="username" value="Användarnamn:" />
-            <p:inputText id="username" value="#{admin.username}" required="true" label="username" />
-             
-            <h:outputLabel for="password" value="Lösenord:" />
-            <p:password id="password" value="#{admin.password}" required="true" label="password" />
-             
-            <f:facet name="footer">
-                <p:commandButton value="Login" update="growl" action="#{admin.login()}"
-                                 oncomplete="handleLoginRequest(xhr, status, args)" />
-            </f:facet>  
-        </p:panelGrid>
-    </p:dialog>    
-</h:form>
-          </li>
-      </ul>
-            
-    </main>
-    <div id="footer">
-      <p> &copy; Dimitrios Sria</p>
-    </div>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="/css/styles.css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
-  </h:body>
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    PF("dlg").jq.effect("shake", { times: 5 }, 100);
+                } else {
+                    PF("dlg").hide();
+                    $("#loginLink").fadeOut();
+                }
+            }
+        </script>
+        <title>Hermes-Kiosk</title>
+    </h:head>
+    <h:body>
+        <header>
+            <h1>Hermes- Kiosk</h1>
+            <div id="logo-img">
+                <img src="img/logo.png" />
+            </div>
+        </header>
+        <main>
+            <h2>Välkommen till Leverans och Support!</h2>
+            <div class="login-img">
+                <h:link outcome="login">
+                    <img src="img/login.jpg" />
+                </h:link>
+            </div>
+            <h3>Lägg ditt etjänstekort för att gå vidare</h3>
+            <ul>
+                <li>
+                    <h:form>
+                        <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                            <i class="fas fa-users-cog" style="color: #999999;"></i>
+                        </h:outputLink>
+
+                        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+                        <p:dialog header="Login" widgetVar="dlg" resizable="false">
+                            <p:panelGrid columns="2" class="dPanel">
+                                <h:outputLabel for="username" value="Användarnamn:" />
+                                <p:inputText id="username" value="#{admin.username}" required="true" label="username" />
+
+                                <h:outputLabel for="password" value="Lösenord:" />
+                                <p:password id="password" value="#{admin.password}" required="true" label="password" />
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Login" update="growl" action="#{admin.login()}" oncomplete="handleLoginRequest(xhr, status, args)" />
+                                </f:facet>
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                </li>
+            </ul>
+        </main>
+        <div id="footer">
+            <p>&copy; Dimitrios Sria</p>
+        </div>
+    </h:body>
 </html>
-

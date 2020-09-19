@@ -1,85 +1,76 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-   xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:p="http://primefaces.org/ui">
-   <h:head>
-    <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
-      <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-      <h:outputStylesheet name="/css/styles.css"/>
-      <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-      <title>Produkter</title>
-   </h:head>
-   <h:body>
-      <header>
-         <h1> Administration </h1>
-         <div id="logo-img">
-            <img src="img/logo.png"></img>
-         </div>
-      </header>
-      <main>
-          <h:form class="aform" >
-              <p:dataTable value="#{proBean.all}" class="dataTable" var="item" >          
-                
-                   <p:column>
-                       <h:commandLink action="#{proBean.delete(item)}" value="Ta bort">
-                       <f:ajax execute="@form" render="@form" />
-                       </h:commandLink>
-                </p:column> 
-                 
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Id"/>
-                    </f:facet>
-                    <h:outputText value="#{item.prodid}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Titel" />
-                    </f:facet>
-                    <h:outputText value="#{item.title}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                    <p:outputLabel value="Beskrivning" />
-                    </f:facet>
-                    <p:outputLabel value="#{item.descrip}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Antal" />
-                    </f:facet>
-                    <h:outputText value="#{item.quantity}" />
-                </p:column>
-                
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Bild" />
-                    </f:facet>
-                    <h:outputLink value="DisplayImage?prodid=#{item.prodid}" target="_blank" >
-                    <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"  onclick="PF('imageDialog').show();"/>
-                    </h:outputLink>
-                </p:column>
-                 <p:column>
-                     <p:commandButton action="#{proBean.edit(item)}" value="Redigera" />
-                </p:column>  
-                  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="/css/styles.css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <title>Produkter</title>
+    </h:head>
+    <h:body>
+        <header>
+            <h1>Administration</h1>
+            <div id="logo-img">
+                <img src="img/logo.png" />
+            </div>
+        </header>
+        <main>
+            <h:form class="aform">
+                <p:dataTable value="#{proBean.all}" class="dataTable" var="item">
+                    <p:column>
+                        <h:commandLink action="#{proBean.delete(item)}" value="Ta bort">
+                            <f:ajax execute="@form" render="@form" />
+                        </h:commandLink>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{item.prodid}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Titel" />
+                        </f:facet>
+                        <h:outputText value="#{item.title}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <p:outputLabel value="Beskrivning" />
+                        </f:facet>
+                        <p:outputLabel value="#{item.descrip}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Antal" />
+                        </f:facet>
+                        <h:outputText value="#{item.quantity}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Bild" />
+                        </f:facet>
+                        <h:outputLink value="DisplayImage?prodid=#{item.prodid}" target="_blank">
+                            <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40" onclick="PF('imageDialog').show();" />
+                        </h:outputLink>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton action="#{proBean.edit(item)}" value="Redigera" />
+                    </p:column>
                 </p:dataTable>
-       </h:form>
-          <h:form>
-              <p:commandButton value="Lägg till en ny"
-                             action="addproducts"/>
-        </h:form>
-      </main>
-        
-       <div id="footer">
-      <h:form class="aform">
-        <p:button outcome="admin" value="Tillbaka" style="margin-right:20px;"></p:button>
-        
-      </h:form>
- 
-    </div>
-   </h:body>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Lägg till en ny" action="addproducts" />
+            </h:form>
+        </main>
+
+        <div id="footer">
+            <h:form class="aform">
+                <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
+            </h:form>
+        </div>
+    </h:body>
 </html>

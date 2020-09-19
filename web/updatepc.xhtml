@@ -1,54 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui">
-  <h:head>
-      
-      <script type="text/javascript">
-    window.onunload = function(){
-  window.opener.location.reload();
-  window.close(); 
-};
-</script>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script type="text/javascript">
+            window.onunload = function () {
+                window.opener.location.reload();
+                window.close();
+            };
+        </script>
 
-    <meta charset="utf-8"></meta>
-    <title>Adminlistor</title>
-  </h:head>
+        <meta charset="utf-8" />
+        <title>Adminlistor</title>
+    </h:head>
     <h:body>
-            
-      <h:form class="form">
-      <p:panelGrid style="auto">
-          
-          <p:row>
-              
-              <p:column>
-                   
-              </p:column>     
-              <p:column>
-                  <p:outputLabel value="#{pcBean.pcName}"/>
-              </p:column>      
-          </p:row>
-          
-          <p:row>
-              <p:column>
-                  <p:outputLabel value="Tillgänglighet"/>
-              </p:column>
-              <p:column>
-            <p:selectOneListbox value="#{pcBean.available}">
-            <f:selectItem itemLabel="Ja" itemValue="Ja" />
-            <f:selectItem itemLabel="Nej" itemValue="Nej" />
-            </p:selectOneListbox>
-              </p:column>
-              
-          </p:row>
- 
+        <h:form class="form">
+            <p:panelGrid style="auto">
+                <p:row>
+                    <p:column> </p:column>
+                    <p:column>
+                        <p:outputLabel value="#{pcBean.pcName}" />
+                    </p:column>
+                </p:row>
 
-      </p:panelGrid>
-          <p:commandButton value="Ändra" 
-                           action="#{pBean.save()}" />
-    </h:form>
-  </h:body>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Tillgänglighet" />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneListbox value="#{pcBean.available}">
+                            <f:selectItem itemLabel="Ja" itemValue="Ja" />
+                            <f:selectItem itemLabel="Nej" itemValue="Nej" />
+                        </p:selectOneListbox>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+            <p:commandButton value="Ändra" action="#{pBean.save()}" />
+        </h:form>
+    </h:body>
 </html>
