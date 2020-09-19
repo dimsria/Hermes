@@ -25,7 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Servlet för att hämta sparad bild från
+ * databasen och visa den på produktlistor
  * @author srvmng
  */
 public class DisplayImage extends HttpServlet {
@@ -33,6 +34,13 @@ public class DisplayImage extends HttpServlet {
     Statement stmt=null;
      private static final long serialVersionUID = 1L;
     
+    /**
+     *Hämta och deserialize bloben från db
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +53,7 @@ public class DisplayImage extends HttpServlet {
          try {
             response.setCharacterEncoding("UTF-8");
             String idString = request.getParameter("prodid");
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); //Hämta manuelt med natural mysql query från db
             
                 Properties properties = new Properties();
                 properties.setProperty("user", "root");
@@ -59,7 +67,7 @@ public class DisplayImage extends HttpServlet {
             rs = stmt.executeQuery(strSql);
             
             if (rs.next()) {
-                byte[] bytearray = new byte[1048576];
+                byte[] bytearray = new byte[1048576]; //write to array
                 int size = 0;
                 sImage = rs.getBinaryStream(1);
                 response.reset();

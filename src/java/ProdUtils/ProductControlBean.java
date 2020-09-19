@@ -23,7 +23,8 @@ import javax.inject.Named;
 import org.primefaces.model.file.UploadedFile;
 
 /**
- *
+ *Edit och Spara produkt
+ * 
  * @author srvmng
  */
 @Named(value="proBean")
@@ -33,21 +34,24 @@ public class ProductControlBean implements Serializable {
     
     @EJB ProductsFacade prodFacade;
     @Inject ProductBean prodBean;
+    
     private UploadedFile file;
     
-    
-    public UploadedFile getFile() {
-        return file;
-    }
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-    
+    /**
+     *Lista med alla produkter
+     * @return
+     */
     public List <Products> getAll(){
         
         return prodFacade.findAll();
     }
     
+    /**
+     *Modifierar en produkt och sen skickas
+     * vidare för att spara ändringar
+     * @param p
+     * @return
+     */
     public String edit (Products p){
         
         prodBean.setProdid(p.getProdid());
@@ -61,6 +65,11 @@ public class ProductControlBean implements Serializable {
         return "updateproduct" ;
     }
     
+    /**
+     *Hämtar och sparar ändringar från editFunktionen
+     * Omredigerar sen till produktsidan
+     * @return
+     */
     public String save() {
 
     Products p = new Products(prodBean.getProdid());
@@ -73,10 +82,23 @@ public class ProductControlBean implements Serializable {
     return "products";
   }
     
+    /**
+     *Tar bort en produkt
+     * @param p
+     * @return
+     */
     public String delete(Products p){
         
         prodFacade.remove(p);
         return null;
+    }
+    
+    //Getters n Setters
+    public UploadedFile getFile() {
+        return file;
+    }
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
     
 }

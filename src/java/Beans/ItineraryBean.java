@@ -18,20 +18,22 @@ import javax.inject.Named;
 
 /**
  *
- * @author srvmng
+ * Backing bean för Itinerary entity
  */
 @SessionScoped
-@Named(value="ItiBean")
-public class ItineraryBean implements Serializable{
-    
+@Named(value = "ItiBean")
+public class ItineraryBean implements Serializable {
+
     private Integer orderid;
     private String username;
     private Date datecreated;
     private String orderstatus;
     private String cart;
-    
+
     private static final long serialVersionUID = 1L;
-    
+
+    // Getters and setters
+
     public Integer getOrderid() {
         return orderid;
     }
@@ -71,7 +73,6 @@ public class ItineraryBean implements Serializable{
     public void setCart(String cart) {
         this.cart = cart;
     }
-    
-    
-     
+
+
 }

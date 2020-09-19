@@ -17,31 +17,33 @@ import javax.inject.Named;
 
 /**
  *
- * @author srvmng
+ * Backing bean för PC entity
  */
 @SessionScoped
 @Named(value = "pcBean")
-public class PcBean implements Serializable{
+public class PcBean implements Serializable {
 
-  private static final long serialVersionUID = 1L;  
-  private String pcName;
-  
-  private String available;
+    private static final long serialVersionUID = 1L;
 
-  public String getPcName() {
-    return pcName;
-  }
+    private String pcName;
+    private String available;
 
-  public void setPcName(String pcName) {
-    this.pcName = pcName;
-  }
+    // Getters and setters
 
-  public String getAvailable() {
-    return available;
-  }
+    public String getPcName() {
+        return pcName;
+    }
 
-  public void setAvailable(String available) {
-    this.available = available;
-  }
+    public void setPcName(String pcName) {
+        this.pcName = pcName;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
 
 }

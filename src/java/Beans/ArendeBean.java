@@ -18,66 +18,69 @@ import javax.inject.Named;
 
 /**
  *
- * @author srvmng
+ * Backing bean för Entity Arende
  */
 @Named(value = "aBean")
 @SessionScoped
 public class ArendeBean implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-  private Integer id;
-  private String username;
-  private String arType;
-  private String descrip;
-  private Date datecreated;
-  private String arStatus;
+    private static final long serialVersionUID = 1L;
+    
+    private Integer id;
+    private String username;
+    private String arType;
+    private String descrip;
+    private Date datecreated;
+    private String arStatus;
 
-  public Integer getId() {
-    return id;
-  }
+    //Getters and setters
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public String getArType() {
-    return arType;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setArType(String arType) {
-    this.arType = arType;
-  }
+    public String getArType() {
+        return arType;
+    }
 
-  public String getDescrip() {
-    return descrip;
-  }
+    public void setArType(String arType) {
+        this.arType = arType;
+    }
 
-  public void setDescrip(String descrip) {
-    this.descrip = descrip;
-  }
+    public String getDescrip() {
+        return descrip;
+    }
 
-  public Date getDatecreated() {
-    return datecreated;
-  }
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
 
-  public void setDatecreated(Date datecreated) {
-    this.datecreated = datecreated;
-  }
+    public Date getDatecreated() {
+        return datecreated;
+    }
 
-  public String getArStatus() {
-    return arStatus;
-  }
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
+    }
 
-  public void setArStatus(String arStatus) {
-    this.arStatus = arStatus;
-  }
+    public String getArStatus() {
+        return arStatus;
+    }
+
+    public void setArStatus(String arStatus) {
+        this.arStatus = arStatus;
+    }
 
 }

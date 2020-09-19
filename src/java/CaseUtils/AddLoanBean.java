@@ -29,37 +29,66 @@ import javax.inject.Named;
 
 /**
  *
- * @author srvmng
+ * Crud Bean för datorlån.
  */
 @Named(value = "aloanBean")
 @SessionScoped
 
 public class AddLoanBean implements Serializable {
+    
   private static final long serialVersionUID = 1L;
   
+  //Abstrakt class som ersätter entity manager
   @EJB PcloanFacade pcloanFacade;
   @EJB PcFacade pcFacade;
+  
+  /*
+  *Behövs backing bean för entity,
+  *loginbean för user,
+  *pcsel för välja dator
+  *och pcbean för ändring av datorns tillgänglighet
+  */
   
   @Inject LoanBean loanBean;
   @Inject LoginBean login;
   @Inject PcSelBean select;
   @Inject PcBean pcBean;
   
-  public List <Pcloan> getClosed(){
+    /**
+     *Returnerar en lista med stängda låneärende
+     * @return
+     */
+    public List <Pcloan> getClosed(){
       
       return pcloanFacade.findWithNamedQuery("Pcloan.findByClosed");
   }
 
-  public List < Pcloan > getAllPcLoans() {
+    /**
+     *Returnerar en lista med öppna låneärende
+     * @return
+     */
+    public List < Pcloan > getAllPcLoans() {
 
     return pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
   }
 
-  public int count() {
+    /**
+     *Returnerar antal låneärende.
+     * @return
+     */
+    public int count() {
     return pcloanFacade.count();
   }
 
-  public String add() throws IOException {
+    /**
+     *Skapar ett nytt låneärende
+     * med hjälp av backing injected beans.
+     * och ändrar tillgänglighet på den valda datorn
+     * omredigerar sen till menyn-sida
+     * @return
+     * @throws IOException
+     */
+    public String add() throws IOException {
 
     Pcloan b = new Pcloan();
     Pc p = new Pc(select.sendPcName());
@@ -77,7 +106,14 @@ public class AddLoanBean implements Serializable {
 
     return "menu";
   }
-  public String edit(Pcloan b) {
+    
+    /**
+     *Redigerar ett nuvarande låneärende
+     * omredigerar sen till att spara ändringar
+     * @param b
+     * @return
+     */
+    public String edit(Pcloan b) {
       
     loanBean.setId(b.getId());
     loanBean.setDatecreated(b.getDatecreated());
@@ -90,8 +126,13 @@ public class AddLoanBean implements Serializable {
     
     return "updateloan";
   }
-
-  public String save() {
+    
+    /**
+     *Sparar ändringar från edit-funktioner med hjälp av entity manager
+     * omredigerar sen till ärendelistan.
+     * @return
+     */
+    public String save() {
         
     Pcloan b = new Pcloan(loanBean.getId());
     Pc p = new Pc(loanBean.getPcName());

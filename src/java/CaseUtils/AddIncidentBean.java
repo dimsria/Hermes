@@ -25,32 +25,55 @@ import javax.inject.Named;
 
 /**
  *
- * @author srvmng
+ * Crud Bean för incidenter.
  */
 @Named(value = "iBean")
 @SessionScoped
 public class AddIncidentBean implements Serializable {
-
+    
+  //Abstrakt class som ersätter entity manager  
   @EJB ArendeFacade aFacade;
+  
+  //Inject backing bean för ärenden och loginbean för inloggade användare
   @Inject ArendeBean aBean;
   @Inject LoginBean login;
   
  private static final long serialVersionUID = 1L;
 
-  public List <Arende> getClosed(){
+    /**
+     *Returnerar a lista med stängda ärenden
+     * @return
+     */
+    public List <Arende> getClosed(){
       return aFacade.findWithNamedQuery("Arende.findBytest");
   }
   
-  public List < Arende > getAllIncs() {
+    /**
+     *Returnerar en lista med öppna ärenden
+     * @return
+     */
+    public List < Arende > getAllIncs() {
 
     return aFacade.findWithNamedQuery("Arende.findByIncident");
   }
 
-  public int count() {
+    /**
+     *Returnerar antal ärenden
+     * @return
+     */
+    public int count() {
     return aFacade.count();
   }
 
-  public String add() throws IOException {
+    /**
+     *Skapar en ny incident
+     * Values from backing bean förutom username som vi får via loginBean 
+     * och datum som vi anger det nuvarande.
+     * return menu innebär omredigering till menyn-sidan
+     * @return
+     * @throws IOException
+     */
+    public String add() throws IOException {
 
     Arende a = new Arende();
     a.setUsername(login.sentUsername());
@@ -64,7 +87,13 @@ public class AddIncidentBean implements Serializable {
     return "menu";
   }
 
-  public String edit(Arende a) {
+    /**
+     *Modifierar ett ärende med hjälp av backing beans.
+     * Return skickar vidare för att spara ändringar med hjälp av save() funktionen nedåt
+     * @param a
+     * @return
+     */
+    public String edit(Arende a) {
 
     aBean.setId(a.getId());
     aBean.setArStatus(a.getArStatus());
@@ -77,7 +106,13 @@ public class AddIncidentBean implements Serializable {
   
   }
 
-  public String save() {
+    /**
+     *Får det modifierat ärende och sparar det med hjälp av den
+     * abstrakta fasadklassen
+     * omredigerar sen till listan med ärenden
+     * @return
+     */
+    public String save() {
 
     Arende a = new Arende(aBean.getId());
     a.setArStatus(aBean.getArStatus());

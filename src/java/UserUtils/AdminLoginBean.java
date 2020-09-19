@@ -14,15 +14,36 @@ package UserUtils;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
-
+/**
+ *Bean för administratörsinloggning
+ * @author srvmng
+ */
 @Named(value="admin")
 @Stateless
 public class AdminLoginBean {
      
     private String username;
-     
     private String password;
- 
+    
+    /**
+     *loginfunktionen som omredigerar till admin-meny ifall man anger rätt username och lösenord.
+     * @return
+     */
+    public String login() {
+        
+        boolean loggedIn = false;
+         
+        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
+            loggedIn = true;
+            return "admin?faces-redirect=true";
+        } else {
+            loggedIn = false;  
+        }
+
+        return null;
+    }
+    
+    //Getters n Setters
     public String getUsername() {
         return username;
     }
@@ -39,18 +60,5 @@ public class AdminLoginBean {
         this.password = password;
     }
    
-    public String login() {
-        
-        boolean loggedIn = false;
-         
-        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            loggedIn = true;
-            return "admin?faces-redirect=true";
-        } else {
-            loggedIn = false;
-            
-        }
-
-        return null;
-    }   
+       
 }

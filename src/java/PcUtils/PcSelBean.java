@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- *
+ *Bean för att välja lånedator
  * @author srvmng
  */
 @RequestScoped
@@ -38,7 +38,10 @@ public class PcSelBean {
   private List < Pc > pcs;
   private Date idate;
 
-  @PostConstruct
+    /**
+     *Lista med tillgängliga datorer
+     */
+    @PostConstruct
   public void init() {
 
     pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
@@ -46,6 +49,7 @@ public class PcSelBean {
 
   }
 
+  //Getters and setters
   public String sendPcName() {
 
     return pcName;

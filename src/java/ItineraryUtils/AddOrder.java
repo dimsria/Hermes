@@ -33,17 +33,20 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- *
+ *Bean för att lägga beställningar
+ * Ändra status på beställngar
+ * Sök tidigare beställningar
  * @author srvmng
  */
 @Stateless
 @Named(value="orderBean")
 public class AddOrder implements Serializable {
     
-    
+    //Abstrakt entity manager
     @EJB ProductsFacade pFacade;
     @EJB ItineraryFacade iFacade;
     
+    //Injekt backing bean för produkter och inloggad användare
     @Inject ProductBean prodBean;
     @Inject LoginBean login;
     
@@ -55,8 +58,9 @@ public class AddOrder implements Serializable {
     private Itinerary item;
     private int searchInt;
    
-    
-    
+    /**
+     *Lista med produkter
+     */
     @PostConstruct
     public void init (){
         
@@ -65,28 +69,47 @@ public class AddOrder implements Serializable {
    
     }
         
+    /**
+     *Constructor för klassen som initierar en ny items.list
+     */
     public AddOrder(){
         this.items = new ArrayList<>();
     }
     
+    /**
+     *För test purposes
+     * @param quantity
+     */
     public void addQuantityToCart(int quantity){
         System.out.println(quantity);
     }
+    
+    /**
+     *När man klickar på "lägg till"
+     * så läggs en produkt en gång till arraylistan
+     * och samtidigt minskar antal produkter i "lagret"
+     * @param product
+     */
     public void addToCart(Products product){
         
         int a =0;
         items.add(product);
         a++;
-        product.setQuantity(product.getQuantity()-a);
+        product.setQuantity(product.getQuantity()-a);// minska antal på produkten
         pFacade.edit(product);
-        System.out.println(a);
         
-        
+        System.out.println(a);//För test purposes
+
         System.out.println(product.getQuantity());
         addMessage("La till + " + product);
 
     }
-
+    
+    /**
+     *Skapar en lista som mappar hur många gånger en produkt har lagts i varukorgen
+     * returnerar sen listan som string
+     * @return
+     */
     public String orderTable(){
         
         Map<Products, Integer> countMap = new HashMap<>();
@@ -99,7 +122,11 @@ public class AddOrder implements Serializable {
         return countMap.toString();
     }
 
-    
+    /**
+     *Lägger en beställning
+     * och returnerar till menyn
+     * @return
+     */
     public String add(){
         
         Itinerary i = new Itinerary();
@@ -112,14 +139,24 @@ public class AddOrder implements Serializable {
         return "menu";
     }
     
+    /**
+     *Uppdaterar en textarea med innehålet som sökfunktionen gav
+     * @param event
+     */
     public void updateItinerary (AjaxBehaviorEvent event){
         item = iFacade.find(searchInt);
     }
-    public String searchedItem(){
-        return this.item.toString();
-    }
     
+    /**
+     *Skapar och visar ett meddelande när man lägger en produkt i korgen
+     * @param summary
+     */
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
+    //Getters and setters
     public List <Products> getInitList() {
         return initList;
     }
@@ -152,10 +189,7 @@ public class AddOrder implements Serializable {
         this.searchInt = searchInt;
     }
     
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
+    
 
    
 }

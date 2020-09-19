@@ -18,13 +18,22 @@ import javax.persistence.Lob;
 
 /**
  *
- * @author srvmng
+ * Backing bean för Products entity
  */
-@Named(value="prodBean")
+@Named(value = "prodBean")
 @SessionScoped
 public class ProductBean implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
+
+    private Integer prodid;
+    private String title;
+    private String descrip;
+    private int quantity;
+    @Lob
+    private byte[] img;
+
+    // Getters and setters
 
     public byte[] getImg() {
         return img;
@@ -33,7 +42,7 @@ public class ProductBean implements Serializable {
     public void setImg(byte[] img) {
         this.img = img;
     }
-    
+
     public Integer getProdid() {
         return prodid;
     }
@@ -66,12 +75,7 @@ public class ProductBean implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    private Integer prodid;
-    private String title;
-    private String descrip;
-    private int quantity;
-    @Lob
-    private byte[] img;
-    
+
+
+
 }

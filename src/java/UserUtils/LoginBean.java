@@ -25,6 +25,10 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 
+/**
+ *Inloggningsbean för presentationsskäl som ska emulera kortinloggningen
+ * @author srvmng
+ */
 @RequestScoped
 @Named(value = "login")
 public class LoginBean {
@@ -38,6 +42,58 @@ public class LoginBean {
 
   private List < Users > users;
 
+    /**
+     *Visar en lista med användare
+     */
+    @PostConstruct
+  public void init() {
+
+    users = uFacade.findAll();
+
+  }
+
+    /**
+     *Skickar vidare den inloggade användare
+     * @return
+     */
+    public String sentUsername() {
+    username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    String[] val = username.split(" ");
+    if (val.length > 1) {
+      username = val[0];
+    }
+    return username;
+  }
+
+    /**
+     *Mappar en context till den valda användare som loggas
+     * @throws IOException
+     */
+    public void login() throws IOException {
+
+    FacesContext context = FacesContext.getCurrentInstance();
+   
+    context.getExternalContext().getSessionMap().put("user", username);
+    context.getExternalContext().getSessionMap().put("firstname", firstname);
+    context.getExternalContext().getSessionMap().put("surname", surname);
+    context.getExternalContext().redirect("menu.xhtml");
+      
+  }
+    
+    /**
+     *Avslutar inloggningssessionen
+     */
+    public void logout() {
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.getExternalContext().invalidateSession();
+    System.out.println(username);
+    try {
+      context.getExternalContext().redirect("index.xhtml");
+    } catch(IOException e) {}
+
+  }
+  
+  //Getters n Setters
   public String getUsername() {
     return username;
   }
@@ -69,43 +125,6 @@ public class LoginBean {
 
   public void setUsers(List < Users > users) {
     this.users = users;
-  }
-
-  @PostConstruct
-  public void init() {
-
-    users = uFacade.findAll();
-
-  }
-
-  public String sentUsername() {
-    username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-    String[] val = username.split(" ");
-    if (val.length > 1) {
-      username = val[0];
-    }
-    return username;
-  }
-
-  public void login() throws IOException {
-
-    FacesContext context = FacesContext.getCurrentInstance();
-   
-    context.getExternalContext().getSessionMap().put("user", username);
-    context.getExternalContext().getSessionMap().put("firstname", firstname);
-    context.getExternalContext().getSessionMap().put("surname", surname);
-    context.getExternalContext().redirect("menu.xhtml");
-      
-  }
-
-  public void logout() {
-    FacesContext context = FacesContext.getCurrentInstance();
-    context.getExternalContext().invalidateSession();
-    System.out.println(username);
-    try {
-      context.getExternalContext().redirect("index.xhtml");
-    } catch(IOException e) {}
-
   }
 
 }

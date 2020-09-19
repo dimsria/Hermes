@@ -25,15 +25,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- *
+ * CrudBean för ärende
+ *Exakt samma som AddIncidentBean
+ * förutom att typfältet är "Question"
  * @author srvmng
  */
-@Named(value = "qBean")@SessionScoped
+@Named(value = "qBean")
+@SessionScoped
 public class AddQuestionBean implements Serializable {
 
 private static final long serialVersionUID = 1L;
 
   @EJB ArendeFacade aFacade;
+  
   @Inject ArendeBean aBean;
   @Inject LoginBean login;
 
@@ -45,7 +49,12 @@ private static final long serialVersionUID = 1L;
     
   }
   
- public String searchById(Integer id)
+    /**
+     *Sökfunktion som returnerar ärende med angivna id-numret
+     * @param id
+     * @return
+     */
+    public String searchById(Integer id)
 {
     return aFacade.find(id).toString();
     
