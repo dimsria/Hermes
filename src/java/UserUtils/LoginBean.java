@@ -33,37 +33,37 @@ import javax.faces.context.FacesContext;
 @Named(value = "login")
 public class LoginBean {
 
-  @EJB UsersFacade uFacade;
+    @EJB UsersFacade uFacade;
 
-  private String username;
-  private String firstname;
-  private String surname;
-  
+    private String username;
+    private String firstname;
+    private String surname;
 
-  private List < Users > users;
+
+    private List < Users > users;
 
     /**
      *Visar en lista med användare
      */
     @PostConstruct
-  public void init() {
+    public void init() {
 
-    users = uFacade.findAll();
+        users = uFacade.findAll();
 
-  }
+    }
 
     /**
      *Skickar vidare den inloggade användare
      * @return
      */
     public String sentUsername() {
-    username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-    String[] val = username.split(" ");
-    if (val.length > 1) {
-      username = val[0];
+        username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        String[] val = username.split(" ");
+        if (val.length > 1) {
+            username = val[0];
+        }
+        return username;
     }
-    return username;
-  }
 
     /**
      *Mappar en context till den valda användare som loggas
@@ -71,60 +71,60 @@ public class LoginBean {
      */
     public void login() throws IOException {
 
-    FacesContext context = FacesContext.getCurrentInstance();
-   
-    context.getExternalContext().getSessionMap().put("user", username);
-    context.getExternalContext().getSessionMap().put("firstname", firstname);
-    context.getExternalContext().getSessionMap().put("surname", surname);
-    context.getExternalContext().redirect("menu.xhtml");
-      
-  }
-    
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.getExternalContext().getSessionMap().put("user", username);
+        context.getExternalContext().getSessionMap().put("firstname", firstname);
+        context.getExternalContext().getSessionMap().put("surname", surname);
+        context.getExternalContext().redirect("menu.xhtml");
+
+    }
+
     /**
      *Avslutar inloggningssessionen
      */
     public void logout() {
-    FacesContext context = FacesContext.getCurrentInstance();
-    context.getExternalContext().invalidateSession();
-    System.out.println(username);
-    try {
-      context.getExternalContext().redirect("index.xhtml");
-    } catch(IOException e) {}
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().invalidateSession();
+        System.out.println(username);
+        try {
+            context.getExternalContext().redirect("index.xhtml");
+        } catch (IOException e) {}
 
-  }
-  
-  //Getters n Setters
-  public String getUsername() {
-    return username;
-  }
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    //Getters n Setters
+    public String getUsername() {
+        return username;
+    }
 
-  public String getFirstname() {
-    return firstname;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
+    public String getFirstname() {
+        return firstname;
+    }
 
-  public String getSurname() {
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-    return surname;
-  }
+    public String getSurname() {
 
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
+        return surname;
+    }
 
-  public List < Users > getUsers() {
-    return users;
-  }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-  public void setUsers(List < Users > users) {
-    this.users = users;
-  }
+    public List < Users > getUsers() {
+        return users;
+    }
+
+    public void setUsers(List < Users > users) {
+        this.users = users;
+    }
 
 }

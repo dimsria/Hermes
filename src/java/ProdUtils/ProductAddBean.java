@@ -34,72 +34,70 @@ import org.primefaces.model.file.UploadedFile;
  * @author srvmng
  */
 @SessionScoped
-@Named(value="proAddBean")
-public class ProductAddBean implements Serializable{
-    
-  
+@Named(value = "proAddBean")
+public class ProductAddBean implements Serializable {
+
+
+    private static final long serialVersionUID = 1L;
     
     private Integer prodid;
     private String title;
     private String descrip;
     private UploadedFile img;
     private int quantity;
-    
-     
+
+
     @EJB ProductsFacade prFacade;
-    
+
     /**
      *Lista med produkter
      * @return
      */
-    public List <Products> getAll(){
-        
+    public List < Products > getAll() {
+
         return prFacade.findAll();
     }
-    
+
     /**
      *addFunktion som sparar en produkt till db
      * Inga backing beans används här
      * @return
      */
-    public String store(){
-               
-        if(img!=null){
-            try{
-               
+    public String store() {
+
+        if (img != null) {
+            try {
+
                 InputStream fin = img.getInputStream();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Properties properties = new Properties();
                 properties.setProperty("user", "root");
                 properties.setProperty("password", "22420Kos!!");
                 properties.setProperty("useSSL", "false");
-                
-                String url="jdbc:mysql://localhost:3306/demo?zeroDateTimeBehavior=convertToNull";
+
+                String url = "jdbc:mysql://localhost:3306/demo?zeroDateTimeBehavior=convertToNull";
                 Connection con = DriverManager.getConnection(url, properties);
-                PreparedStatement ps= con.prepareStatement("insert into products(title,descrip,img,quantity)values(?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("insert into products(title,descrip,img,quantity)values(?,?,?,?)");
                 ps.setString(1, title);
                 ps.setString(2, descrip);
                 ps.setBinaryStream(3, fin, img.getSize());
                 ps.setInt(4, quantity);
-   
+
                 ps.executeUpdate();
-              
-            }       
-            catch(IOException | ClassNotFoundException | SQLException e){
+
+            } catch (IOException | ClassNotFoundException | SQLException e) {
                 System.out.println("Exception-File Upload." + e.getMessage());
             }
-        }
-        else
-        {
+        } else {
             System.out.print("Error no file!");
         }
         return "products";
     }
-        //Getters and setters
-        public void handleFileUpload(FileUploadEvent event) {
+    //Getters and setters
+    public void handleFileUpload(FileUploadEvent event) {
         System.out.println("beans.AddBean.handleFileUpload()");
         img = event.getFile();
-        
+
     }
 
     public Integer getProdid() {
@@ -141,5 +139,5 @@ public class ProductAddBean implements Serializable{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
 }

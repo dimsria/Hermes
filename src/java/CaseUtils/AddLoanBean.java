@@ -35,33 +35,33 @@ import javax.inject.Named;
 @SessionScoped
 
 public class AddLoanBean implements Serializable {
-    
-  private static final long serialVersionUID = 1L;
-  
-  //Abstrakt class som ersätter entity manager
-  @EJB PcloanFacade pcloanFacade;
-  @EJB PcFacade pcFacade;
-  
-  /*
-  *Behövs backing bean för entity,
-  *loginbean för user,
-  *pcsel för välja dator
-  *och pcbean för ändring av datorns tillgänglighet
-  */
-  
-  @Inject LoanBean loanBean;
-  @Inject LoginBean login;
-  @Inject PcSelBean select;
-  @Inject PcBean pcBean;
-  
+
+    private static final long serialVersionUID = 1L;
+
+    //Abstrakt class som ersätter entity manager
+    @EJB PcloanFacade pcloanFacade;
+    @EJB PcFacade pcFacade;
+
+    /*
+     *Behövs backing bean för entity,
+     *loginbean för user,
+     *pcsel för välja dator
+     *och pcbean för ändring av datorns tillgänglighet
+     */
+
+    @Inject LoanBean loanBean;
+    @Inject LoginBean login;
+    @Inject PcSelBean select;
+    @Inject PcBean pcBean;
+
     /**
      *Returnerar en lista med stängda låneärende
      * @return
      */
-    public List <Pcloan> getClosed(){
-      
-      return pcloanFacade.findWithNamedQuery("Pcloan.findByClosed");
-  }
+    public List < Pcloan > getClosed() {
+
+        return pcloanFacade.findWithNamedQuery("Pcloan.findByClosed");
+    }
 
     /**
      *Returnerar en lista med öppna låneärende
@@ -69,16 +69,16 @@ public class AddLoanBean implements Serializable {
      */
     public List < Pcloan > getAllPcLoans() {
 
-    return pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
-  }
+        return pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
+    }
 
     /**
      *Returnerar antal låneärende.
      * @return
      */
     public int count() {
-    return pcloanFacade.count();
-  }
+        return pcloanFacade.count();
+    }
 
     /**
      *Skapar ett nytt låneärende
@@ -90,23 +90,23 @@ public class AddLoanBean implements Serializable {
      */
     public String add() throws IOException {
 
-    Pcloan b = new Pcloan();
-    Pc p = new Pc(select.sendPcName());
+        Pcloan b = new Pcloan();
+        Pc p = new Pc(select.sendPcName());
 
-    b.setUsername(login.sentUsername());
-    b.setArType("Datorlån");
-    b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-    b.setDescrip("Låna en dator.");
-    b.setPcName(select.sendPcName());
-    b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
-    b.setArStatus("Öppet");
-    p.setAvailable("Nej");
-    pcFacade.edit(p);
-    pcloanFacade.create(b);
+        b.setUsername(login.sentUsername());
+        b.setArType("Datorlån");
+        b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
+        b.setDescrip("Låna en dator.");
+        b.setPcName(select.sendPcName());
+        b.setReturndate(new java.sql.Date(select.getIdate().getTime()));
+        b.setArStatus("Öppet");
+        p.setAvailable("Nej");
+        pcFacade.edit(p);
+        pcloanFacade.create(b);
 
-    return "menu";
-  }
-    
+        return "menu";
+    }
+
     /**
      *Redigerar ett nuvarande låneärende
      * omredigerar sen till att spara ändringar
@@ -114,43 +114,43 @@ public class AddLoanBean implements Serializable {
      * @return
      */
     public String edit(Pcloan b) {
-      
-    loanBean.setId(b.getId());
-    loanBean.setDatecreated(b.getDatecreated());
-    loanBean.setArType(b.getArType());
-    loanBean.setArStatus(b.getArStatus());
-    loanBean.setDescrip(b.getDescrip());
-    loanBean.setUsername(b.getUsername());
-    loanBean.setReturndate(b.getReturndate());
-    loanBean.setPcName(b.getPcName());
-    
-    return "updateloan";
-  }
-    
+
+        loanBean.setId(b.getId());
+        loanBean.setDatecreated(b.getDatecreated());
+        loanBean.setArType(b.getArType());
+        loanBean.setArStatus(b.getArStatus());
+        loanBean.setDescrip(b.getDescrip());
+        loanBean.setUsername(b.getUsername());
+        loanBean.setReturndate(b.getReturndate());
+        loanBean.setPcName(b.getPcName());
+
+        return "updateloan";
+    }
+
     /**
      *Sparar ändringar från edit-funktioner med hjälp av entity manager
      * omredigerar sen till ärendelistan.
      * @return
      */
     public String save() {
-        
-    Pcloan b = new Pcloan(loanBean.getId());
-    Pc p = new Pc(loanBean.getPcName());
-    
-    p.setPcName(loanBean.getPcName());
-    p.setAvailable("Ja");
-    
-    b.setPcName(loanBean.getPcName());
-    b.setArStatus(loanBean.getArStatus());
-    b.setArType(loanBean.getArType());
-    b.setDatecreated(loanBean.getDatecreated());
-    b.setReturndate(loanBean.getReturndate());
-    b.setUsername(loanBean.getUsername());
-    b.setDescrip(loanBean.getDescrip());
-    
-    pcFacade.edit(p);
-    pcloanFacade.edit(b);
-    
-    return "arenden";
-  }
+
+        Pcloan b = new Pcloan(loanBean.getId());
+        Pc p = new Pc(loanBean.getPcName());
+
+        p.setPcName(loanBean.getPcName());
+        p.setAvailable("Ja");
+
+        b.setPcName(loanBean.getPcName());
+        b.setArStatus(loanBean.getArStatus());
+        b.setArType(loanBean.getArType());
+        b.setDatecreated(loanBean.getDatecreated());
+        b.setReturndate(loanBean.getReturndate());
+        b.setUsername(loanBean.getUsername());
+        b.setDescrip(loanBean.getDescrip());
+
+        pcFacade.edit(p);
+        pcloanFacade.edit(b);
+
+        return "arenden";
+    }
 }

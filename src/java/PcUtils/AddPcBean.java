@@ -29,74 +29,74 @@ import javax.inject.Named;
  */
 @Named(value = "pBean")
 @SessionScoped
-public class AddPcBean implements Serializable{
+public class AddPcBean implements Serializable {
 
-    
-    @EJB PcFacade pcFacade;//entity manager
-    
+
+    @EJB PcFacade pcFacade; //entity manager
+
     @Inject PcBean pcBean; //backing bean
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     /**
      *Returnerar en lista med lånedatorer
      * @return
      */
-    public List<Pc> getAll(){
+    public List < Pc > getAll() {
         return pcFacade.findAll();
     }
-    
+
     /**
      *Lägger en ny lånedator
      * Skickar sen till pc-sida
      * @return
      */
-    public String add(){
+    public String add() {
         Pc p = new Pc();
         p.setPcName(pcBean.getPcName());
         p.setAvailable(pcBean.getAvailable());
         pcFacade.create(p);
         return "editpc";
     }
-    
+
     /**
      *Modifierar en lånedator
      * Skickar sen till save-funktionen
      * @param p
      * @return
      */
-    public String edit(Pc p){
-        
+    public String edit(Pc p) {
+
         pcBean.setPcName(p.getPcName());
         pcBean.setAvailable(p.getAvailable());
-        
+
         return "updatepc";
     }
-    
+
     /**
      *Sparar den modifierade datorn och
      * omredigerar till pc-sida
      * @return
      */
-    public String save(){
+    public String save() {
         Pc p = new Pc(pcBean.getPcName());
         p.setPcName(pcBean.getPcName());
         p.setAvailable(pcBean.getAvailable());
         pcFacade.edit(p);
         return "editpc";
     }
-    
+
     /**
      *Tar bort den valda datorn
      * @param p
      * @return
      */
-    public String delete (Pc p){
-    
+    public String delete(Pc p) {
+
         pcFacade.remove(p);
         return null;
     }
-    
 
-    
+
+
 }

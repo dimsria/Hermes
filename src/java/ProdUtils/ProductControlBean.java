@@ -27,7 +27,7 @@ import org.primefaces.model.file.UploadedFile;
  * 
  * @author srvmng
  */
-@Named(value="proBean")
+@Named(value = "proBean")
 @SessionScoped
 
 public class ProductControlBean implements Serializable {
@@ -35,36 +35,38 @@ public class ProductControlBean implements Serializable {
     @EJB ProductsFacade prodFacade;
     @Inject ProductBean prodBean;
     
-    private UploadedFile file;
+    private static final long serialVersionUID = 1L;
     
+    private UploadedFile file;
+
     /**
      *Lista med alla produkter
      * @return
      */
-    public List <Products> getAll(){
-        
+    public List < Products > getAll() {
+
         return prodFacade.findAll();
     }
-    
+
     /**
      *Modifierar en produkt och sen skickas
      * vidare för att spara ändringar
      * @param p
      * @return
      */
-    public String edit (Products p){
-        
+    public String edit(Products p) {
+
         prodBean.setProdid(p.getProdid());
         prodBean.setTitle(p.getTitle());
         prodBean.setDescrip(p.getDescrip());
         prodBean.setQuantity(p.getQuantity());
         prodBean.setImg(p.getImg());
-        
+
         prodFacade.edit(p);
-        
-        return "updateproduct" ;
+
+        return "updateproduct";
     }
-    
+
     /**
      *Hämtar och sparar ändringar från editFunktionen
      * Omredigerar sen till produktsidan
@@ -72,27 +74,27 @@ public class ProductControlBean implements Serializable {
      */
     public String save() {
 
-    Products p = new Products(prodBean.getProdid());
-    p.setTitle(prodBean.getTitle());
-    p.setDescrip(prodBean.getDescrip());
-    p.setQuantity(prodBean.getQuantity());
-    p.setImg(prodBean.getImg());
+        Products p = new Products(prodBean.getProdid());
+        p.setTitle(prodBean.getTitle());
+        p.setDescrip(prodBean.getDescrip());
+        p.setQuantity(prodBean.getQuantity());
+        p.setImg(prodBean.getImg());
 
-    prodFacade.edit(p);
-    return "products";
-  }
-    
+        prodFacade.edit(p);
+        return "products";
+    }
+
     /**
      *Tar bort en produkt
      * @param p
      * @return
      */
-    public String delete(Products p){
-        
+    public String delete(Products p) {
+
         prodFacade.remove(p);
         return null;
     }
-    
+
     //Getters n Setters
     public UploadedFile getFile() {
         return file;
@@ -100,5 +102,5 @@ public class ProductControlBean implements Serializable {
     public void setFile(UploadedFile file) {
         this.file = file;
     }
-    
+
 }

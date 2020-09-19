@@ -30,40 +30,40 @@ import javax.inject.Named;
 @Named(value = "iBean")
 @SessionScoped
 public class AddIncidentBean implements Serializable {
-    
-  //Abstrakt class som ersätter entity manager  
-  @EJB ArendeFacade aFacade;
-  
-  //Inject backing bean för ärenden och loginbean för inloggade användare
-  @Inject ArendeBean aBean;
-  @Inject LoginBean login;
-  
- private static final long serialVersionUID = 1L;
+
+    //Abstrakt class som ersätter entity manager  
+    @EJB ArendeFacade aFacade;
+
+    //Inject backing bean för ärenden och loginbean för inloggade användare
+    @Inject ArendeBean aBean;
+    @Inject LoginBean login;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      *Returnerar a lista med stängda ärenden
      * @return
      */
-    public List <Arende> getClosed(){
-      return aFacade.findWithNamedQuery("Arende.findBytest");
-  }
-  
+    public List < Arende > getClosed() {
+        return aFacade.findWithNamedQuery("Arende.findBytest");
+    }
+
     /**
      *Returnerar en lista med öppna ärenden
      * @return
      */
     public List < Arende > getAllIncs() {
 
-    return aFacade.findWithNamedQuery("Arende.findByIncident");
-  }
+        return aFacade.findWithNamedQuery("Arende.findByIncident");
+    }
 
     /**
      *Returnerar antal ärenden
      * @return
      */
     public int count() {
-    return aFacade.count();
-  }
+        return aFacade.count();
+    }
 
     /**
      *Skapar en ny incident
@@ -75,17 +75,17 @@ public class AddIncidentBean implements Serializable {
      */
     public String add() throws IOException {
 
-    Arende a = new Arende();
-    a.setUsername(login.sentUsername());
-    a.setArType("Incident");
-    a.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-    a.setDescrip(aBean.getDescrip());
-    a.setArStatus("Öppet");
+        Arende a = new Arende();
+        a.setUsername(login.sentUsername());
+        a.setArType("Incident");
+        a.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
+        a.setDescrip(aBean.getDescrip());
+        a.setArStatus("Öppet");
 
-    aFacade.create(a);
+        aFacade.create(a);
 
-    return "menu";
-  }
+        return "menu";
+    }
 
     /**
      *Modifierar ett ärende med hjälp av backing beans.
@@ -95,34 +95,34 @@ public class AddIncidentBean implements Serializable {
      */
     public String edit(Arende a) {
 
-    aBean.setId(a.getId());
-    aBean.setArStatus(a.getArStatus());
-    aBean.setArType(a.getArType());
-    aBean.setDatecreated(a.getDatecreated());
-    aBean.setDescrip(a.getDescrip());
-    aBean.setUsername(a.getUsername());
-    
-    return "updateinc" ;
-  
-  }
+        aBean.setId(a.getId());
+        aBean.setArStatus(a.getArStatus());
+        aBean.setArType(a.getArType());
+        aBean.setDatecreated(a.getDatecreated());
+        aBean.setDescrip(a.getDescrip());
+        aBean.setUsername(a.getUsername());
+
+        return "updateinc";
+
+    }
 
     /**
-     *Får det modifierat ärende och sparar det med hjälp av den
+     *Får det modifierade ärende och sparar det med hjälp av den
      * abstrakta fasadklassen
      * omredigerar sen till listan med ärenden
      * @return
      */
     public String save() {
 
-    Arende a = new Arende(aBean.getId());
-    a.setArStatus(aBean.getArStatus());
-    a.setArType(aBean.getArType());
-    a.setDescrip(aBean.getDescrip());
-    a.setUsername(aBean.getUsername());
-    a.setDatecreated(aBean.getDatecreated());
+        Arende a = new Arende(aBean.getId());
+        a.setArStatus(aBean.getArStatus());
+        a.setArType(aBean.getArType());
+        a.setDescrip(aBean.getDescrip());
+        a.setUsername(aBean.getUsername());
+        a.setDatecreated(aBean.getDatecreated());
 
-    aFacade.edit(a);
-    return "arenden";
-  }
+        aFacade.edit(a);
+        return "arenden";
+    }
 
 }

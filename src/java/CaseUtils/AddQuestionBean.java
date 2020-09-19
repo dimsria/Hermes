@@ -34,80 +34,81 @@ import javax.inject.Named;
 @SessionScoped
 public class AddQuestionBean implements Serializable {
 
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB ArendeFacade aFacade;
-  
-  @Inject ArendeBean aBean;
-  @Inject LoginBean login;
+    @EJB ArendeFacade aFacade;
 
+    @Inject ArendeBean aBean;
+    @Inject LoginBean login;
 
-  
-  public List < Arende > getAllQs(){
+    /**
+     *Lista med ärenden som är Questions
+     * @return
+     */
+    public List < Arende > getAllQs() {
 
-    return aFacade.findWithNamedQuery("Arende.findBytest2");
-    
-  }
-  
+        return aFacade.findWithNamedQuery("Arende.findBytest2");
+
+    }
+
     /**
      *Sökfunktion som returnerar ärende med angivna id-numret
      * @param id
      * @return
      */
-    public String searchById(Integer id)
-{
-    return aFacade.find(id).toString();
-    
-}
-  
-  public List <Arende> getQuestions(){
-      
-      return aFacade.findWithNamedQuery("Arende.findByQuestion");
-  }
+    public String searchById(Integer id) {
+        return aFacade.find(id).toString();
 
-  public int count() {
-    return aFacade.count();
-  }
+    }
 
-  public String add() throws IOException {
+    public List < Arende > getQuestions() {
 
-    Arende a = new Arende();
-    a.setUsername(login.sentUsername());
-    a.setArType("Question");
-    a.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-    a.setDescrip(aBean.getDescrip());
-    a.setArStatus("Öppet");
+        return aFacade.findWithNamedQuery("Arende.findByQuestion");
+    }
 
-    aFacade.create(a);
+    public int count() {
+        return aFacade.count();
+    }
 
-    return "menu";
-  }
+    public String add() throws IOException {
 
-  public String edit(Arende a) {
+        Arende a = new Arende();
+        a.setUsername(login.sentUsername());
+        a.setArType("Question");
+        a.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
+        a.setDescrip(aBean.getDescrip());
+        a.setArStatus("Öppet");
 
-    aBean.setId(a.getId());
-    aBean.setArStatus(a.getArStatus());
-    aBean.setArType(a.getArType());
-    aBean.setDatecreated(a.getDatecreated());
-    aBean.setDescrip(a.getDescrip());
-    aBean.setUsername(a.getUsername());
+        aFacade.create(a);
 
-    return "updateq";
-  }
+        return "menu";
+    }
 
-  public String save() {
+    public String edit(Arende a) {
 
-    Arende a = new Arende(aBean.getId());
-    a.setArStatus(aBean.getArStatus());
-    a.setArType(aBean.getArType());
-    a.setDescrip(aBean.getDescrip());
-    a.setUsername(aBean.getUsername());
-    a.setDatecreated(aBean.getDatecreated());
+        aBean.setId(a.getId());
+        aBean.setArStatus(a.getArStatus());
+        aBean.setArType(a.getArType());
+        aBean.setDatecreated(a.getDatecreated());
+        aBean.setDescrip(a.getDescrip());
+        aBean.setUsername(a.getUsername());
 
-    aFacade.edit(a);
-    return "arenden";
-  }
+        return "updateq";
+    }
 
-    
+    public String save() {
+
+        Arende a = new Arende(aBean.getId());
+        a.setArStatus(aBean.getArStatus());
+        a.setArType(aBean.getArType());
+        a.setDescrip(aBean.getDescrip());
+        a.setUsername(aBean.getUsername());
+        a.setDatecreated(aBean.getDatecreated());
+
+        aFacade.edit(a);
+        return "arenden";
+    }
+
+
 
 }

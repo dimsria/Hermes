@@ -28,13 +28,13 @@ import javax.inject.Named;
 @Named(value = "activation")
 public class ActivationBean {
 
-  @Inject LoginBean login;
-    
-  @EJB UsersFacade uFacade;
-  
-  private String activationString;
-  
-  private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    @Inject LoginBean login;
+
+    @EJB UsersFacade uFacade;
+
+    private String activationString;
+
+    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     /**
      *Kollar ifall personen är behörig i db
@@ -42,27 +42,26 @@ public class ActivationBean {
      * @return
      */
     public String activationCode() {
-      
+
         int count = 8; //antal charaktarer
         Users u = uFacade.find(login.sentUsername()); // get from loginBean användarnamn
-        if (u.getHasAccess().contains("No")){ //Kolla ifall användaren har access i db
-        activationString = "Fel:"+ u.getFirstname() +" saknar behörighet";  //ActivationString blir lika med detta 
-        
-        }
-        else {  //Annars
+        if (u.getHasAccess().contains("No")) { //Kolla ifall användaren har access i db
+            activationString = "Fel:" + u.getFirstname() + " saknar behörighet"; //ActivationString blir lika med detta 
+
+        } else { //Annars
             StringBuilder builder = new StringBuilder();
-        while (count--!=0) {
-        int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
-        builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-        activationString = builder.toString();//Return en random blandning av sifror och bokstaver
-            
-                }
-        
+            while (count-- != 0) {
+                int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
+                builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+                activationString = builder.toString(); //Return en random blandning av sifror och bokstaver
+
             }
 
-          return activationString;  
-      
         }
+
+        return activationString;
+
+    }
     //Getters n Setters
     public String getActivationString() {
         return activationString;
@@ -72,5 +71,4 @@ public class ActivationBean {
         this.activationString = activationString;
     }
 
-  }
-
+}

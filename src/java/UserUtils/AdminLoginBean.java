@@ -18,47 +18,47 @@ import javax.inject.Named;
  *Bean för administratörsinloggning
  * @author srvmng
  */
-@Named(value="admin")
+@Named(value = "admin")
 @Stateless
 public class AdminLoginBean {
-     
+
     private String username;
     private String password;
-    
+
     /**
      *loginfunktionen som omredigerar till admin-meny ifall man anger rätt username och lösenord.
      * @return
      */
     public String login() {
-        
+
         boolean loggedIn = false;
-         
-        if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
+
+        if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
             loggedIn = true;
             return "admin?faces-redirect=true";
         } else {
-            loggedIn = false;  
+            loggedIn = false;
         }
 
         return null;
     }
-    
+
     //Getters n Setters
     public String getUsername() {
         return username;
     }
- 
+
     public void setUsername(String username) {
         this.username = username;
     }
- 
+
     public String getPassword() {
         return password;
     }
- 
+
     public void setPassword(String password) {
         this.password = password;
     }
-   
-       
+
+
 }

@@ -30,62 +30,62 @@ import javax.inject.Named;
 @Named(value = "select")
 public class PcSelBean {
 
-  @EJB PcFacade pcFacade;
-  @Inject PcBean pcBean;
+    @EJB PcFacade pcFacade;
+    @Inject PcBean pcBean;
 
-  private String pcName;
-  private String available;
-  private List < Pc > pcs;
-  private Date idate;
+    private String pcName;
+    private String available;
+    private List < Pc > pcs;
+    private Date idate;
 
     /**
      *Lista med tillgängliga datorer
      */
     @PostConstruct
-  public void init() {
+    public void init() {
 
-    pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
-    System.out.println(pcs);
+        pcs = pcFacade.findWithNamedQuery("Pc.findByFilter");
+        System.out.println(pcs);
 
-  }
+    }
 
-  //Getters and setters
-  public String sendPcName() {
+    //Getters and setters
+    public String sendPcName() {
 
-    return pcName;
-  }
+        return pcName;
+    }
 
-  public String getPcName() {
-    return pcName;
+    public String getPcName() {
+        return pcName;
 
-  }
+    }
 
-  public void setPcName(String pcName) {
-    this.pcName = pcName;
-  }
+    public void setPcName(String pcName) {
+        this.pcName = pcName;
+    }
 
-  public String getAvailable() {
-    return available;
-  }
+    public String getAvailable() {
+        return available;
+    }
 
-  public void setAvailable(String available) {
-    this.available = available;
-  }
+    public void setAvailable(String available) {
+        this.available = available;
+    }
 
-  public List < Pc > getPcs() {
-    return pcs;
-  }
+    public List < Pc > getPcs() {
+        return pcs;
+    }
 
-  public void setPcs(List < Pc > pcs) {
-    this.pcs = pcs;
-  }
+    public void setPcs(List < Pc > pcs) {
+        this.pcs = pcs;
+    }
 
-  public Date getIdate() {
-    return idate;
-  }
+    public Date getIdate() {
+        return idate;
+    }
 
-  public void setIdate(Date idate) {
-    this.idate = idate;
-  }
+    public void setIdate(Date idate) {
+        this.idate = idate;
+    }
 
 }
