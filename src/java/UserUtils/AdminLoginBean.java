@@ -1,19 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) Dimitrios Sria 
+ *
+ * 2020 srvmng
+ * Project Hermes-Kiosk v. 0.5
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  */
 package UserUtils;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 
-/**
- *
- * @author srvmng
- */
+
 @Named(value="admin")
-@RequestScoped
+@Stateless
 public class AdminLoginBean {
      
     private String username;
@@ -42,14 +45,12 @@ public class AdminLoginBean {
          
         if(username != null && username.equals("admin") && password != null && password.equals("admin")) {
             loggedIn = true;
-            return "admin";
+            return "admin?faces-redirect=true";
         } else {
             loggedIn = false;
             
         }
-         
-        
-        
+
         return null;
     }   
 }

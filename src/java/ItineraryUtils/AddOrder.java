@@ -1,7 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) Dimitrios Sria 
+ *
+ * 2020 srvmng
+ * Project Hermes-Kiosk v. 0.5
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  */
 package ItineraryUtils;
 
@@ -19,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -30,7 +36,7 @@ import javax.inject.Named;
  *
  * @author srvmng
  */
-@SessionScoped 
+@Stateless
 @Named(value="orderBean")
 public class AddOrder implements Serializable {
     
