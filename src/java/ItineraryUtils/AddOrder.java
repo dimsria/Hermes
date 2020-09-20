@@ -14,6 +14,7 @@ package ItineraryUtils;
 
 import Abst.ItineraryFacade;
 import Abst.ProductsFacade;
+import Beans.ItineraryBean;
 import Beans.ProductBean;
 import Entities.Itinerary;
 import Entities.Products;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -40,7 +41,7 @@ import javax.inject.Named;
  * Sök tidigare beställningar
  * @author srvmng
  */
-@Stateless
+@SessionScoped
 @Named(value = "orderBean")
 public class AddOrder implements Serializable {
 
@@ -51,7 +52,8 @@ public class AddOrder implements Serializable {
     //Injekt backing bean för produkter och inloggad användare
     @Inject ProductBean prodBean;
     @Inject LoginBean login;
-
+    @Inject ItineraryBean itBean;
+    
     private static final long serialVersionUID = 1L;
 
 
@@ -77,14 +79,15 @@ public class AddOrder implements Serializable {
     public AddOrder() {
         this.items = new ArrayList < > ();
     }
-
+    
     /**
-     *För test purposes
-     * @param quantity
+     *Returnerar en lista med ej klara beställningar
+     * @return
      */
-    public void addQuantityToCart(int quantity) {
-        System.out.println(quantity);
-    }
+    public List <Itinerary> allITs(){
+    
+        return iFacade.findWithNamedQuery("Itinerary.findByOrderstatus2");
+}
 
     /**
      *När man klickar på "lägg till"
@@ -143,6 +146,43 @@ public class AddOrder implements Serializable {
         s.saveToPDF(i.toString());
         return "menu";
     }
+    
+    /**
+     *Modifierar beställningen
+     * och skickar sen ändringarna till save()funktionen
+     * @param i
+     * @return
+     */
+    public String edit(Itinerary i) {
+
+        itBean.setOrderid(i.getOrderid());
+        itBean.setDatecreated(i.getDatecreated());
+        itBean.setUsername(i.getUsername());
+        itBean.setOrderstatus(i.getOrderstatus());
+        itBean.setCart(i.getCart());
+   
+        return "updateit";
+
+    }
+    
+    /**
+     *Sparar ändringarna som editfunktionen skickar
+     * till db
+     * @return
+     */
+    public String save() {
+
+        Itinerary i = new Itinerary(itBean.getOrderid());
+        i.setUsername(itBean.getUsername());
+        i.setDatecreated(itBean.getDatecreated());
+        i.setOrderstatus(itBean.getOrderstatus());
+        i.setCart(itBean.getCart());
+        
+        iFacade.edit(i);
+
+        return "orders";
+    }
+    
 
     /**
      *Uppdaterar en textarea med innehålet som sökfunktionen gav
