@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Itinerary.findByOrderid", query = "SELECT i FROM Itinerary i WHERE i.orderid = :orderid")
     , @NamedQuery(name = "Itinerary.findByUsername", query = "SELECT i FROM Itinerary i WHERE i.username = :username")
     , @NamedQuery(name = "Itinerary.findByDatecreated", query = "SELECT i FROM Itinerary i WHERE i.datecreated = :datecreated")
-    , @NamedQuery(name = "Itinerary.findByOrderstatus", query = "SELECT i FROM Itinerary i WHERE i.orderstatus = :orderstatus")
+    , @NamedQuery(name = "Itinerary.findByOrderstatus1", query = "SELECT i FROM Itinerary i WHERE i.orderstatus = 'Klar'")
+    , @NamedQuery(name = "Itinerary.findByOrderstatus2", query = "SELECT i FROM Itinerary i WHERE i.orderstatus = 'Ej Levererat'")
     , @NamedQuery(name = "Itinerary.findByCart", query = "SELECT i FROM Itinerary i WHERE i.cart = :cart")})
 public class Itinerary implements Serializable {
 

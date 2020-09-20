@@ -21,7 +21,7 @@ import javax.inject.Named;
  * Backing bean för Itinerary entity
  */
 @SessionScoped
-@Named(value = "ItiBean")
+@Named(value = "itiBean")
 public class ItineraryBean implements Serializable {
 
     private Integer orderid;

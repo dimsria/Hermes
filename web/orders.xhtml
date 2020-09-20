@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="/css/styles.css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <title>Arenden</title>
+    </h:head>
+    <h:body>
+        <header>
+            <h1>Administration</h1>
+            <div id="logo-img">
+                <img src="img/logo.png" />
+            </div>
+        </header>
+        <main>
+            <h:form>
+                <p:dataTable value="#{orderBean.allITs}" var="order" resizableColumns="true" class="dataTable">
+                    <f:facet name="header">Beställningar</f:facet>
+                    <p:column>
+                        <f:facet name="header">ÄrendeId</f:facet>
+                        #{order.orderid}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Användare</f:facet>
+                        #{order.username}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Kundvagn</f:facet>
+                        #{order.cart}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Datum Skapat</f:facet>
+                        #{order.datecreated}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Status</f:facet>
+                        #{order.orderstatus}
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Redigera" action="#{orderBean.edit(order)}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            </main>
+        <div id="footer">
+            <h:form class="aform">
+                <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
+            </h:form>
+        </div>
+    </h:body>
+</html>
