@@ -14,6 +14,7 @@ package CaseUtils;
 import Abst.ArendeFacade;
 import Beans.ArendeBean;
 import Entities.Arende;
+import MiscUtils.SaveToFile;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
@@ -71,7 +72,8 @@ public class AddQuestionBean implements Serializable {
     }
 
     public String add() throws IOException {
-
+        
+        SaveToFile s = new SaveToFile();
         Arende a = new Arende();
         a.setUsername(login.sentUsername());
         a.setArType("Question");
@@ -80,7 +82,8 @@ public class AddQuestionBean implements Serializable {
         a.setArStatus("Öppet");
 
         aFacade.create(a);
-
+        
+        s.saveToPDF(a.toString());
         return "menu";
     }
 

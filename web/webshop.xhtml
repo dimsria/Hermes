@@ -26,6 +26,12 @@
                         <p:dataTable value="#{proBean.all}" class="dataTable" var="item" style="table-layout: fixed;">
                             <p:column>
                                 <f:facet name="header">
+                                    <h:outputText value="Id" />
+                                </f:facet>
+                                <h:outputText value="#{item.prodid}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
                                     <h:outputText value="Titel" />
                                 </f:facet>
                                 <h:outputText value="#{item.title}" />

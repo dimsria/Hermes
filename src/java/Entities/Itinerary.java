@@ -137,9 +137,9 @@ public class Itinerary implements Serializable {
 
     @Override
     public String toString() {
-        return "orderid: " + orderid + "\r\n"
-                + "Användare: " + username + "\r\n"
-                + "Datum: " + datecreated + "\r\n"
+        return "orderid: " + orderid + ","
+                + "Användare: " + username + ","
+                + "Datum: " + datecreated + ","
                 + "Kundvagn: " + cart;
     }
     

@@ -17,6 +17,7 @@ import Beans.LoanBean;
 import Beans.PcBean;
 import Entities.Pc;
 import Entities.Pcloan;
+import MiscUtils.SaveToFile;
 import PcUtils.PcSelBean;
 import UserUtils.LoginBean;
 import java.io.IOException;
@@ -92,7 +93,8 @@ public class AddLoanBean implements Serializable {
 
         Pcloan b = new Pcloan();
         Pc p = new Pc(select.sendPcName());
-
+        SaveToFile s = new SaveToFile();
+        
         b.setUsername(login.sentUsername());
         b.setArType("Datorlån");
         b.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
@@ -103,7 +105,7 @@ public class AddLoanBean implements Serializable {
         p.setAvailable("Nej");
         pcFacade.edit(p);
         pcloanFacade.create(b);
-
+        s.saveToPDF(b.toString());
         return "menu";
     }
 

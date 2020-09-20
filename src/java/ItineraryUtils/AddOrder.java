@@ -17,7 +17,9 @@ import Abst.ProductsFacade;
 import Beans.ProductBean;
 import Entities.Itinerary;
 import Entities.Products;
+import MiscUtils.SaveToFile;
 import UserUtils.LoginBean;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,9 +128,10 @@ public class AddOrder implements Serializable {
      *Lägger en beställning
      * och returnerar till menyn
      * @return
+     * @throws java.io.IOException
      */
-    public String add() {
-
+    public String add() throws IOException {
+        SaveToFile s = new SaveToFile();
         Itinerary i = new Itinerary();
         i.setUsername(login.sentUsername());
         i.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
@@ -136,15 +139,20 @@ public class AddOrder implements Serializable {
         i.setCart(orderTable());
         iFacade.create(i);
         System.out.print(i);
+        
+        s.saveToPDF(i.toString());
         return "menu";
     }
 
     /**
      *Uppdaterar en textarea med innehålet som sökfunktionen gav
      * @param event
+     * @throws java.io.IOException
      */
-    public void updateItinerary(AjaxBehaviorEvent event) {
+    public void updateItinerary(AjaxBehaviorEvent event) throws IOException {
         item = iFacade.find(searchInt);
+        SaveToFile s = new SaveToFile();
+        
     }
 
     /**

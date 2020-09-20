@@ -14,6 +14,7 @@ package CaseUtils;
 import Abst.ArendeFacade;
 import Beans.ArendeBean;
 import Entities.Arende;
+import MiscUtils.SaveToFile;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
@@ -39,7 +40,7 @@ public class AddIncidentBean implements Serializable {
     @Inject LoginBean login;
 
     private static final long serialVersionUID = 1L;
-
+    
     /**
      *Returnerar a lista med stängda ärenden
      * @return
@@ -74,7 +75,7 @@ public class AddIncidentBean implements Serializable {
      * @throws IOException
      */
     public String add() throws IOException {
-
+        SaveToFile s = new SaveToFile();
         Arende a = new Arende();
         a.setUsername(login.sentUsername());
         a.setArType("Incident");
@@ -83,7 +84,7 @@ public class AddIncidentBean implements Serializable {
         a.setArStatus("Öppet");
 
         aFacade.create(a);
-
+        s.saveToPDF(a.toString());
         return "menu";
     }
 

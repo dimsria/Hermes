@@ -127,7 +127,7 @@ public class Products implements Serializable {
 
     @Override
     public String toString() {
-        return title + System.lineSeparator();
+        return title;
                  
     }
 

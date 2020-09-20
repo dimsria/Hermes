@@ -178,7 +178,12 @@ public class Pcloan implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Pcloan[ id=" + id + " ]";
+        return "Arendeid:" + id + ","
+                + "Användarnamn:" + username + ","
+                + "Beskrivning:" + descrip + ","
+                + "Datum skapat:" + datecreated + ","
+                + "Inlämningsdatum:" + returndate;
+        
     }
     
 }

@@ -154,11 +154,11 @@ public class Arende implements Serializable {
 
     @Override
     public String toString() {
-        return "Arendeid:" + id + " " + "\n"
-                + "Användarnamn:" + username + " " + "\n"
-                + "Beskrivning:" + descrip + " " + "\n"
+        return "Arendeid:" + id + ","
+                + "Användarnamn:" + username + ","
+                + "Beskrivning:" + descrip + ","
                 + "Datum skapat:" + datecreated + " " ;
-              
+
     }
     
 }
