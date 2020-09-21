@@ -61,7 +61,9 @@ public class AddOrder implements Serializable {
     private List < Products > items;
     private Itinerary item;
     private int searchInt;
-
+    
+    
+    
     /**
      *Lista med produkter
      */
@@ -84,10 +86,7 @@ public class AddOrder implements Serializable {
      *Returnerar en lista med ej klara beställningar
      * @return
      */
-    public List <Itinerary> allITs(){
-    
-        return iFacade.findWithNamedQuery("Itinerary.findByOrderstatus2");
-}
+
 
     /**
      *När man klickar på "lägg till"
@@ -138,7 +137,7 @@ public class AddOrder implements Serializable {
         Itinerary i = new Itinerary();
         i.setUsername(login.sentUsername());
         i.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
-        i.setOrderstatus("Öppet");
+        i.setOrderstatus("Ej Levererat");
         i.setCart(orderTable());
         iFacade.create(i);
         System.out.print(i);

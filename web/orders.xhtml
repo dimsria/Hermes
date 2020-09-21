@@ -17,7 +17,7 @@
         </header>
         <main>
             <h:form>
-                <p:dataTable value="#{orderBean.allITs}" var="order" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.openOrders()}" var="order" resizableColumns="true" class="dataTable">
                     <f:facet name="header">Beställningar</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
