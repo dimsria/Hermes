@@ -35,9 +35,10 @@
                             <p:outputLabel value="#{activation.activationCode()}" />
                         </p:column>
                     </p:row>
-
-                    <br />
                 </p:panelGrid>
+            </h:form>
+            <h:form class="aform">
+                <p:commandButton action="#{activation.printActivation()}" ajax="false" icon="fas fa-print" />
             </h:form>
         </main>
         <div id="footer">

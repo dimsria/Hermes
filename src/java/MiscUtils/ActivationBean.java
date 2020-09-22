@@ -34,6 +34,7 @@ public class ActivationBean {
     @EJB UsersFacade uFacade;
 
     private String activationString;
+    private String username;
 
     private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -45,25 +46,28 @@ public class ActivationBean {
      * @throws java.io.IOException
      */
     public String activationCode() throws InterruptedException, IOException {
-        FileExport d = new FileExport();
+        
         int count = 8; //antal charaktarer
         Users u = uFacade.find(login.sentUsername()); // get from loginBean användarnamn
         if (u.getHasAccess().contains("No")) { //Kolla ifall användaren har access i db
-            activationString = "Fel:" + u.getFirstname() + " saknar behörighet"; //ActivationString blir lika med detta 
+            setActivationString("Fel:" + u.getFirstname() + " saknar behörighet"); //ActivationString blir lika med detta 
 
         } else { //Annars
             StringBuilder builder = new StringBuilder();
             while (count-- != 0) {
                 int character = (int)(Math.random() * ALPHA_NUMERIC_STRING.length());
                 builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-                activationString = builder.toString(); //Return en random blandning av sifror och bokstaver
-
+                setActivationString(builder.toString()); //Return en random blandning av sifror och bokstaver
             }
+        } 
+        return getActivationString();
 
-        }
-        d.FileDownload("Username:" + u.getUsername() + " ," + "Aktiveringskod:" + activationString);
-        return activationString;
-
+    }
+    
+    public void printActivation() throws InterruptedException, IOException{
+        FileExport d = new FileExport();
+        Users u = uFacade.find(login.sentUsername());
+        d.FileDownload("Username:" + u.getUsername() + " ," + "Aktiveringskod:" + activationCode());
     }
     //Getters n Setters
     public String getActivationString() {
@@ -72,6 +76,14 @@ public class ActivationBean {
 
     public void setActivationString(String activationString) {
         this.activationString = activationString;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }
