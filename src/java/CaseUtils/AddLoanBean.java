@@ -17,7 +17,7 @@ import Beans.LoanBean;
 import Beans.PcBean;
 import Entities.Pc;
 import Entities.Pcloan;
-import MiscUtils.SaveToFile;
+import MiscUtils.FileExport;
 import PcUtils.PcSelBean;
 import UserUtils.LoginBean;
 import java.io.IOException;
@@ -88,12 +88,13 @@ public class AddLoanBean implements Serializable {
      * omredigerar sen till menyn-sida
      * @return
      * @throws IOException
+     * @throws java.lang.InterruptedException
      */
-    public String add() throws IOException {
+    public String add() throws IOException, InterruptedException {
 
         Pcloan b = new Pcloan();
         Pc p = new Pc(select.sendPcName());
-        SaveToFile s = new SaveToFile();
+        FileExport d = new FileExport();
         
         b.setUsername(login.sentUsername());
         b.setArType("Datorlån");
@@ -105,7 +106,7 @@ public class AddLoanBean implements Serializable {
         p.setAvailable("Nej");
         pcFacade.edit(p);
         pcloanFacade.create(b);
-        s.saveToPDF(b.toString());
+        d.FileDownload(b.toString());
         return "menu";
     }
 

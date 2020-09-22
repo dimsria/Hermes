@@ -14,7 +14,7 @@ package CaseUtils;
 import Abst.ArendeFacade;
 import Beans.ArendeBean;
 import Entities.Arende;
-import MiscUtils.SaveToFile;
+import MiscUtils.FileExport;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
@@ -73,9 +73,12 @@ public class AddIncidentBean implements Serializable {
      * return menu innebär omredigering till menyn-sidan
      * @return
      * @throws IOException
+     * @throws java.lang.InterruptedException
      */
-    public String add() throws IOException {
-        SaveToFile s = new SaveToFile();
+    public String add() throws IOException, InterruptedException {
+        
+        FileExport d = new FileExport();
+        
         Arende a = new Arende();
         a.setUsername(login.sentUsername());
         a.setArType("Incident");
@@ -84,7 +87,8 @@ public class AddIncidentBean implements Serializable {
         a.setArStatus("Öppet");
 
         aFacade.create(a);
-        s.saveToPDF(a.toString());
+        d.FileDownload(a.toString());// Skapa pdf från a-entitet och skicka till nedladdning
+        
         return "menu";
     }
 

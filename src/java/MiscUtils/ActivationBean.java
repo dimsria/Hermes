@@ -14,6 +14,7 @@ package MiscUtils;
 import Abst.UsersFacade;
 import Entities.Users;
 import UserUtils.LoginBean;
+import java.io.IOException;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -40,9 +41,11 @@ public class ActivationBean {
      *Kollar ifall personen är behörig i db
      * och skickar antigen aktiveringskod eller felmeddelande
      * @return
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
-    public String activationCode() {
-
+    public String activationCode() throws InterruptedException, IOException {
+        FileExport d = new FileExport();
         int count = 8; //antal charaktarer
         Users u = uFacade.find(login.sentUsername()); // get from loginBean användarnamn
         if (u.getHasAccess().contains("No")) { //Kolla ifall användaren har access i db
@@ -58,7 +61,7 @@ public class ActivationBean {
             }
 
         }
-
+        d.FileDownload("Username:" + u.getUsername() + " ," + "Aktiveringskod:" + activationString);
         return activationString;
 
     }

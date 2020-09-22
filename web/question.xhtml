@@ -28,7 +28,9 @@
                         <p:inputTextarea value="#{aBean.descrip}" rows="5" cols="30" autoResize="true" class="textarea" />
                     </li>
                     <li>
-                        <p:commandButton value="Bekräfta" action="#{qBean.add()}" />
+                        <p:commandButton value="Bekräfta" action="#{qBean.add()}" ajax="false">
+                             <p:fileDownload value="#{downBean.file}"/>
+                        </p:commandButton>
                     </li>
                 </ul>
             </h:form>

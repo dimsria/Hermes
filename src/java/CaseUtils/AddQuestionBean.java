@@ -14,14 +14,13 @@ package CaseUtils;
 import Abst.ArendeFacade;
 import Beans.ArendeBean;
 import Entities.Arende;
-import MiscUtils.SaveToFile;
+import MiscUtils.FileExport;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -71,9 +70,9 @@ public class AddQuestionBean implements Serializable {
         return aFacade.count();
     }
 
-    public String add() throws IOException {
+    public String add() throws IOException, InterruptedException {
         
-        SaveToFile s = new SaveToFile();
+        FileExport d = new FileExport();
         Arende a = new Arende();
         a.setUsername(login.sentUsername());
         a.setArType("Question");
@@ -83,7 +82,7 @@ public class AddQuestionBean implements Serializable {
 
         aFacade.create(a);
         
-        s.saveToPDF(a.toString());
+        d.FileDownload(a.toString());
         return "menu";
     }
 

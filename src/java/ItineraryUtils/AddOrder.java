@@ -18,7 +18,7 @@ import Beans.ItineraryBean;
 import Beans.ProductBean;
 import Entities.Itinerary;
 import Entities.Products;
-import MiscUtils.SaveToFile;
+import MiscUtils.FileExport;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
@@ -131,18 +131,19 @@ public class AddOrder implements Serializable {
      * och returnerar till menyn
      * @return
      * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
      */
-    public String add() throws IOException {
-        SaveToFile s = new SaveToFile();
+    public String add() throws IOException, InterruptedException {
+        FileExport d = new FileExport();
         Itinerary i = new Itinerary();
         i.setUsername(login.sentUsername());
         i.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
         i.setOrderstatus("Ej Levererat");
         i.setCart(orderTable());
         iFacade.create(i);
-        System.out.print(i);
+        System.out.print(i);//För test purposes
+        d.FileDownload(i.toString());
         
-        s.saveToPDF(i.toString());
         return "menu";
     }
     
@@ -190,7 +191,7 @@ public class AddOrder implements Serializable {
      */
     public void updateItinerary(AjaxBehaviorEvent event) throws IOException {
         item = iFacade.find(searchInt);
-        SaveToFile s = new SaveToFile();
+        
         
     }
 
