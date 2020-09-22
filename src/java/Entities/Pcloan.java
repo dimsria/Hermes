@@ -181,6 +181,7 @@ public class Pcloan implements Serializable {
         return "Arendeid:" + id + ","
                 + "Användarnamn:" + username + ","
                 + "Beskrivning:" + descrip + ","
+                + "Dator att låna:" + pcName + ","
                 + "Datum skapat:" + datecreated + ","
                 + "Inlämningsdatum:" + returndate;
         
