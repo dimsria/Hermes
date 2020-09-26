@@ -6,20 +6,21 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Lägga till Produkter</title>
+        <title>Meny</title>
     </h:head>
     <h:body>
         <header>
-            <h1>Hämta en beställning</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>
+         
+                <img src="img/logo.png" width="280px" />
+    
         </header>
         <main>
-            <h:form class="aform">
+            <div class="nav">
+            <h:form>
                 <ul>
                     <li>
-                        <p>Inloggad som: #{login.sentUsername()}</p>
+                        <h2>Inloggad som: #{login.sentUsername()}</h2>
                     </li>
                     <li>
                         <p:outputLabel class="searchHead" value="Ange ärendenummer och tryck på 'Enter' " />
@@ -31,22 +32,23 @@
                     </li>
                     <li>
                         <div class="card2">
-                            <p:outputLabel id="output1" value="Order-Id: #{orderBean.item.orderid}" />
+                            <p:outputLabel id="output1" value="Order-Id: #{orderBean.item.orderid}" style="font-size: 30px;" />
                             <br />
-                            <p:outputLabel id="output2" value="Användare: #{orderBean.item.username}" />
+                            <p:outputLabel id="output2" value="Användare: #{orderBean.item.username}" style="font-size: 30px;"/>
                             <br />
-                            <p:outputLabel id="output3" value="Datum: #{orderBean.item.datecreated}" />
+                            <p:outputLabel id="output3" value="Datum: #{orderBean.item.datecreated}" style="font-size: 30px;"/>
                             <br />
-                            <p:outputLabel id="output4" value="Kundvagn:#{orderBean.item.cart}" />
+                            <p:outputLabel id="output4" value="Kundvagn:#{orderBean.item.cart}" style="font-size: 30px;"/>
                         </div>
                     </li>
                 </ul>
             </h:form>
+                </div>
         </main>
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            <h:form >
                 <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
-                <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
+                <p:commandButton value="Logga ut" action="#{login.logout()}" />
             </h:form>
             <p>
                 <h:link outcome="about">&copy; Dimitrios Sria</h:link>

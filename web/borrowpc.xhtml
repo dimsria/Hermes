@@ -8,38 +8,39 @@
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
         <title>Låna Dator</title>
     </h:head>
+    
     <h:body>
         <header>
-            <h1>Hermes- Kiosk</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>       
+                <img src="img/logo.png" width="280px" />
         </header>
         <main>
+            <div class="nav">
+                <hr></hr>
+                <h:form>
             <ul>
                 <li>
-                    <p>Inloggad som: #{login.sentUsername()}</p>
+                    <h2>Inloggad som: #{login.sentUsername()}</h2>
                 </li>
-            </ul>
-            <h:form class="aform">
-                <table>
-                    <tr>
-                        <td>
-                            <p:selectOneListbox value="#{select.pcName}">
+                <li>
+                    <p:selectOneListbox value="#{select.pcName}" style="width: 360px; font-size: 28px; padding: 5px;">
                                 <f:selectItem itemLabel="Välj en dator" noSelectionOption="true" itemDisabled="true" />
                                 <f:selectItems value="#{select.pcs}" var="pcName" itemValue="#{pcName}" />
                             </p:selectOneListbox>
-                        </td>
-                        <td>
-                            <p:calendar id="returndate" value="#{select.idate}" pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se" showOn="button" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" class="cButton" ajax="false" />
-                        </td>
-                    </tr>
-                </table>
+                </li>
+                <li>
+                    <h3>
+                        Ange Returdatum
+                    </h3>
+                </li>
+                <li>
+                    <p:calendar id="returndate" value="#{select.idate}" pattern="yyyy-MMM-dd" mindate="today" required="true" locale="se" showOn="button" />
+                </li>
+                <li>
+                    <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" ajax="false" style="margin-top: 30px;" />
+                </li>        
+         
+                 </ul>      
             </h:form>
             <script type="text/javascript">
                 PrimeFaces.locales["se"] = {
@@ -60,14 +61,16 @@
                     month: "Månad",
                     week: "Vecka",
                     day: "Dag",
-                    allDayText: "Hela dag",
+                    allDayText: "Hela dag"
                 };
             </script>
+                <hr></hr>
+                </div>
         </main>
-        <div id="footer">
-            <h:form class="aform">
-                <p:button outcome="menu" value="Hem" style="margin-right: 10px;"></p:button>
-                <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
+              <div class="footer">
+            <h:form>
+                <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
+                <p:commandButton value="Logga ut" action="#{login.logout()}" />
             </h:form>
             <p>
                 <h:link outcome="about">&copy; Dimitrios Sria</h:link>

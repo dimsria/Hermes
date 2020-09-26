@@ -4,6 +4,7 @@
     <h:head>
         <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+        <h:outputStylesheet name="css/primeflex.css" />
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
@@ -22,29 +23,31 @@
     <h:body>
         <header>
             <h1>Hermes- Kiosk</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+                <img src="img/logo.png" width="280px" />
+           
         </header>
         <main>
+            <div class="nav">
+                 <hr></hr>
             <h2>Välkommen till Leverans och Support!</h2>
             <div class="login-img">
                 <h:link outcome="login">
-                    <img src="img/login.jpg" />
+                    <img src="img/login.jpg" width="640px" />
                 </h:link>
             </div>
             <h3>Lägg ditt etjänstekort för att gå vidare</h3>
+            <hr></hr>
             <ul>
                 <li>
-                    <h:form>
-                        <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                            <i class="fas fa-users-cog" style="color: #999999;"></i>
+                    <h:form class="pform">
+                        <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Admin Login" >
+                            <i class="fas fa-users-cog fa-3x" style="color: #999999;"></i>
                         </h:outputLink>
 
                         <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-                        <p:dialog header="Login" widgetVar="dlg" resizable="false">
-                            <p:panelGrid columns="2" class="dPanel">
+                        <p:dialog header="Login" widgetVar="dlg" resizable="false" fitViewport="true">
+                            <p:panelGrid columns="2">
                                 <h:outputLabel for="username" value="Användarnamn:" />
                                 <p:inputText id="username" value="#{admin.username}" required="true" label="username" />
 
@@ -59,8 +62,9 @@
                     </h:form>
                 </li>
             </ul>
+            </div>
         </main>
-        <div id="footer">
+        <div class="footer">
             <p>&copy; Dimitrios Sria</p>
         </div>
     </h:body>

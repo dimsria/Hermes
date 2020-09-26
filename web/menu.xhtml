@@ -11,20 +11,22 @@
     <h:body>
         <header>
             <h1>Hermes- Kiosk</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+         
+                <img src="img/logo.png" width="280px" />
+    
         </header>
         <main>
+            <div class="nav">
+                <hr></hr>
             <h2>Välkommen #{user}</h2>
             <h2>Hur kan vi hjälpa dig?</h2>
-            <table>
+            <table class="menuTable">
                 <tr>
                     <td>
                         <a href="activation.xhtml">
                             <button class="btn">
                                 Hämta aktiveringskod
-                                <i class="fas fa-mobile-alt fa-3x"></i>
+                                <i class="fas fa-mobile-alt fa-5x"></i>
                             </button>
                         </a>
                     </td>
@@ -32,7 +34,7 @@
                         <a href="h_order.xhtml">
                             <button class="btn">
                                 Hämta en beställning
-                                <i class="fas fa-people-carry fa-3x"></i>
+                                <i class="fas fa-people-carry fa-5x"></i>
                             </button>
                         </a>
                     </td>
@@ -40,7 +42,7 @@
                         <a href="incident.xhtml">
                             <button class="btn">
                                 Göra en felanmälan
-                                <i class="fas fa-tools fa-3x"></i>
+                                <i class="fas fa-tools fa-5x"></i>
                             </button>
                         </a>
                     </td>
@@ -50,7 +52,7 @@
                         <a href="question.xhtml">
                             <button class="btn">
                                 IT-Frågor
-                                <i class="far fa-question-circle fa-3x"></i>
+                                <i class="far fa-question-circle fa-5x"></i>
                             </button>
                         </a>
                     </td>
@@ -58,7 +60,7 @@
                         <a href="borrowpc.xhtml">
                             <button class="btn">
                                 Låna en dator
-                                <i class="fas fa-laptop fa-3x"></i>
+                                <i class="fas fa-laptop fa-5x"></i>
                             </button>
                         </a>
                     </td>
@@ -66,19 +68,21 @@
                         <a href="webshop.xhtml">
                             <button class="btn">
                                 Beställa IT-Tillbehör
-                                <i class="fas fa-shopping-cart fa-3x"></i>
+                                <i class="fas fa-shopping-cart fa-5x"></i>
                             </button>
                         </a>
                     </td>
                 </tr>
             </table>
-        </main>
-        <div id="footer">
-            <h:form class="aform">
-                <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
-          
-                  
+            <h:form class="form">
+                <p:commandButton value="Logga ut" action="#{login.logout()}" style="margin-top: 10px; margin-bottom: 10px;"/>  
             </h:form>
+            <hr></hr>
+            </div>
+        </main>
+        <div class="footer">
+            
+            
             <p>
                 <h:link outcome="about">&copy; Dimitrios Sria</h:link>
             </p>

@@ -6,45 +6,48 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Hämta Aktiveringskod</title>
+        <title>Meny</title>
     </h:head>
     <h:body>
         <header>
             <h1>Hermes- Kiosk</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+         
+                <img src="img/logo.png" width="280px" />
+               
         </header>
         <main>
-            <h:form class="aform">
-                <p:panelGrid class="pgrid">
-                    <p:row>
-                        <p:column>
-                            <p:outputLabel value="Användarnamn:" />
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{login.sentUsername()}" />
-                        </p:column>
-                    </p:row>
+            <div class="nav">  
+             <hr></hr>
+            <h:form>
 
-                    <p:row>
-                        <p:column>
-                            <p:outputLabel value="Aktiveringskod:" />
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="#{activation.activationCode()}" />
-                        </p:column>
-                    </p:row>
+                <p:panelGrid class="activeTable" style="margin-top: 25px; margin-bottom: 25px;">
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Användarnamn:" style="color: #999999"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{login.sentUsername()}"/> 
+                            </p:column>
+                        </p:row>    
+                          <p:row>
+                            <p:column>
+                                <p:outputLabel value="Aktiveringskod:" style="color: #999999"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{activation.activationCode()}" />  
+                            </p:column>
+                        </p:row> 
                 </p:panelGrid>
+   
+                <p:commandButton action="#{activation.printActivation()}" ajax="false" icon="fas fa-print" value="Skriv Ut" style="margin-bottom: 10px; margin-top: 10px;"/>
             </h:form>
-            <h:form class="aform">
-                <p:commandButton action="#{activation.printActivation()}" ajax="false" icon="fas fa-print" />
-            </h:form>
+             <hr></hr>
+                </div>
         </main>
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            <h:form >
                 <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
-                <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
+                <p:commandButton value="Logga ut" action="#{login.logout()}" />
             </h:form>
             <p>
                 <h:link outcome="about">&copy; Dimitrios Sria</h:link>

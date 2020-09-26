@@ -34,6 +34,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.PrimeFaces;
 
 /**
  *Bean för att lägga beställningar
@@ -105,7 +106,7 @@ public class AddOrder implements Serializable {
         System.out.println(a); //För test purposes
 
         System.out.println(product.getQuantity());
-        addMessage("La till + " + product);
+        addMessage(product + " " + "i varukorgen");
 
     }
 
@@ -203,6 +204,7 @@ public class AddOrder implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+    
 
     //Getters and setters
     public List < Products > getInitList() {

@@ -57,6 +57,7 @@ public class FileExport implements  Serializable{
         ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + fileName  + "\"");
         OutputStream output = ec.getResponseOutputStream();// skicka direkt till output från instance
         
+        //Här initieras dokumentet
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");// format tiden
         final PDDocument doc = new PDDocument();
@@ -73,7 +74,7 @@ public class FileExport implements  Serializable{
             stream.setFont(font, fontSize);
             stream.setLeading(15f);
             stream.newLineAtOffset(200, 480);
-            for (String s: myData) {// Iterator som läsare ärendets värde
+            for (String s: myData) {// Iterator som läser ärendets värde
                 System.out.println(s);
                 stream.showText(s);
                 stream.newLineAtOffset(0, -25);// nya linjer varje 25px
@@ -89,7 +90,7 @@ public class FileExport implements  Serializable{
         doc.close();
         
         fc.responseComplete();
-               
+   
          
         }
 

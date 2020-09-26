@@ -6,27 +6,25 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        
         <title>Felanmälan</title>
     </h:head>
+    
     <h:body>
+        
+        <header>
+            <h1>Hermes- Kiosk</h1>       
+                <img src="img/logo.png" width="280px" />
+        </header>
         <main>
-            <header>
-                <h1>Hermes- Kiosk</h1>
-                <div id="logo-img">
-                    <img src="img/logo.png" />
-                </div>
-            </header>
-            <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-            <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
-            </p:dialog>
-            <h:form class="form">
+            <div class="nav">
+                <hr></hr>
+            <h:form>
                 <ul>
                     <li>
-                        <p>Inloggad som: #{login.sentUsername()}</p>
+                        <h2>Inloggad som: #{login.sentUsername()}</h2>
                     </li>
                     <li>
-                        <p:selectOneListbox id="basic" value="#{aBean.descrip}">
+                        <p:selectOneListbox id="basic" value="#{aBean.descrip}" style="width: 360px; font-size:24px; padding-bottom: 15px; margin-bottom:30px; ">
                             <f:selectItem itemLabel="Välj" itemValue="" noSelectionOption="true" itemDisabled="true" />
                             <f:selectItem itemLabel="Trasig dator" itemValue="Trasig dator" />
                             <f:selectItem itemLabel="Trasig mobil" itemValue="Trasig mobil" />
@@ -40,9 +38,12 @@
              
                 </ul>
             </h:form>
+                <hr></hr>
+                </div>
         </main>
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            
+            <h:form>
                 <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
                 <p:commandButton value="Logga ut" action="#{login.logout()}" class="cButton" />
             </h:form>
