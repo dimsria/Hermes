@@ -6,16 +6,17 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Arenden</title>
+        <title>Stängda Ärenden</title>
     </h:head>
+    
     <h:body>
         <header>
-            <h1>Administration</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>       
+                <img src="img/logo.png" width="280px" />
         </header>
         <main>
+            <div class="nav">
+                <hr></hr>
             <h:form>
                 <p:dataTable value="#{listBean.openOrders()}" var="order" resizableColumns="true" class="dataTable">
                     <f:facet name="header">Beställningar</f:facet>
@@ -44,9 +45,11 @@
                     </p:column>
                 </p:dataTable>
             </h:form>
+                <hr></hr>
+                </div>
             </main>
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            <h:form>
                 <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
             </h:form>
         </div>

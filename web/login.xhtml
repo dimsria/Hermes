@@ -19,13 +19,14 @@
                 <hr></hr>
             
             <h:form class="form">
-                <h:panelGrid columns="2" style="auto">
-                    <p:selectOneListbox value="#{login.username}">
+                <h:panelGrid columns="2" style="auto" >
+                    <p:selectOneListbox value="#{login.username}" style=" width: 360px; font-size: 26px; padding: 5px;">
                         <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
                         <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
                     </p:selectOneListbox>
-                    <p:commandButton value="Logga in" action="#{login.login}" class="cButton" />
+                    
                 </h:panelGrid>
+                <p:commandButton value="Logga in" action="#{login.login}"/>
             </h:form>
                 <hr></hr>
                 </div>

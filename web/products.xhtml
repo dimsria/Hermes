@@ -8,16 +8,17 @@
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
         <title>Produkter</title>
     </h:head>
+    
     <h:body>
         <header>
-            <h1>Administration</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>       
+                <img src="img/logo.png" width="280px" />
         </header>
         <main>
-            <h:form class="aform">
-                <p:dataTable value="#{proBean.all}" class="dataTable" var="item">
+            <div class="nav">
+ 
+            <h:form>
+                <p:dataTable value="#{proBean.all}" var="item">
                     <p:column>
                         <h:commandLink action="#{proBean.delete(item)}" value="Ta bort">
                             <f:ajax execute="@form" render="@form" />
@@ -54,7 +55,7 @@
                             <h:outputText value="Bild" />
                         </f:facet>
                         <h:outputLink value="DisplayImage?prodid=#{item.prodid}" target="_blank">
-                            <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40" onclick="PF('imageDialog').show();" />
+                            <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"/>
                         </h:outputLink>
                     </p:column>
                     <p:column>
@@ -63,12 +64,14 @@
                 </p:dataTable>
             </h:form>
             <h:form>
-                <p:commandButton value="Lägg till en ny" action="addproducts" />
+                <p:commandButton value="Lägg till en ny" action="addproducts"  style="margin-top: 20px;"/>
             </h:form>
+                <hr></hr>
+                </div>
         </main>
 
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            <h:form>
                 <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
             </h:form>
         </div>

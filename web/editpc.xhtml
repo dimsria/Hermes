@@ -6,18 +6,20 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Datorer</title>
+        <title>Lånedatorer</title>
     </h:head>
+    
     <h:body>
         <header>
-            <h1>Administration</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>       
+                <img src="img/logo.png" width="280px" />
         </header>
         <main>
+            <div class="nav">
+                
+                <hr></hr>
             <h:form>
-                <p:dataTable value="#{pBean.all}" var="pc" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{pBean.all}" var="pc" resizableColumns="true">
                     <f:facet name="header">Lånedatorer</f:facet>
                     <p:column>
                         <p:commandButton value="Redigera" action="#{pBean.edit(pc)}" />
@@ -40,12 +42,14 @@
                 </p:dataTable>
             </h:form>
             <h:form>
-                <p:commandButton value="Lägg till en ny" action="addpc" />
+                <p:commandButton value="Lägg till en ny" action="addpc" style="margin-top: 20px;" />
             </h:form>
+                <hr></hr>
+                </div>
         </main>
 
-        <div id="footer">
-            <h:form class="aform">
+        <div class="footer">
+            <h:form>
                 <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
             </h:form>
         </div>
