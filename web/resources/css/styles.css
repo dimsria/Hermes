@@ -1,3 +1,14 @@
+/* 
+ * Copyright (C) Dimitrios Sria 
+ *
+ * 2020 srvmng
+ * Project Hermes-Kiosk v. 0.5
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
 html {
     height: 100%;
     font-family: sans-serif;
@@ -34,7 +45,7 @@ img{
     
 }
 .nav{
-
+    align-items: center;
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -128,3 +139,19 @@ li{
   justify-content: center;
 }
 
+.ui-panelgrid{
+    margin: 0 auto;
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) {
+    
+    
+    .nav{
+        width: auto;
+    }
+
+
+}

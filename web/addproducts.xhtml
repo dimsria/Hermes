@@ -1,25 +1,25 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
     <h:head>
         <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous" />
+        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-
-        <title>Lägga till Produkter</title>
+        <title>Lägg till produkter</title>
     </h:head>
+
     <h:body>
         <header>
-            <h1>Administration</h1>
-            <div id="logo-img">
-                <img src="img/logo.png" />
-            </div>
+            <h1>Hermes- Kiosk</h1>
+            <img src="img/logo.png" width="280px" />
         </header>
         <main>
-            <h:form enctype="multipart/form-data" class="aform">
+            <div class="nav">
+                <hr></hr>
+                <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
-                <p:panelGrid style="auto" class="dataTable">
+                <p:panelGrid>
                     <p:row>
                         <p:column>
                             <p:outputLabel value="Ange produktens titel" />
@@ -53,17 +53,17 @@
                         <p:column>
                             <p:inputTextarea value="#{proAddBean.descrip}" rows="4" cols="25"></p:inputTextarea>
                         </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column>
-                            <p:commandButton value="Spara" ajax="false" action="products?faces-redirect=true" actionListener="#{proAddBean.store()}" class="cButton" />
-                        </p:column>
-                    </p:row>
+                    </p:row>   
                 </p:panelGrid>
+                <p:commandButton value="Spara" ajax="false" action="products?faces-redirect=true" actionListener="#{proAddBean.store()}" style="margin-top: 20px;"/>
             </h:form>
+                <hr></hr>
+           </div>
         </main>
-        <div id="footer">
-            <h:link outcome="about">&copy; Dimitrios Sria</h:link>
+        <div class="footer">
+            <h:form >
+                <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
+            </h:form>
         </div>
     </h:body>
 </html>

@@ -32,6 +32,8 @@ import org.primefaces.model.file.UploadedFile;
 
 public class ProductControlBean implements Serializable {
     
+    private Products valdProd;
+    
     @EJB ProductsFacade prodFacade;
     @Inject ProductBean prodBean;
     
@@ -101,6 +103,14 @@ public class ProductControlBean implements Serializable {
     }
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public Products getValdProd() {
+        return valdProd;
+    }
+
+    public void setValdProd(Products valdProd) {
+        this.valdProd = valdProd;
     }
 
 }

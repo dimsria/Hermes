@@ -75,7 +75,7 @@ public class FileExport implements  Serializable{
             stream.setLeading(15f);
             stream.newLineAtOffset(200, 480);
             for (String s: myData) {// Iterator som läser ärendets värde
-                System.out.println(s);
+                System.out.println(s);//for test purposes
                 stream.showText(s);
                 stream.newLineAtOffset(0, -25);// nya linjer varje 25px
                  }
