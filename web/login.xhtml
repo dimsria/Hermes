@@ -6,28 +6,29 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Logga In</title>
+        <title>Hermes- Kiosk</title>
     </h:head>
     <h:body>
         <header>
-            <h1>Hermes- Kiosk</h1>
+            <h1>Logga In</h1>
                 <img src="img/logo.png" width="280px" />
                 
         </header>
         <main>
             <div class="nav">
                 <hr></hr>
-            
-            <h:form class="form">
-                <h:panelGrid columns="2" style="auto" >
-                    <p:selectOneListbox value="#{login.username}" style=" width: 360px; font-size: 26px; padding: 5px;">
+        
+                <h:form>
+                    <p:panelGrid columns="2" layout="grid" styleClass="Ppanel">
+                    <p:selectOneListbox value="#{login.username}" style=" margin-left: 50%; width: 100%; display: block; font-size: 26px; padding: 5px; text-align: center;" required="true">
                         <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
                         <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
                     </p:selectOneListbox>
                     
-                </h:panelGrid>
+                </p:panelGrid>
                 <p:commandButton value="Logga in" action="#{login.login}"/>
             </h:form>
+                     
                 <hr></hr>
                 </div>
         </main>

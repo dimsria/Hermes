@@ -76,12 +76,12 @@ public class FileExport implements  Serializable{
             stream.newLineAtOffset(200, 480);
             for (String s: myData) {// Iterator som läser ärendets värde
                 System.out.println(s);//for test purposes
-                stream.showText(s);
+                stream.showText("-" + " " + s);
                 stream.newLineAtOffset(0, -25);// nya linjer varje 25px
                  }
             stream.newLineAtOffset(0, 0);
             String formatDateTime = now.format(formatter);
-            stream.showText("Tid:" + " " + formatDateTime);// Lägga tiden ärendet skapades
+            stream.showText("-" + "Tid:" + " " + formatDateTime);// Lägga tiden ärendet skapades
             stream.endText();
             
             }
