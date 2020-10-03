@@ -63,18 +63,6 @@ public class AddOrder implements Serializable {
     private Itinerary item;
     private int searchInt;
     
-    
-    
-    /**
-     *Lista med produkter
-     */
-    @PostConstruct
-    public void init() {
-
-
-        initList = pFacade.findAll();
-
-    }
 
     /**
      *Constructor för klassen som initierar en ny items.list
