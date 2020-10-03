@@ -10,16 +10,17 @@
  * GNU General Public License for more details.
  */
 html {
-    height: 100%;
     font-family: sans-serif;
 }
 
 header {
     text-align: center;
     width: fit-content;
-    display: block;
+    display: flex;
+    align-items: center;
     margin: 0 auto;
-    margin-top: 30px;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 a{
@@ -44,15 +45,20 @@ img{
     margin: 0 auto;
     
 }
+hr{
+    width: 100%;
+}
 .nav{
-    align-content: center;
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    display:block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
     margin: 0 auto;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .Ppanel{
     width: 100%;
@@ -156,6 +162,7 @@ and (orientation : portrait) {
     
     
     .nav{
+        background: yellow;
         margin: 0 auto;
     }
     .ui-fluid{

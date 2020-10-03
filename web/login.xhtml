@@ -11,7 +11,7 @@
     <h:body>
         <header>
             <h1>Logga In</h1>
-                <img src="img/logo.png" width="280px" />
+                <img src="img/logo.png" width="180px" />
                 
         </header>
         <main>
@@ -20,13 +20,13 @@
         
                 <h:form>
                     <p:panelGrid columns="2" layout="grid" styleClass="Ppanel">
-                    <p:selectOneListbox value="#{login.username}" style=" margin-left: 50%; width: 100%; display: block; font-size: 26px; padding: 5px; text-align: center;" required="true">
+                        <p:selectOneListbox value="#{login.username}" style=" margin-bottom: 10px;  font-size: 26px; padding: 5px; text-align:center;" required="true" requiredMessage="Du måste välja ett alternativ">
                         <f:selectItem itemLabel="Välj ett" noSelectionOption="true" itemDisabled="true" />
                         <f:selectItems value="#{login.users}" var="user" itemValue="#{user}" itemLabel="#{user.firstname}" />
                     </p:selectOneListbox>
                     
                 </p:panelGrid>
-                <p:commandButton value="Logga in" action="#{login.login}"/>
+                    <p:commandButton value="Logga in" action="#{login.login}" style="margin-top:10px;"/>
             </h:form>
                      
                 <hr></hr>
