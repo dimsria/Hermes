@@ -11,44 +11,47 @@
     <h:body>
         <header>
             <h1>Hämta En Beställning</h1>
-         
-                <img src="img/logo.png" width="180px" />
-    
+
+            <img src="img/logo.png" width="180px" />
         </header>
         <main>
             <div class="nav">
-                <hr></hr>
-            <h:form>
-                <ul>
-                    <li>
-                        <h2>Inloggad som: #{login.sentUsername()}</h2>
-                    </li>
-                    <li>
-                        <p:outputLabel class="searchHead" value="Ange ärendenummer och tryck på 'Enter' " />
-                    </li>
-                    <li>
-                        <h:inputText class="search" id="search" value="#{orderBean.searchInt}" onkeypress="if (event.keyCode === 13){onchange(event); return false;}" onchange="return event.keyCode !== undefined">
-                            <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output1 output2 output3 output4" />
-                        </h:inputText>
-                    </li>
-                    <li>
-                        <div class="card2">
-                            <p:outputLabel id="output1" value="Order-Id: #{orderBean.item.orderid}" style="font-size: 30px;" />
-                            <br />
-                            <p:outputLabel id="output2" value="Användare: #{orderBean.item.username}" style="font-size: 30px;"/>
-                            <br />
-                            <p:outputLabel id="output3" value="Datum: #{orderBean.item.datecreated}" style="font-size: 30px;"/>
-                            <br />
-                            <p:outputLabel id="output4" value="Kundvagn:#{orderBean.item.cart}" style="font-size: 30px;"/>
-                        </div>
-                    </li>
-                </ul>
-            </h:form>
-                <hr></hr>
-                </div>
+                <hr />
+                <h:form>
+                    <ul>
+                        <li>
+                            <h2>Inloggad som: #{login.sentUsername()}</h2>
+                        </li>
+                        <li>
+                            <p:outputLabel class="searchHead" value="Ange ärendenummer och tryck på 'Enter' " />
+                        </li>
+                        <li>
+                            <h:inputText class="search" id="search" value="#{orderBean.searchInt}" onkeypress="if (event.keyCode === 13){onchange(event); return false;}" onchange="return event.keyCode !== undefined">
+                                <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output1 output2 output3 output4" />
+                            </h:inputText>
+                        </li>
+                        <li>
+                            <p:panelGrid columns="2" style="font-size: 30px; text-align: left;">
+                                <h:outputText value="Ärendenummer:" />
+                                <h:outputText id="output1" value="#{orderBean.item.orderid}" style="font-weight: bold;" />
+
+                                <h:outputText value="Användarnamn:" />
+                                <h:outputText id="output2" value="#{orderBean.item.username}" style="font-weight: bold;" />
+
+                                <h:outputText value="Datum:" />
+                                <h:outputText id="output3" value="#{orderBean.item.datecreated}" style="font-weight: bold;" />
+
+                                <h:outputText value="Kundvagn:" />
+                                <h:outputText id="output4" value="#{orderBean.item.cart}" style="font-weight: bold;" />
+                            </p:panelGrid>
+                        </li>
+                    </ul>
+                </h:form>
+                <hr />
+            </div>
         </main>
         <div class="footer">
-            <h:form >
+            <h:form>
                 <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
                 <p:commandButton value="Logga ut" action="#{login.logout()}" />
             </h:form>

@@ -46,8 +46,11 @@ public class ProductControlBean implements Serializable {
      * @return
      */
     public List < Products > getAll() {
-
+        
         return prodFacade.findAll();
+    }
+    public List<Products> getFilter(){
+        return prodFacade.findWithNamedQuery("Products.findByQuantityFilter");
     }
 
     /**

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Products.findByProdid", query = "SELECT p FROM Products p WHERE p.prodid = :prodid")
     , @NamedQuery(name = "Products.findByTitle", query = "SELECT p FROM Products p WHERE p.title = :title")
     , @NamedQuery(name = "Products.findByDescrip", query = "SELECT p FROM Products p WHERE p.descrip = :descrip")
+    , @NamedQuery(name = "Products.findByQuantityFilter", query = "SELECT p FROM Products p WHERE p.quantity <> 0")
     , @NamedQuery(name = "Products.findByQuantity", query = "SELECT p FROM Products p WHERE p.quantity = :quantity ")})
 public class Products implements Serializable {
 
