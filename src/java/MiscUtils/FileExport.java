@@ -44,7 +44,7 @@ public class FileExport implements  Serializable{
     
     public void FileDownload(String arende) throws InterruptedException, IOException {
         
-        Thread.sleep(1000);//1 sekunds paus mellan
+        //Thread.sleep(1000);//1 sekunds paus mellan
         String fileName = "case.pdf";
         String contentType = "application/pdf";
         PDFont font = PDType1Font.HELVETICA_BOLD;
@@ -88,9 +88,7 @@ public class FileExport implements  Serializable{
             
         doc.save(output);
         doc.close();
-        
         fc.responseComplete();
-   
          
         }
 

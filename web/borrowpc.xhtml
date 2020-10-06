@@ -37,7 +37,7 @@
                     <p:calendar id="returndate" value="#{select.idate}" pattern="yyyy-MM-dd" mindate="today" required="true" locale="se" showOn="button" />
                 </li>
                 <li>
-                    <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" ajax="false" style="margin-top: 30px;" />
+                    <p:commandButton value="Bekräfta" action="#{aloanBean.add()}" ajax="false" style="margin-top: 30px;" onclick="setTimeout(function(){window.location.href='menu.xhtml'},1500)" />
                 </li>        
          
                  </ul>      

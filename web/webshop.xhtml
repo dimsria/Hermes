@@ -45,7 +45,7 @@
         </p:panel>
             
     </p:dataGrid>
-        <p:commandButton value="Beställ" id="sub" action="#{orderBean.add()}" style=" margin-top: 20px;" ajax="false" />
+        <p:commandButton value="Beställ" id="sub" action="#{orderBean.add()}" style=" margin-top: 20px;" ajax="false"  onclick="setTimeout(function(){window.location.href='menu.xhtml'},1500)"/>
         
     <p:dialog header="Produkt Info" widgetVar="proDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="prodInfo" style="text-align:center;">
