@@ -22,14 +22,14 @@
                 
 
     <h:form id="form">
-        <p:dataGrid var="item" value="#{proBean.filter}" columns="3" layout="grid"
+        <p:dataGrid var="item" value="#{proBean.filter}" columns="4" layout="grid"
         rows="10" paginator="true" id="items"
         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="5,10,15" style="font-size: 14px;">
+        rowsPerPageTemplate="8,16,24" style="font-size: 14px; width: 100%;">
          
  
             <p:panel header="Id:#{item.prodid}" style="text-align:center; font-size: 14px;">
-            <h:panelGrid columns="1" style="width:100%">
+                <h:panelGrid columns="1" style="width: 100%;">
                 <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="60" height="60"/>
  
                 <h:outputText value="#{item.title}" style=" font-weight: bold;" />
@@ -51,7 +51,7 @@
         <p:outputPanel id="prodInfo" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty proBean.valdProd}" columnClasses="label,value">
                 <f:facet name="header">
-                   <p:graphicImage value="DisplayImage?prodid=#{proBean.valdProd.prodid}" width="150" height="150"/> 
+                   <p:graphicImage value="DisplayImage?prodid=#{proBean.valdProd.prodid}" width="280" height="280"/> 
                 </f:facet>
                  
                 <h:outputText value="Id:" />

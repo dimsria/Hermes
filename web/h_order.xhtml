@@ -27,6 +27,7 @@
                         </li>
                         <li>
                             <h:inputText class="search" id="search" value="#{orderBean.searchInt}" onkeypress="if (event.keyCode === 13){onchange(event); return false;}" onchange="return event.keyCode !== undefined">
+                              
                                 <f:ajax listener="#{orderBean.updateItinerary(event)}" render="output1 output2 output3 output4" />
                             </h:inputText>
                         </li>

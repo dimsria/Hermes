@@ -26,7 +26,8 @@
                         <h3>Ställ din fråga här:</h3>
                     </li>
                     <li>
-                        <p:inputTextarea value="#{aBean.descrip}" rows="5" cols="30" autoResize="true" style="margin-bottom: 30px;"/>
+                        <p:inputTextarea id="textarea" value="#{aBean.descrip}" rows="5" cols="30" autoResize="true" style="margin-bottom: 30px;"/>
+                        
                     </li>
                     <li>
                         <p:commandButton value="Bekräfta" action="#{qBean.add()}" ajax="false"/>
