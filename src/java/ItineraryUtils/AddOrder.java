@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -34,7 +33,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.PrimeFaces;
 
 /**
  *Bean för att lägga beställningar
@@ -70,12 +68,6 @@ public class AddOrder implements Serializable {
     public AddOrder() {
         this.items = new ArrayList < > ();
     }
-    
-    /**
-     *Returnerar en lista med ej klara beställningar
-     * @return
-     */
-
 
     /**
      *När man klickar på "lägg till"
@@ -171,18 +163,8 @@ public class AddOrder implements Serializable {
 
         return "orders";
     }
-    
 
-    /**
-     *Uppdaterar en textarea med innehålet som sökfunktionen gav
-     * @param event
-     * @throws java.io.IOException
-     */
-    public void updateItinerary(AjaxBehaviorEvent event) throws IOException {
-        item = iFacade.find(searchInt);
-        
-        
-    }
+
 
     /**
      *Skapar och visar ett meddelande när man lägger en produkt i korgen
@@ -217,14 +199,6 @@ public class AddOrder implements Serializable {
 
     public void setItem(Itinerary item) {
         this.item = item;
-    }
-
-    public int getSearchInt() {
-        return searchInt;
-    }
-
-    public void setSearchInt(int searchInt) {
-        this.searchInt = searchInt;
     }
 
 }

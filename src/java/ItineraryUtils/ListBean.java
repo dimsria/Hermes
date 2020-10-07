@@ -20,7 +20,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
- *
+ *Backing bean för att visa lista med beställningar
  * @author srvmng
  */
 @SessionScoped
@@ -29,7 +29,11 @@ public class ListBean implements Serializable {
     
     @EJB ItineraryFacade iFacade;
     
-        public List <Itinerary> openOrders(){
+    /**
+     *Returnerar en lista med ej klara beställningar
+     * @return
+     */
+    public List <Itinerary> openOrders(){
         return iFacade.findWithNamedQuery("Itinerary.findByOrderstatus2");
     }
     
