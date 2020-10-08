@@ -30,7 +30,7 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">Kundvagn</f:facet>
-                        #{order.cart}
+                        #{order.cart.replaceAll("[{}]", "")}
                     </p:column>
                     <p:column>
                         <f:facet name="header">Datum Skapat</f:facet>
