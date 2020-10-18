@@ -27,65 +27,87 @@
                     
                     <f:facet name="header">Incidenter</f:facet>                
                     <p:column headerText="Ärendenummer">
-                        <f:facet name="output"><h:outputText value="#{arende.id}"/></f:facet>
+                        <h:outputText value="#{arende.id}"/>
                     </p:column>
        
                     <p:column headerText="Användare">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{arende.username}"/></f:facet>
-                        <f:facet name="output"><h:inputText/></f:facet>
+                            <h:outputText value="#{arende.username}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Beskrivning">
+                       <h:outputText value="#{arende.descrip}"/>
                         
+                    </p:column>
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{arende.datecreated}">
+                             <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>                
+                    </p:column>
+                    
+                    <p:column headerText="Status">
+                        <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{arende.arStatus}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneListbox value="#{arende.arStatus}">
+                            <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
+                            <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
+                        </p:selectOneListbox>
+                        </f:facet>
                         </p:cellEditor>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Beskrivning</f:facet>
-                        #{arende.descrip}
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">Datum Skapat</f:facet>
-                        #{arende.datecreated}
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{arende.arStatus}
-                    </p:column>
-                    <p:column>
-                        <p:commandButton value="Redigera" action="#{iBean.edit(arende)}" />
+                    
+                    <p:column style="width:35px">
+                        <p:rowEditor />
                     </p:column>
                 </p:dataTable>
-            </h:form>
+                
                  <hr></hr>
-            <h:form>
-                <p:dataTable value="#{qBean.questions}" var="arende" resizableColumns="true" class="dataTable">
-                    <f:facet name="header">IT-Frågor</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{arende.id}
+            
+                 <p:dataTable value="#{qBean.questions}" var="arende" editable="true">
+                     
+                    <p:ajax event="rowEdit" listener="#{qBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{qBean.onRowCancel}" update=":form:msgs" />
+                     
+                    <f:facet name="header">IT-Frågor</f:facet>                
+                    <p:column headerText="Ärendenummer">
+                        <h:outputText value="#{arende.id}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{arende.username}
+       
+                    <p:column headerText="Användare">
+                            <h:outputText value="#{arende.username}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Beskrivning</f:facet>
-                        #{arende.descrip}
+                    
+                    <p:column headerText="Beskrivning">
+                       <h:outputText value="#{arende.descrip}"/>
+                        
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Datum Skapat</f:facet>
-                        #{arende.datecreated}
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{arende.datecreated}">
+                             <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>                
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{arende.arStatus}
+                    
+                    <p:column headerText="Status">
+                        <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{arende.arStatus}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneListbox value="#{arende.arStatus}">
+                            <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
+                            <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
+                        </p:selectOneListbox>
+                        </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column>
-                        <p:commandButton value="Redigera" action="#{qBean.edit(arende)}" />
+                    
+                    <p:column style="width:35px">
+                        <p:rowEditor />
                     </p:column>
                 </p:dataTable>
-            </h:form>
+                </h:form>
                  <hr></hr>
-            <h:form>
-                <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" resizableColumns="true" class="dataTable">
+                 <h:form id="form2">
+                     
+                <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" editable="true">
                     <f:facet name="header">Lånade Datorer</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
