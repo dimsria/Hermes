@@ -99,7 +99,9 @@ li{
   font-size: 30px;
 
 }
-
+.ui-row-editor .ui-row-editor-pencil {
+        margin-left:5px;
+    }
 
 .search {
       padding-top: 18px;

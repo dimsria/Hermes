@@ -18,12 +18,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.file.UploadedFile;
 
 /**
@@ -31,10 +27,10 @@ import org.primefaces.model.file.UploadedFile;
  * 
  * @author srvmng
  */
-@Named(value = "protBean")
+@Named(value = "proBean")
 @SessionScoped
 
-public class ProductTestBean implements Serializable {
+public class ProductControlBean implements Serializable {
     
     private Products valdProd;
     
@@ -118,29 +114,6 @@ public class ProductTestBean implements Serializable {
 
     public void setValdProd(Products valdProd) {
         this.valdProd = valdProd;
-    }
-    
-    public void onRowEdit(RowEditEvent<Products> event) {
-        Products p = new Products(event.getObject().getProdid());
-        prodFacade.edit(p);
-        FacesMessage msg = new FacesMessage("Produkten ändrad", event.getObject().getProdid().toString());    
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onRowCancel(RowEditEvent<Products> event) {
-        FacesMessage msg = new FacesMessage("Ändringen avbrutten", event.getObject().getProdid().toString());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onCellEdit(CellEditEvent event) { 
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-        
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell ändrad", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
     }
 
 }

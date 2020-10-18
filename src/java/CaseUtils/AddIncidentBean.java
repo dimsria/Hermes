@@ -40,7 +40,7 @@ public class AddIncidentBean implements Serializable {
     @Inject LoginBean login;
 
     private static final long serialVersionUID = 1L;
-    
+    private List <Arende> incidents;
     /**
      *Returnerar a lista med stängda ärenden
      * @return

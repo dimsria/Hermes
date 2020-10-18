@@ -18,16 +18,24 @@
             <div class="nav">
                 
              <hr></hr>
-            <h:form>
-                <p:dataTable value="#{iBean.allIncs}" var="arende" resizableColumns="true" class="dataTable">
-                    <f:facet name="header">Incidenter</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{arende.id}
+             <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable value="#{iBean.incidents}" var="arende" editable="true" >
+                    
+                    <p:ajax event="rowEdit" listener="#{iBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{iBean.onRowCancel}" update=":form:msgs" />
+                    
+                    <f:facet name="header">Incidenter</f:facet>                
+                    <p:column headerText="Ärendenummer">
+                        <f:facet name="output"><h:outputText value="#{arende.id}"/></f:facet>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{arende.username}
+       
+                    <p:column headerText="Användare">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{arende.username}"/></f:facet>
+                        <f:facet name="output"><h:inputText/></f:facet>
+                        
+                        </p:cellEditor>
                     </p:column>
                     <p:column>
                         <f:facet name="header">Beskrivning</f:facet>

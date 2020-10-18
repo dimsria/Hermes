@@ -17,41 +17,40 @@
         <main>
             <div class="nav">
  
-            <h:form id="form">
-    <p:growl id="msgs" showDetail="true"/>
- 
-    <p:dataTable id="products" var="item" value="#{protBean.all}" editable="true" style="margin-bottom:20px">
-        <f:facet name="header">
-            Row Editing
-        </f:facet>
- 
-        <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs" />
-        <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
- 
-        <p:column headerText="Id">           
-                <f:facet name="output"><h:outputText value="#{item.prodid}" /></f:facet>
-            
-        </p:column>
- 
-        <p:column headerText="Titel">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{item.title}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{item.title}" style="width:100%" label="Titel"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        <p:column headerText="Beskrivning">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{item.descrip}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{item.descrip}" style="width:100%" label="Beskrivning"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        <p:column headerText="Antal">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{item.quantity}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{item.quantity}" style="width:100%" label="Antal"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        <p:column>
+            <h:form>
+                <p:dataTable value="#{proBean.all}" var="item">
+                    <p:column>
+                        <h:commandLink action="#{proBean.delete(item)}" value="Ta bort">
+                            <f:ajax execute="@form" render="@form" />
+                        </h:commandLink>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{item.prodid}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Titel" />
+                        </f:facet>
+                        <h:outputText value="#{item.title}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <p:outputLabel value="Beskrivning" />
+                        </f:facet>
+                        <p:outputLabel value="#{item.descrip}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Antal" />
+                        </f:facet>
+                        <h:outputText value="#{item.quantity}" />
+                    </p:column>
+
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Bild" />
                         </f:facet>
@@ -59,9 +58,10 @@
                             <p:graphicImage value="DisplayImage?prodid=#{item.prodid}" width="40" height="40"/>
                         </h:outputLink>
                     </p:column>
-            <p:rowEditor />
-        </p:column>
-    </p:dataTable>
+                    <p:column>
+                        <p:commandButton action="#{proBean.edit(item)}" value="Redigera" />
+                    </p:column>
+                </p:dataTable>
             </h:form>
             <h:form>
                 <p:commandButton value="Lägg till en ny" action="addproducts" style="margin-top: 10px;"/>

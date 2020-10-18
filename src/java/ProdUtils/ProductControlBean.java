@@ -97,15 +97,20 @@ public class ProductControlBean implements Serializable {
         prodFacade.edit(p);
         System.out.print(p.getQuantity());// Test purposes
         
-        FacesMessage msg = new FacesMessage("Produkten ändrad", event.getObject().getTitle());
+        FacesMessage msg = new FacesMessage("Produkten", event.getObject().getTitle() + " " + "ändrades.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
      
+    /**
+     *Informerar ifall man ångrar ändringen
+     * @param event
+     */
     public void onRowCancel(RowEditEvent<Products> event) {
-        FacesMessage msg = new FacesMessage("Ändringen avbrutten", event.getObject().getTitle());
+        FacesMessage msg = new FacesMessage("Ändringen avbrutten");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    
+    //Getters n Setters
     public List <Products> getProducts() {
         return products;
     }
