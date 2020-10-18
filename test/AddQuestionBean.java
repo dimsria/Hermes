@@ -99,6 +99,30 @@ public class AddQuestionBean implements Serializable {
         return "menu";
     }
 
+    public String edit(Arende a) {
+
+        aBean.setId(a.getId());
+        aBean.setArStatus(a.getArStatus());
+        aBean.setArType(a.getArType());
+        aBean.setDatecreated(a.getDatecreated());
+        aBean.setDescrip(a.getDescrip());
+        aBean.setUsername(a.getUsername());
+
+        return "updateq";
+    }
+
+    public String save() {
+
+        Arende a = new Arende(aBean.getId());
+        a.setArStatus(aBean.getArStatus());
+        a.setArType(aBean.getArType());
+        a.setDescrip(aBean.getDescrip());
+        a.setUsername(aBean.getUsername());
+        a.setDatecreated(aBean.getDatecreated());
+
+        aFacade.edit(a);
+        return "arenden";
+    }
     
     public void onRowEdit(RowEditEvent<Arende> event) {
         

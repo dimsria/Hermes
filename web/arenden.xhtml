@@ -26,7 +26,7 @@
                     <p:ajax event="rowEditCancel" listener="#{iBean.onRowCancel}" update=":form:msgs" />
                     
                     <f:facet name="header">Incidenter</f:facet>                
-                    <p:column headerText="Ärendenummer">
+                    <p:column headerText="Ärendenummer" style="width: fit-content;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
        
@@ -69,7 +69,7 @@
                     <p:ajax event="rowEditCancel" listener="#{qBean.onRowCancel}" update=":form:msgs" />
                      
                     <f:facet name="header">IT-Frågor</f:facet>                
-                    <p:column headerText="Ärendenummer">
+                    <p:column headerText="Ärendenummer" style="width: fit-content;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
        
@@ -109,8 +109,8 @@
                      
                 <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" editable="true">
                     <f:facet name="header">Lånade Datorer</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
+                    <p:column style="width: fit-content;">
+                        <f:facet name="header">Ärendenummer</f:facet>
                         #{pcloan.id}
                     </p:column>
                     <p:column>

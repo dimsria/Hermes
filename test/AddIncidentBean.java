@@ -97,6 +97,43 @@ public class AddIncidentBean implements Serializable {
         return "menu";
     }
 
+    /**
+     *Modifierar ett ärende med hjälp av backing beans.
+     * Return skickar vidare för att spara ändringar med hjälp av save() funktionen nedåt
+     * @param a
+     * @return
+     */
+    public String edit(Arende a) {
+
+        aBean.setId(a.getId());
+        aBean.setArStatus(a.getArStatus());
+        aBean.setArType(a.getArType());
+        aBean.setDatecreated(a.getDatecreated());
+        aBean.setDescrip(a.getDescrip());
+        aBean.setUsername(a.getUsername());
+
+        return "updateinc";
+
+    }
+
+    /**
+     *Får det modifierade ärende och sparar det med hjälp av den
+     * abstrakta fasadklassen
+     * omredigerar sen till listan med ärenden
+     * @return
+     */
+    public String save() {
+
+        Arende a = new Arende(aBean.getId());
+        a.setArStatus(aBean.getArStatus());
+        a.setArType(aBean.getArType());
+        a.setDescrip(aBean.getDescrip());
+        a.setUsername(aBean.getUsername());
+        a.setDatecreated(aBean.getDatecreated());
+
+        aFacade.edit(a);
+        return "arenden";
+    }
     
     public void onRowEdit(RowEditEvent<Arende> event) {
         
