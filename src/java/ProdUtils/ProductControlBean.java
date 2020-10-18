@@ -16,10 +16,14 @@ import Beans.ProductBean;
 import Entities.Products;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.file.UploadedFile;
 
 /**
@@ -27,7 +31,7 @@ import org.primefaces.model.file.UploadedFile;
  * 
  * @author srvmng
  */
-@Named(value = "proBean")
+@Named(value = "protBean")
 @SessionScoped
 
 public class ProductControlBean implements Serializable {
@@ -38,55 +42,21 @@ public class ProductControlBean implements Serializable {
     @Inject ProductBean prodBean;
     
     private static final long serialVersionUID = 1L;
-    
+    private List <Products> products;
     private UploadedFile file;
 
     /**
      *Lista med alla produkter
-     * @return
+     * 
      */
-    public List < Products > getAll() {
+    @PostConstruct
+    public void init() {
         
-        return prodFacade.findAll();
+        products = prodFacade.findAll();
     }
+    
     public List<Products> getFilter(){
         return prodFacade.findWithNamedQuery("Products.findByQuantityFilter");
-    }
-
-    /**
-     *Modifierar en produkt och sen skickas
-     * vidare för att spara ändringar
-     * @param p
-     * @return
-     */
-    public String edit(Products p) {
-
-        prodBean.setProdid(p.getProdid());
-        prodBean.setTitle(p.getTitle());
-        prodBean.setDescrip(p.getDescrip());
-        prodBean.setQuantity(p.getQuantity());
-        prodBean.setImg(p.getImg());
-
-        prodFacade.edit(p);
-
-        return "updateproduct";
-    }
-
-    /**
-     *Hämtar och sparar ändringar från editFunktionen
-     * Omredigerar sen till produktsidan
-     * @return
-     */
-    public String save() {
-
-        Products p = new Products(prodBean.getProdid());
-        p.setTitle(prodBean.getTitle());
-        p.setDescrip(prodBean.getDescrip());
-        p.setQuantity(prodBean.getQuantity());
-        p.setImg(prodBean.getImg());
-
-        prodFacade.edit(p);
-        return "products";
     }
 
     /**
@@ -115,5 +85,34 @@ public class ProductControlBean implements Serializable {
     public void setValdProd(Products valdProd) {
         this.valdProd = valdProd;
     }
+    
+    /**
+     *Listener för produktens ändringar
+     * Sparar object när man bekräftar
+     * @param event
+     */
+    public void onRowEdit(RowEditEvent<Products> event) {
+        
+        Products p = (Products)event.getObject();
+        prodFacade.edit(p);
+        System.out.print(p.getQuantity());// Test purposes
+        
+        FacesMessage msg = new FacesMessage("Produkten ändrad", event.getObject().getTitle());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent<Products> event) {
+        FacesMessage msg = new FacesMessage("Ändringen avbrutten", event.getObject().getTitle());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public List <Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List <Products> products) {
+        this.products = products;
+    }
+
 
 }
