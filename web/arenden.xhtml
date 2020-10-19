@@ -19,6 +19,7 @@
                 
              <hr></hr>
              <h:form id="form">
+                <p:poll interval="15"/> 
                 <p:growl id="msgs" showDetail="true"/>
                 <p:dataTable value="#{iBean.incidents}" var="arende" editable="true" >
                     
@@ -26,7 +27,7 @@
                     <p:ajax event="rowEditCancel" listener="#{iBean.onRowCancel}" update=":form:msgs" />
                     
                     <f:facet name="header">Incidenter</f:facet>                
-                    <p:column headerText="Ärendenummer" style="width: fit-content;">
+                    <p:column headerText="Ärendenummer" style="width:auto;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
        
@@ -69,7 +70,7 @@
                     <p:ajax event="rowEditCancel" listener="#{qBean.onRowCancel}" update=":form:msgs" />
                      
                     <f:facet name="header">IT-Frågor</f:facet>                
-                    <p:column headerText="Ärendenummer" style="width: fit-content;">
+                    <p:column headerText="Ärendenummer" style="width: auto;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
        
@@ -106,38 +107,51 @@
                 </h:form>
                  <hr></hr>
                  <h:form id="form2">
-                     
-                <p:dataTable value="#{aloanBean.allPcLoans}" var="pcloan" editable="true">
+                <p:growl id="msgs" showDetail="true"/>    
+                <p:dataTable value="#{aloanBean.loans}" var="pcloan" editable="true">
+                    
+                    <p:ajax event="rowEdit" listener="#{aloanBean.onRowEdit}" update=":form2:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{aloanBean.onRowCancel}" update=":form2:msgs" />
+                    
                     <f:facet name="header">Lånade Datorer</f:facet>
-                    <p:column style="width: fit-content;">
-                        <f:facet name="header">Ärendenummer</f:facet>
-                        #{pcloan.id}
+
+                    <p:column headerText="Ärendenummer" style="width: auto;">
+                        <h:outputText value="#{pcloan.id}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{pcloan.username}
+                    <p:column headerText="Användare">
+                            <h:outputText value="#{pcloan.username}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Datornamn</f:facet>
-                        #{pcloan.pcName}
+                    <p:column headerText="Datornamn">
+                        <h:outputText value="#{pcloan.pcName}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Lånedatum</f:facet>
-                        #{pcloan.datecreated}
+                    
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{pcloan.datecreated}">
+                             <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>                
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Returdatum</f:facet>
-                        #{pcloan.returndate}
+
+                    <p:column headerText="Returdatum">
+                        <h:outputText value="#{pcloan.returndate}">
+                             <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>                
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{pcloan.arStatus}
+                    <p:column headerText="Status">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{pcloan.arStatus}"/></f:facet>
+                            <f:facet name="input">
+                        <p:selectOneListbox value="#{pcloan.arStatus}">
+                            <f:selectItem itemLabel="Stängt" itemValue="Stängt" />
+                            <f:selectItem itemLabel="Öppet" itemValue="Öppet" />
+                        </p:selectOneListbox>
+                            </f:facet>
+                        </p:cellEditor>
                     </p:column>
 
-                    <p:column>
-                        <p:commandButton value="Redigera" action="#{aloanBean.edit(pcloan)}" />
+                    <p:column style="width:35px">
+                        <p:rowEditor />
                     </p:column>
                 </p:dataTable>
             </h:form>
@@ -145,7 +159,7 @@
                 </div>
         </main>
         <div class="footer">
-            <h:form class="aform">
+            <h:form>
                 <p:button outcome="admin" value="Tillbaka"></p:button>
             </h:form>
         </div>

@@ -120,9 +120,52 @@ public class AddLoanBean implements Serializable {
     }
 
     /**
-     *Instant redigering och sparande av ändringar
-     * @param event
+     *Redigerar ett nuvarande låneärende
+     * omredigerar sen till att spara ändringar
+     * @param b
+     * @return
      */
+    public String edit(Pcloan b) {
+
+        loanBean.setId(b.getId());
+        loanBean.setDatecreated(b.getDatecreated());
+        loanBean.setArType(b.getArType());
+        loanBean.setArStatus(b.getArStatus());
+        loanBean.setDescrip(b.getDescrip());
+        loanBean.setUsername(b.getUsername());
+        loanBean.setReturndate(b.getReturndate());
+        loanBean.setPcName(b.getPcName());
+
+        return "updateloan";
+    }
+
+    /**
+     *Sparar ändringar från edit-funktioner med hjälp av entity manager
+     * omredigerar sen till ärendelistan.
+     * @return
+     */
+    public String save() {
+
+        Pcloan b = new Pcloan(loanBean.getId());
+        Pc p = new Pc(loanBean.getPcName());
+
+        p.setPcName(loanBean.getPcName());
+        p.setAvailable("Ja");
+
+        b.setPcName(loanBean.getPcName());
+        b.setArStatus(loanBean.getArStatus());
+        b.setArType(loanBean.getArType());
+        b.setDatecreated(loanBean.getDatecreated());
+        b.setReturndate(loanBean.getReturndate());
+        b.setUsername(loanBean.getUsername());
+        b.setDescrip(loanBean.getDescrip());
+
+        pcFacade.edit(p);
+        pcloanFacade.edit(b);
+
+        return "arenden";
+    }
+    
     public void onRowEdit(RowEditEvent<Pcloan> event) {
         
         Pcloan b = (Pcloan)event.getObject();
