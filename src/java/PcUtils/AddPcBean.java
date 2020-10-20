@@ -15,7 +15,6 @@ import Abst.PcFacade;
 import Beans.PcBean;
 import Entities.Pc;
 import java.io.Serializable;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -33,7 +32,6 @@ public class AddPcBean implements Serializable {
 
 
     @EJB PcFacade pcFacade; //entity manager
-
     @Inject PcBean pcBean; //backing bean
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +40,7 @@ public class AddPcBean implements Serializable {
      *Returnerar en lista med lånedatorer
      * @return
      */
-    public List < Pc > getAll() {
-        return pcFacade.findAll();
-    }
+
 
     /**
      *Lägger en ny lånedator

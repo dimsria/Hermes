@@ -18,22 +18,17 @@ import MiscUtils.FileExport;
 import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.event.RowEditEvent;
 
 /**
  *
- * Crud Bean för incidenter.
+ * Add Bean för incidenter.
  */
-@Named(value = "iBean")
-@ViewScoped
+@Named(value = "addincBean")
+@SessionScoped
 public class AddIncidentBean implements Serializable {
 
     //Abstrakt class som ersätter entity manager  
@@ -44,32 +39,6 @@ public class AddIncidentBean implements Serializable {
     @Inject LoginBean login;
 
     private static final long serialVersionUID = 1L;
-    private List <Arende> incidents;
-    /**
-     *Returnerar a lista med stängda ärenden
-     * @return
-     */
-    public List < Arende > getClosed() {
-        return aFacade.findWithNamedQuery("Arende.findBytest");
-    }
-
-    /**
-     *Returnerar en lista med öppna ärenden
-     *
-     */
-    @PostConstruct
-    public void init() {
-
-        incidents = aFacade.findWithNamedQuery("Arende.findByIncident");
-    }
-
-    /**
-     *Returnerar antal ärenden
-     * @return
-     */
-    public int count() {
-        return aFacade.count();
-    }
 
     /**
      *Skapar en ny incident
@@ -95,31 +64,6 @@ public class AddIncidentBean implements Serializable {
         d.FileDownload(a.toString());// Skapa pdf från a-entitet och skicka till nedladdning
         
         return "menu";
-    }
-
-    
-    public void onRowEdit(RowEditEvent<Arende> event) {
-        
-        Arende i = (Arende)event.getObject();
-        aFacade.edit(i);
-        System.out.print(i.getId());// Test purposes
-        
-        FacesMessage msg = new FacesMessage("Ärendet", event.getObject().getId().toString() + " " + "modifierades");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void onRowCancel(RowEditEvent<Arende> event) {
-        FacesMessage msg = new FacesMessage("Ändringen avbrutten");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    //Getters n Setters
-    public List <Arende> getIncidents() {
-        return incidents;
-    }
-
-    public void setIncidents(List <Arende> incidents) {
-        this.incidents = incidents;
     }
 
 }

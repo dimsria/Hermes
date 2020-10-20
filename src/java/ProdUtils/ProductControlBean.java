@@ -18,14 +18,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.file.UploadedFile;
 
 /**
  *Edit och Spara produkt
@@ -33,7 +31,7 @@ import org.primefaces.model.file.UploadedFile;
  * @author srvmng
  */
 @Named(value = "protBean")
-@ViewScoped
+@SessionScoped
 
 public class ProductControlBean implements Serializable {
     
@@ -44,7 +42,6 @@ public class ProductControlBean implements Serializable {
     
     private static final long serialVersionUID = 1L;
     private List <Products> products;
-    private UploadedFile file;
 
     /**
      *Lista med alla produkter
@@ -54,10 +51,6 @@ public class ProductControlBean implements Serializable {
     public void init() {
         
         products = prodFacade.findAll();
-    }
-    
-    public List<Products> getFilter(){
-        return prodFacade.findWithNamedQuery("Products.findByQuantityFilter");
     }
 
     /**
@@ -72,19 +65,12 @@ public class ProductControlBean implements Serializable {
     }
 
     //Getters n Setters
-    public UploadedFile getFile() {
-        return file;
-    }
-    public void setFile(UploadedFile file) {
-        this.file = file;
+        public List <Products> getProducts() {
+        return products;
     }
 
-    public Products getValdProd() {
-        return valdProd;
-    }
-
-    public void setValdProd(Products valdProd) {
-        this.valdProd = valdProd;
+    public void setProducts(List <Products> products) {
+        this.products = products;
     }
     
     /**
@@ -110,15 +96,5 @@ public class ProductControlBean implements Serializable {
         FacesMessage msg = new FacesMessage("Ändringen avbrutten");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
-    //Getters n Setters
-    public List <Products> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List <Products> products) {
-        this.products = products;
-    }
-
 
 }

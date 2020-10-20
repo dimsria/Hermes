@@ -18,8 +18,9 @@
             <div class="nav">
                 
                 <hr></hr>
-            <h:form>
-                <p:dataTable value="#{pBean.all}" var="pc" resizableColumns="true">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable value="#{listBean.all}" var="pc" resizableColumns="true">
                     <f:facet name="header">Lånedatorer</f:facet>
                     <p:column>
                         <p:commandButton value="Redigera" action="#{pBean.edit(pc)}" />

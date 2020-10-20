@@ -18,7 +18,7 @@
             <div class="nav">
                 <hr></hr>
             <h:form>
-                <p:dataTable value="#{iBean.closed}" var="arende" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.closedIncs}" var="arende" resizableColumns="true" class="dataTable">
                     <f:facet name="header">Incidenter</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
@@ -46,7 +46,7 @@
             </h:form>
                  <hr></hr>
             <h:form>
-                <p:dataTable value="#{qBean.allQs}" var="arende" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.allQs}" var="arende" resizableColumns="true" class="dataTable">
                     <f:facet name="header">IT-Frågor</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
@@ -72,7 +72,7 @@
             </h:form>
                   <hr></hr>
             <h:form>
-                <p:dataTable value="#{aloanBean.closed}" var="pcloan" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.closed}" var="pcloan" resizableColumns="true" class="dataTable">
                     <f:facet name="header">Lånade Datorer</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>

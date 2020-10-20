@@ -18,13 +18,12 @@
             <div class="nav">
                 
              <hr></hr>
-             <h:form id="form">
-                 <p:poll interval="15" update="form"/> 
+             <h:form id="form"> 
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable value="#{iBean.incidents}" var="arende" editable="true" >
+                <p:dataTable value="#{ciBean.incidents}" var="arende" editable="true" >
                     
-                    <p:ajax event="rowEdit" listener="#{iBean.onRowEdit}" update=":form:msgs"></p:ajax>
-                    <p:ajax event="rowEditCancel" listener="#{iBean.onRowCancel}" update=":form:msgs" />
+                    <p:ajax event="rowEdit" listener="#{ciBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{ciBean.onRowCancel}" update=":form:msgs" />
                     
                     <f:facet name="header">Incidenter</f:facet>                
                     <p:column headerText="Ärendenummer" style="width:auto;">
@@ -64,10 +63,10 @@
                 
                  <hr></hr>
             
-                 <p:dataTable value="#{qBean.questions}" var="arende" editable="true">
+                 <p:dataTable value="#{cqBean.questions}" var="arende" editable="true">
                      
-                    <p:ajax event="rowEdit" listener="#{qBean.onRowEdit}" update=":form:msgs"></p:ajax>
-                    <p:ajax event="rowEditCancel" listener="#{qBean.onRowCancel}" update=":form:msgs" />
+                    <p:ajax event="rowEdit" listener="#{cqBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{cqBean.onRowCancel}" update=":form:msgs" />
                      
                     <f:facet name="header">IT-Frågor</f:facet>                
                     <p:column headerText="Ärendenummer" style="width: auto;">
@@ -107,12 +106,11 @@
                 </h:form>
                  <hr></hr>
                  <h:form id="form2">
-                     <p:poll interval="15" update="form2"/>
                 <p:growl id="msgs" showDetail="true"/>    
-                <p:dataTable id="ptab" value="#{aloanBean.loans}" var="pcloan" editable="true">
+                <p:dataTable id="ptab" value="#{clBean.loans}" var="pcloan" editable="true">
                     
-                    <p:ajax event="rowEdit" listener="#{aloanBean.onRowEdit}" update=":form2:msgs"></p:ajax>
-                    <p:ajax event="rowEditCancel" listener="#{aloanBean.onRowCancel}" update=":form2:msgs" />
+                    <p:ajax event="rowEdit" listener="#{clBean.onRowEdit}" update=":form2:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{clBean.onRowCancel}" update=":form2:msgs" />
                     
                     <f:facet name="header">Lånade Datorer</f:facet>
 

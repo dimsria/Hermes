@@ -19,14 +19,10 @@ import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.event.RowEditEvent;
 
 /**
  * CrudBean för ärende
@@ -34,8 +30,8 @@ import org.primefaces.event.RowEditEvent;
  * förutom att typfältet är "Question"
  * @author srvmng
  */
-@Named(value = "qBean")
-@ViewScoped
+@Named(value = "addqBean")
+@SessionScoped
 public class AddQuestionBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,36 +42,6 @@ public class AddQuestionBean implements Serializable {
 
     @Inject ArendeBean aBean;
     @Inject LoginBean login;
-
-    /**
-     *Lista med ärenden som är Questions
-     * @return
-     */
-    public List < Arende > getAllQs() {
-
-        return aFacade.findWithNamedQuery("Arende.findBytest2");
-
-    }
-
-    /**
-     *Sökfunktion som returnerar ärende med angivna id-numret
-     * @param id
-     * @return
-     */
-    public String searchById(Integer id) {
-        return aFacade.find(id).toString();
-
-    }
-    
-    @PostConstruct
-    public void init(){
-
-        questions = aFacade.findWithNamedQuery("Arende.findByQuestion");
-    }
-
-    public int count() {
-        return aFacade.count();
-    }
 
     /**
      *Skapar ett nytt ärende av typen "Question"
@@ -98,34 +64,5 @@ public class AddQuestionBean implements Serializable {
         d.FileDownload(a.toString());
         return "menu";
     }
-
-    /**
-     *Instant edit och spara på ärendet
-     * @param event
-     */
-    public void onRowEdit(RowEditEvent<Arende> event) {
-        
-        Arende i = (Arende)event.getObject();
-        aFacade.edit(i);
-        System.out.print(i.getId());// Test purposes
-        
-        FacesMessage msg = new FacesMessage("Ärendet", event.getObject().getId().toString() + " " + "modifierades");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void onRowCancel(RowEditEvent<Arende> event) {
-        FacesMessage msg = new FacesMessage("Ändringen avbrutten");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public void setQuestions(List <Arende> questions) {
-        this.questions = questions;
-    }
-
-    public List <Arende> getQuestions() {
-        return questions;
-    }
-
-
 
 }

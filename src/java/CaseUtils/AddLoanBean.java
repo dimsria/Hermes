@@ -23,21 +23,17 @@ import UserUtils.LoginBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.event.RowEditEvent;
 
 /**
  *
  * Crud Bean för datorlån.
  */
-@Named(value = "aloanBean")
-@ViewScoped
+@Named(value = "addloanBean")
+@SessionScoped
 
 public class AddLoanBean implements Serializable {
 
@@ -58,37 +54,6 @@ public class AddLoanBean implements Serializable {
     @Inject LoginBean login;
     @Inject PcSelBean select;
     @Inject PcBean pcBean;
-
-    /**
-     *Returnerar en lista med stängda låneärende
-     * @return
-     */
-    public List < Pcloan > getClosed() {
-
-        return pcloanFacade.findWithNamedQuery("Pcloan.findByClosed");
-    }
-
-    /**
-     *Returnerar en lista med öppna låneärende
-     * @return
-     */
-    public List < Pcloan > getAllPcLoans() {
-
-        return pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
-    }
-    
-    @PostConstruct
-    public void init(){
-        loans = pcloanFacade.findWithNamedQuery("Pcloan.findByArStatus");
-    }
-
-    /**
-     *Returnerar antal låneärende.
-     * @return
-     */
-    public int count() {
-        return pcloanFacade.count();
-    }
 
     /**
      *Skapar ett nytt låneärende
@@ -119,34 +84,4 @@ public class AddLoanBean implements Serializable {
         return "menu";
     }
 
-    /**
-     *Instant redigering och sparande av ändringar
-     * @param event
-     */
-    public void onRowEdit(RowEditEvent<Pcloan> event) {
-        
-        Pcloan b = (Pcloan)event.getObject();
-        Pc p = new Pc(event.getObject().getPcName());
-        System.out.print(p.getPcName());// Test purposes
-        p.setAvailable("Ja");
-        pcFacade.edit(p);
-        pcloanFacade.edit(b);
-               
-        FacesMessage msg = new FacesMessage("Ärendet", event.getObject().getId().toString() + " " + "modifierades" + " " 
-                + "och" + " " + event.getObject().getPcName() +" " + " är nu tillgänglig.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void onRowCancel(RowEditEvent<Pcloan> event) {
-        FacesMessage msg = new FacesMessage("Ändringen avbrutten");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    // Getters n setters
-    public List <Pcloan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(List <Pcloan> loans) {
-        this.loans = loans;
-    }
 }
