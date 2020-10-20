@@ -18,7 +18,9 @@
             <div class="nav">
                 <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closedIncs}" var="arende" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.closedIncs}" var="arende" paginator="true" rows="10"
+                   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">Incidenter</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
@@ -46,7 +48,9 @@
             </h:form>
                  <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.allQs}" var="arende" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.allQs}" var="arende" paginator="true" rows="10"
+                   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">IT-Frågor</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
@@ -72,7 +76,9 @@
             </h:form>
                   <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closed}" var="pcloan" resizableColumns="true" class="dataTable">
+                <p:dataTable value="#{listBean.closed}" var="pcloan" paginator="true" rows="10"
+                   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">Lånade Datorer</f:facet>
                     <p:column>
                         <f:facet name="header">ÄrendeId</f:facet>
