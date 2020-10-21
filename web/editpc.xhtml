@@ -20,7 +20,7 @@
                 <hr></hr>
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable value="#{cpcBean.pcs}" var="pc" editable="true" style="margin-bottom:20px" >
+                <p:dataTable value="#{cpcBean.pcs}" var="pc" editable="true" style="margin-bottom:20px" reflow="true" rows="5">
                     
                     <p:ajax event="rowEdit" listener="#{cpcBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{cpcBean.onRowCancel}" update=":form:msgs" />

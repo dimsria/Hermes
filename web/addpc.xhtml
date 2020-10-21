@@ -11,7 +11,7 @@
     
     <h:body>
         <header>
-            <h1>Lägg lånedator</h1>       
+            <h1>Lägg till en ny lånedator</h1>       
                 <img src="img/logo.png" width="180px" class="logo"/>
         </header>
         <main>
@@ -19,15 +19,26 @@
                 
                 <hr></hr>
             <h:form>
-                <p:panelGrid columns="2">
-                    <f:facet name="header">Datornamn</f:facet>
-                    <p:inputText value="#{pcBean.pcName}" />
-
-                    <f:facet name="header">Tillgänglighet</f:facet>
-                    <p:selectOneListbox value="#{pcBean.available}">
+                <p:panelGrid style="margin-bottom: 15px;">
+                    <p:row>                            
+                    <p:column>                
+                        <p:outputLabel value="Datornamn"/>
+                    </p:column>
+                        <p:column>
+                            <p:inputText value="#{pcBean.pcName}" />
+                        </p:column>                  
+                </p:row>        
+                 <p:row>    
+                      <p:column>
+                          <p:outputLabel value="Tillgänglig"/>
+                      </p:column>
+                     <p:column>
+                         <p:selectOneListbox value="#{pcBean.available}">
                         <f:selectItem itemLabel="Ja" itemValue="Ja" />
                         <f:selectItem itemLabel="Nej" itemValue="Nej" />
                     </p:selectOneListbox>
+                     </p:column> 
+                    </p:row>
                 </p:panelGrid>
                 <p:commandButton value="Lägg till" action="#{pBean.add()}"> </p:commandButton>
             </h:form>
