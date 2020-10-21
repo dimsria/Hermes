@@ -37,12 +37,6 @@ public class AddPcBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     *Returnerar en lista med lånedatorer
-     * @return
-     */
-
-
-    /**
      *Lägger en ny lånedator
      * Skickar sen till pc-sida
      * @return
@@ -54,45 +48,5 @@ public class AddPcBean implements Serializable {
         pcFacade.create(p);
         return "editpc";
     }
-
-    /**
-     *Modifierar en lånedator
-     * Skickar sen till save-funktionen
-     * @param p
-     * @return
-     */
-    public String edit(Pc p) {
-
-        pcBean.setPcName(p.getPcName());
-        pcBean.setAvailable(p.getAvailable());
-
-        return "updatepc";
-    }
-
-    /**
-     *Sparar den modifierade datorn och
-     * omredigerar till pc-sida
-     * @return
-     */
-    public String save() {
-        Pc p = new Pc(pcBean.getPcName());
-        p.setPcName(pcBean.getPcName());
-        p.setAvailable(pcBean.getAvailable());
-        pcFacade.edit(p);
-        return "editpc";
-    }
-
-    /**
-     *Tar bort den valda datorn
-     * @param p
-     * @return
-     */
-    public String delete(Pc p) {
-
-        pcFacade.remove(p);
-        return null;
-    }
-
-
 
 }

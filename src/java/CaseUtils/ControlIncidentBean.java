@@ -35,7 +35,7 @@ public class ControlIncidentBean implements Serializable {
     @EJB ArendeFacade aFacade;
 
     private List <Arende> incidents;
-
+    private int count;
     /**
      *Returnerar en lista med öppna ärenden
      *
@@ -52,6 +52,10 @@ public class ControlIncidentBean implements Serializable {
      */
     public int count() {
         return aFacade.count();
+    }
+    
+    public void increment() {  
+        count++;  
     }
 
     public void onRowEdit(RowEditEvent<Arende> event) {
@@ -76,6 +80,14 @@ public class ControlIncidentBean implements Serializable {
 
     public void setIncidents(List <Arende> incidents) {
         this.incidents = incidents;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
 }

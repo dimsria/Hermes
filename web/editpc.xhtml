@@ -20,25 +20,37 @@
                 <hr></hr>
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable value="#{listBean.all}" var="pc" resizableColumns="true">
+                <p:dataTable value="#{cpcBean.pcs}" var="pc" editable="true" style="margin-bottom:20px" >
+                    
+                    <p:ajax event="rowEdit" listener="#{cpcBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{cpcBean.onRowCancel}" update=":form:msgs" />
+                    
+                    
                     <f:facet name="header">Lånedatorer</f:facet>
-                    <p:column>
-                        <p:commandButton value="Redigera" action="#{pBean.edit(pc)}" />
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">Datornamn</f:facet>
-                        #{pc.pcName}
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">Tillgänglig</f:facet>
-                        #{pc.available}
-                    </p:column>
-                    <p:column>
-                        <h:commandLink value="Ta bort" action="#{pBean.delete(pc)}">
+                    <p:column style="width:35px;">
+                        <h:commandLink action="#{cpcBean.delete(pc)}">
+                            <i class="fas fa-trash-alt"></i>
                             <f:ajax execute="@form" render="@form" />
                         </h:commandLink>
+                    </p:column>
+                    
+                    <p:column headerText="Datornamn">                     
+                        <h:outputText value="#{pc.pcName}"/>                     
+                    </p:column>
+
+                    <p:column>
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{pc.available}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneListbox value="#{pc.available}">
+                            <f:selectItem itemLabel="Ja" itemValue="Ja" />
+                            <f:selectItem itemLabel="Nej" itemValue="Nej" />
+                        </p:selectOneListbox>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width:35px">
+                        <p:rowEditor />
                     </p:column>
                 </p:dataTable>
             </h:form>

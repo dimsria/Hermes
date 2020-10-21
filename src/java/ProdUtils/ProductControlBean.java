@@ -18,9 +18,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
@@ -31,11 +31,10 @@ import org.primefaces.event.RowEditEvent;
  * @author srvmng
  */
 @Named(value = "protBean")
-@SessionScoped
+@ViewScoped
 
 public class ProductControlBean implements Serializable {
     
-    private Products valdProd;
     
     @EJB ProductsFacade prodFacade;
     @Inject ProductBean prodBean;
@@ -64,14 +63,6 @@ public class ProductControlBean implements Serializable {
         return null;
     }
 
-    //Getters n Setters
-        public List <Products> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List <Products> products) {
-        this.products = products;
-    }
     
     /**
      *Listener för produktens ändringar
@@ -95,6 +86,16 @@ public class ProductControlBean implements Serializable {
     public void onRowCancel(RowEditEvent<Products> event) {
         FacesMessage msg = new FacesMessage("Ändringen avbrutten");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    
+    //Getters n Setters
+    public List <Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List <Products> products) {
+        this.products = products;
     }
 
 }

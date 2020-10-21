@@ -39,7 +39,7 @@ public class AddIncidentBean implements Serializable {
     @Inject LoginBean login;
 
     private static final long serialVersionUID = 1L;
-
+   
     /**
      *Skapar en ny incident
      * Values from backing bean förutom username som vi får via loginBean 
