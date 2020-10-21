@@ -12,17 +12,14 @@
 package PcUtils;
 
 import Abst.PcFacade;
-import Beans.PcBean;
 import Entities.Pc;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
@@ -53,7 +50,7 @@ public class ControlPcBean implements Serializable {
         Pc p = (Pc)event.getObject();
         pcFacade.edit(p);
         System.out.print(p.getPcName());// Test purposes
-        FacesMessage msg = new FacesMessage("Datorn",  " " + event.getObject().getPcName() + " " + "modifierad");
+        FacesMessage msg = new FacesMessage("Datorn  ", event.getObject().getPcName() + " " + "modifierad");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     

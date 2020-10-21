@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
@@ -12,7 +12,7 @@
     <h:body>
         <header>
             <h1>Låna Dator</h1>       
-                <img src="img/logo.png" width="180px" />
+                <img src="img/logo.png" width="180px" class="logo"/>
         </header>
         <main>
             <div class="nav">
@@ -23,7 +23,7 @@
                     <h2>Inloggad som: #{login.sentUsername()}</h2>
                 </li>
                 <li>
-                    <p:selectOneListbox value="#{select.pcName}" style="width: 360px; font-size: 26px; padding: 5px;" required="true">
+                    <p:selectOneListbox value="#{select.pcName}" style="width: 250px; margin: 0 auto; padding: 5px;" required="true">
                                 <f:selectItem itemLabel="Välj en dator" noSelectionOption="true" itemDisabled="true" />
                                 <f:selectItems value="#{select.pcs}" var="pcName" itemValue="#{pcName}" />
                             </p:selectOneListbox>
@@ -37,7 +37,7 @@
                     <p:calendar id="returndate" value="#{select.idate}" pattern="yyyy-MM-dd" mindate="today" required="true" locale="se" showOn="button" />
                 </li>
                 <li>
-                    <p:commandButton value="Bekräfta" action="#{addloanBean.add()}" ajax="false" style="margin-top: 30px;" onclick="setTimeout(function(){window.location.href='menu.xhtml'},1500)" />
+                    <p:commandButton value="Bekräfta" action="#{addloanBean.add()}" ajax="false" style="margin-top: 20px;" onclick="setTimeout(function(){window.location.href='menu.xhtml'},1500)" />
                 </li>        
          
                  </ul>      

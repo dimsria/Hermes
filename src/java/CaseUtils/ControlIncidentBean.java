@@ -17,9 +17,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
@@ -28,7 +28,7 @@ import org.primefaces.event.RowEditEvent;
  * Crud Bean för incidenter.
  */
 @Named(value = "ciBean")
-@ViewScoped
+@RequestScoped
 public class ControlIncidentBean implements Serializable {
 
     //Abstrakt class som ersätter entity manager  

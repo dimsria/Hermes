@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<f:metadata name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" charset="utf-8"/>
 		<script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
 		<h:outputStylesheet name="/css/styles.css" />
 		<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
@@ -15,7 +15,7 @@
 	<h:body>
 		<header>
 			<h1>Hämta En Beställning</h1>
-			<img src="img/logo.png" width="180px" />
+			<img src="img/logo.png" width="180px" class="logo"/>
 		</header>
 		<main>
 			<div class="nav">
@@ -28,26 +28,26 @@
 						</li>
 						<li></li>
 						<li>
-							<p:inputNumber class="search" id="search" value="#{searchBean.searchNumber}" placeholder="ange ärendenumret" style="padding: 10px; margin-top: 30px;" />
+							<p:inputNumber class="search" id="search" value="#{searchBean.searchNumber}" placeholder="ange ärendenumret" style="padding: 10px; margin-top: 20px;" />
 						</li>
 						<li>
 							<p:commandButton action="#{searchBean.searchOrder(searchBean.searchNumber)}" value="Sök" ajax="true" update="output output1 output2 output3 output4 output5"
                                              style="margin-top:20px; margin-bottom: 10px;"/>
 						</li>
 						<li>
-							<h:outputText id="output" value="#{searchBean.result}" style="font-size: 24px; padding-top: 15px;"/>
+							<h:outputText id="output" value="#{searchBean.result}" style="font-size: 15px; padding-top: 15px;"/>
 						</li>
 						<li>
-							<p:panelGrid columns="2" style="text-align: left; padding: 7px; margin-top: 20px;">
-								<h:outputText  value="Order-Id" style="font-size: 20px; font-weight: bold; color: #009999;"/>
+							<p:panelGrid columns="2" style="text-align: left; padding: 7px; margin-top: 20px; margin: 0 auto;">
+                                                            <h:outputText  value="Order-Id" styleClass="results"/>
 								<h:outputText id="output1" value="#{searchBean.item.orderid}" />
-								<h:outputText  value="Användarnamn" style="font-size: 20px; font-weight: bold; color: #009999;"/>
+								<h:outputText  value="Användarnamn" styleClass="results"/>
 								<h:outputText id="output2" value="#{searchBean.item.username}" />
-								<h:outputText  value="Datum" style="font-size: 20px; font-weight: bold; color: #009999;"/>
+								<h:outputText  value="Datum" styleClass="results" />
 								<h:outputText id="output3" value="#{searchBean.item.datecreated}" />
-								<h:outputText  value="Status" style="font-size: 20px; font-weight: bold; color: #009999;"/>
+								<h:outputText  value="Status" styleClass="results" />
 								<h:outputText id="output4" value="#{searchBean.item.orderstatus}"/>
-								<h:outputText  value="Kundvagn" style="font-size: 20px; font-weight: bold; color: #009999;"/>
+								<h:outputText  value="Kundvagn" styleClass="results" />
 								<h:outputText id="output5" value="#{searchBean.item.cart}"/>
 							</p:panelGrid>
 						</li>

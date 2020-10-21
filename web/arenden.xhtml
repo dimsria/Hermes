@@ -6,23 +6,34 @@
         <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
         <h:outputStylesheet name="/css/styles.css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <title>Hermes-Kiosk</title>
     </h:head>
     
     <h:body>
         <header>
             <h1>Öppna Ärenden</h1>       
-                <img src="img/logo.png" width="180px" />
+                <img src="img/logo.png" width="180px" class="logo" />
         </header>
         <main>
             <div class="nav">
                  
              <hr></hr>
              <h:form id="form">
+                 
+                 <h:outputText id="txt_count" value="#{tabview.count}" rendered="false" />
+                 <p:poll interval="30" listener="#{ciBean.increment()}" update="txt_count" widgetVar="pol" oncomplete="test(xhr, status, args);"/>
+            <script type="text/javascript">
+
+                function test(xhr, status, args){  
+                       location.reload(); // refresh page                        
+                     
+                }
+
+            </script>
                   
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable id="ptab1" value="#{ciBean.incidents}" var="arende" editable="true" >
-                    <p:poll interval="30" listener="#{ciBean.increment()}" update="form"/> 
+                <p:dataTable value="#{ciBean.incidents}" var="arende" editable="true" reflow="true" rows="5">
                     <p:ajax event="rowEdit" listener="#{ciBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{ciBean.onRowCancel}" update=":form:msgs" />
                     
@@ -64,8 +75,8 @@
                 
                  <hr></hr>
             
-                 <p:dataTable id="ptab2" value="#{cqBean.questions}" var="arende" editable="true">
-                    <p:poll interval="30" listener="#{ciBean.increment()}" update="form"/> 
+                 <p:dataTable value="#{cqBean.questions}" var="arende" editable="true" reflow="true" rows="5" >
+                    
                     <p:ajax event="rowEdit" listener="#{cqBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{cqBean.onRowCancel}" update=":form:msgs" />
                      
@@ -107,10 +118,9 @@
                 </h:form>
                   
                  <hr></hr>
-                 <h:form id="form2">
-                <p:poll interval="30" listener="#{ciBean.increment()}" update=":form2"/>
+                <h:form id="form2">
                 <p:growl id="msgs" showDetail="true"/>    
-                <p:dataTable id="ptab" value="#{clBean.loans}" var="pcloan" editable="true">
+                <p:dataTable id="ptab" value="#{clBean.loans}" var="pcloan" editable="true" reflow="true" rows="5">
                      
                     <p:ajax event="rowEdit" listener="#{clBean.onRowEdit}" update=":form2:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{clBean.onRowCancel}" update=":form2:msgs" />

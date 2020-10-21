@@ -19,9 +19,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
@@ -30,7 +30,7 @@ import org.primefaces.event.RowEditEvent;
  * Crud Bean för datorlån.
  */
 @Named(value = "clBean")
-@ViewScoped
+@RequestScoped
 
 public class ControlLoanBean implements Serializable {
 

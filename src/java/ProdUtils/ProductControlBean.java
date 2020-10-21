@@ -41,7 +41,7 @@ public class ProductControlBean implements Serializable {
     
     private static final long serialVersionUID = 1L;
     private List <Products> products;
-
+    
     /**
      *Lista med alla produkter
      * 
