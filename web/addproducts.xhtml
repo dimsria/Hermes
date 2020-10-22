@@ -19,42 +19,24 @@
                 <hr></hr>
                 <h:form enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
-                <p:panelGrid>
-                    <p:row>
-                        <p:column>
-                            <p:outputLabel value="Ange produktens titel" style="word-wrap: break-word;" />
-                        </p:column>
-                        <p:column>
-                            <p:inputText value="#{proAddBean.title}" />
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column>
-                            <p:outputLabel value="Ange antal i lagret" />
-                        </p:column>
-                        <p:column>
-                            <p:inputText value="#{proAddBean.quantity}">
-                                <f:convertNumber integerOnly="true" type="number" />
-                            </p:inputText>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column>
-                            <h:outputLabel value="Välj en bild: *" />
-                        </p:column>
-                        <p:column>
-                            <p:fileUpload value="#{proAddBean.img}" mode="simple" update="formName:fileName" auto="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" />
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column>
-                            <p:outputLabel value="Ange en kort beskrivning av produkten" />
-                        </p:column>
-                        <p:column>
-                            <p:inputTextarea value="#{proAddBean.descrip}" rows="4" cols="25"></p:inputTextarea>
-                        </p:column>
-                    </p:row>   
+                <div class="ui-fluid">
+                <p:panelGrid columns="4" columnClasses="ui-g-12 ui-md-2,ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                    <p:outputLabel for="title" value="Ange titel"/>
+                    <p:inputText id="title" value="#{proAddBean.title}" />
+                    
+                    <p:outputLabel for="antal" value="Ange antal"/>
+                    <p:inputText id="antal" value="#{proAddBean.quantity}">
+                        <f:convertNumber integerOnly="true" type="number" />
+                    </p:inputText>
+                    
+                    <p:outputLabel for="bild" value="Välj en bild"/>
+                    <p:fileUpload id="bild" value="#{proAddBean.img}" mode="simple" update="formName:fileName" auto="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" />
+                    
+                    <p:outputLabel for="beskr" value="Ange en kort beskrivning av produkten"/>
+                    <p:inputTextarea id="beskr" value="#{proAddBean.descrip}" rows="4" cols="25"></p:inputTextarea>
+  
                 </p:panelGrid>
+                    </div>
                 <p:commandButton value="Spara" ajax="false" action="products?faces-redirect=true" actionListener="#{proAddBean.store()}" style="margin-top: 20px;"/>
             </h:form>
                 <hr></hr>
