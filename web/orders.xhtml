@@ -17,31 +17,57 @@
         <main>
             <div class="nav">
                 <hr></hr>
-            <h:form>
-                <p:dataTable value="#{listBean.openOrders()}" var="order" resizableColumns="true" class="dataTable">
+            <h:form id="form">
+                
+                 <h:outputText id="txt_count" value="#{tabview.count}" rendered="false" />
+                 <p:poll interval="30" listener="#{ciBean.increment()}" update="txt_count" widgetVar="pol" oncomplete="test(xhr, status, args);"/>
+            <script type="text/javascript">
+
+                function test(xhr, status, args){  
+                       location.reload(); // refresh page                        
+                     
+                }
+
+            </script>
+                  
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable value="#{coBean.orders}" var="order" editable="true" reflow="true" rows="5">
+                    <p:ajax event="rowEdit" listener="#{coBean.onRowEdit}" update=":form:msgs"></p:ajax>
+                    <p:ajax event="rowEditCancel" listener="#{coBean.onRowCancel}" update=":form:msgs" />
+                    
                     <f:facet name="header">Beställningar</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{order.orderid}
+                    <p:column headerText="Ärendenummer" style="width:auto;">
+                        <h:outputText value="#{order.orderid}"/>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{order.username}
+                    
+                    <p:column headerText="Användare">
+                            <h:outputText value="#{order.username}"/>
                     </p:column>
+                    
                     <p:column>
                         <f:facet name="header">Kundvagn</f:facet>
                         #{order.cart.replaceAll("[{}]", "")}
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Datum Skapat</f:facet>
-                        #{order.datecreated}
+                    
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{order.datecreated}">
+                             <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>                
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{order.orderstatus}
+                    
+                    <p:column headerText="Status">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{order.orderstatus}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneListbox value="#{order.orderstatus}">
+                            <f:selectItem itemLabel="Klar" itemValue="Klar" />
+                            <f:selectItem itemLabel="Ej Levererat" itemValue="Ej Levererat" />
+                        </p:selectOneListbox>
+                        </f:facet>
+                        </p:cellEditor>
                     </p:column>
-                    <p:column>
-                        <p:commandButton value="Redigera" action="#{orderBean.edit(order)}" />
+                      <p:column style="width:35px">
+                        <p:rowEditor />
                     </p:column>
                 </p:dataTable>
             </h:form>

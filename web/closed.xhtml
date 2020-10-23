@@ -18,94 +18,90 @@
             <div class="nav">
                 <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closedIncs}" var="arende" paginator="true" rows="10"
+                <p:dataTable value="#{listBean.closedIncs}" var="arende"  paginator="true" rows="5"
                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                    rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">Incidenter</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{arende.id}
+                    <p:column headerText="Ärendenummer">
+                        <h:outputText value="#{arende.id}"></h:outputText>                        
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{arende.username}
+                    <p:column headerText="Användare">
+                        <h:outputText value="#{arende.username}"></h:outputText>    
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Beskrivning</f:facet>
-                        #{arende.descrip}
+                    <p:column headerText="Beskrivning">
+                        <h:outputText value="#{arende.descrip}"></h:outputText>                      
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Datum Skapat</f:facet>
-                        #{arende.datecreated}
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{arende.datecreated}">
+                        <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>     
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{arende.arStatus}
+                    <p:column headerText="Status">
+                        <h:outputText value="#{arende.arStatus}"/>    
                     </p:column>
                 </p:dataTable>
             </h:form>
                  <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.allQs}" var="arende" paginator="true" rows="10"
+                <p:dataTable value="#{listBean.allQs}" var="arende" paginator="true" rows="5"
                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                    rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">IT-Frågor</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{arende.id}
+                                        <p:column headerText="Ärendenummer">
+                        <h:outputText value="#{arende.id}"></h:outputText>                        
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{arende.username}
+                    <p:column headerText="Användare">
+                        <h:outputText value="#{arende.username}"></h:outputText>    
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Beskrivning</f:facet>
-                        #{arende.descrip}
+                    <p:column headerText="Beskrivning">
+                        <h:outputText value="#{arende.descrip}"></h:outputText>                      
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Datum Skapat</f:facet>
-                        #{arende.datecreated}
+
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{arende.datecreated}">
+                        <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>     
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{arende.arStatus}
+
+                    <p:column headerText="Status">
+                        <h:outputText value="#{arende.arStatus}"/>    
                     </p:column>
                 </p:dataTable>
             </h:form>
                   <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closed}" var="pcloan" paginator="true" rows="10"
+                <p:dataTable value="#{listBean.closed}" var="pcloan"  paginator="true" rows="5"
                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                    rowsPerPageTemplate="8,16,24">
                     <f:facet name="header">Lånade Datorer</f:facet>
-                    <p:column>
-                        <f:facet name="header">ÄrendeId</f:facet>
-                        #{pcloan.id}
+                    <p:column headerText="Ärendenummer">
+                        <h:outputText value="#{pcloan.id}"></h:outputText>                        
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Användare</f:facet>
-                        #{pcloan.username}
+                    <p:column headerText="Användare">
+                        <h:outputText value="#{pcloan.username}"></h:outputText>    
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">Datornamn</f:facet>
-                        #{pcloan.pcName}
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">Lånedatum</f:facet>
-                        #{pcloan.datecreated}
+                    <p:column headerText="Datornamn">
+                        <h:outputText value="#{pcloan.pcName}"></h:outputText>                      
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Returdatum</f:facet>
-                        #{pcloan.returndate}
+                    <p:column headerText="Datum Skapat">
+                        <h:outputText value="#{pcloan.datecreated}">
+                        <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>     
+                    </p:column>
+                    
+                    <p:column headerText="Returdatum">
+                    <h:outputText value="#{pcloan.returndate}">
+                        <f:convertDateTime locale="SE" timeStyle="short"/>
+                        </h:outputText>     
+                    </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{pcloan.arStatus}"/>    
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">Status</f:facet>
-                        #{pcloan.arStatus}
-                    </p:column>
+
                 </p:dataTable>
             </h:form>
                    <hr></hr>
