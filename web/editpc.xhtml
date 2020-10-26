@@ -20,7 +20,7 @@
                 <hr></hr>
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable value="#{cpcBean.pcs}" var="pc" editable="true" style="margin-bottom:20px" reflow="true" rows="5">
+                <p:dataTable id="pcTab" value="#{cpcBean.pcs}" var="pc" editable="true" style="margin-bottom:20px" reflow="true" rows="5">
                     
                     <p:ajax event="rowEdit" listener="#{cpcBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{cpcBean.onRowCancel}" update=":form:msgs" />
@@ -28,11 +28,9 @@
                     
                     <f:facet name="header">Lånedatorer</f:facet>
                     <p:column style="width:35px;">
-                        <h:commandLink action="#{cpcBean.delete(pc)}">
-                            <i class="fas fa-trash-alt"></i>
-                            <f:ajax execute="@form" render="@form" />
-                        </h:commandLink>
-                    </p:column>
+                        <p:commandButton process="@this" action="#{cpcBean.delete(pc)}" update=":form:pcTab" icon="ui-icon-close"></p:commandButton>
+            
+                </p:column>
                     
                     <p:column headerText="Datornamn">                     
                         <h:outputText value="#{pc.pcName}"/>                     

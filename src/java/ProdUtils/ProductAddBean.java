@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
@@ -33,7 +33,7 @@ import org.primefaces.model.file.UploadedFile;
  * Använder manuellt prestatements och mysql query
  * @author srvmng
  */
-@SessionScoped
+@RequestScoped
 @Named(value = "proAddBean")
 public class ProductAddBean implements Serializable {
 

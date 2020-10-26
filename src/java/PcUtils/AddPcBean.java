@@ -16,7 +16,7 @@ import Beans.PcBean;
 import Entities.Pc;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -27,7 +27,7 @@ import javax.inject.Named;
  * @author srvmng
  */
 @Named(value = "pBean")
-@SessionScoped
+@RequestScoped
 public class AddPcBean implements Serializable {
 
 

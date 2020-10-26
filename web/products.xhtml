@@ -20,16 +20,14 @@
             <h:form id="form">
     <p:growl id="msgs" showDetail="true"/>
  
-    <p:dataTable id="products" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true" rows="5" >
+    <p:dataTable id="prodtab" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true">
         
         <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs"></p:ajax>
         <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
         
         <p:column style="width:35px;">
-            <h:commandLink action="#{proBean.delete(item)}">
-                <i class="fas fa-trash-alt"></i>
-                <f:ajax execute="@form" render="@form" />
-            </h:commandLink>
+            <p:commandButton process="@this" action="#{protBean.delete(products)}" update=":form:prodtab" icon="ui-icon-close"></p:commandButton>
+            
         </p:column>
  
         <p:column headerText="Id">  

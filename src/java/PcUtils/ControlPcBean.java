@@ -17,9 +17,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
@@ -30,7 +30,7 @@ import org.primefaces.event.RowEditEvent;
  * @author srvmng
  */
 @Named(value = "cpcBean")
-@ViewScoped
+@RequestScoped
 public class ControlPcBean implements Serializable {
 
 
@@ -64,10 +64,10 @@ public class ControlPcBean implements Serializable {
      * @param p
      * @return
      */
-    public String delete(Pc p) {
+    public void delete(Pc p) {
 
         pcFacade.remove(p);
-        return null;
+        init();
     }
     //Getters n Setters
     public List <Pc> getPcs() {

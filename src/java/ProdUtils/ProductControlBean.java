@@ -57,10 +57,11 @@ public class ProductControlBean implements Serializable {
      * @param p
      * @return
      */
-    public String delete(Products p) {
+    public void delete(Products p) {
 
         prodFacade.remove(p);
-        return null;
+        init();
+        
     }
 
     
