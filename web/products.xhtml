@@ -25,9 +25,15 @@
         <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs"></p:ajax>
         <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
         
-        <p:column style="width:35px;">
-            <p:commandButton process="@this" action="#{protBean.delete(products)}" update=":form:prodtab" icon="ui-icon-close"></p:commandButton>
-            
+        <p:column style="width:50px;">
+        <p:commandButton icon="ui-icon-close" style="width:35px;" process="@this" action="#{protBean.delete(products)}" update=":form:prodtab" >
+                <p:confirm header="Confirmation" message="Är du säker?" icon="pi pi-exclamation-triangle" />
+        </p:commandButton>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+            <p:commandButton value="Nej" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+        </p:confirmDialog>      
+  
         </p:column>
  
         <p:column headerText="Id">  
