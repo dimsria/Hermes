@@ -133,13 +133,13 @@
                  <hr></hr>
                 <h:form id="form2">
                 <p:growl id="msgs" showDetail="true"/>    
-                <p:dataTable id="Ltab" value="#{clBean.loans}" var="pcloan" editable="true" reflow="true" rows="5" emptyMessage="inga datorlån hittades" widgetVar="LTab"
+                <p:dataTable id="plTab" value="#{clBean.loans}" var="pcloan" editable="true" reflow="true" rows="5" emptyMessage="inga datorlån hittades" widgetVar="plTab"
                               filteredValue="#{clBean.filteredLoans}" globalFilterFunction="#{clBean.globalFilterFunction}">
                     
                       <f:facet name="header">Datorlån
               <p:outputPanel>
                 <h:outputText value="Sök för ett datorlån:" />
-                <p:inputText id="globalFilter2" onkeyup="PF('LTab').filter()" style="width:150px" placeholder="Sök"/>
+                <p:inputText id="globalFilter" onkeyup="PF('plTab').filter()" style="width:150px" placeholder="Sök"/>
               </p:outputPanel>
             </f:facet>
                     

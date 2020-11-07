@@ -38,6 +38,7 @@ public class ControlLoanBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private List <Pcloan> loans;
     private List <Pcloan> filteredLoans;
+    
     //Abstrakt class som ersätter entity manager
     @EJB PcloanFacade pcloanFacade;
     @EJB PcFacade pcFacade;
