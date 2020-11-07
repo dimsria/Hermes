@@ -33,11 +33,18 @@
             </script>
                   
                 <p:growl id="msgs" showDetail="true"/>
-                <p:dataTable value="#{ciBean.incidents}" var="arende" editable="true" reflow="true" rows="5">
+                <p:dataTable id="iTab" value="#{ciBean.incidents}" var="arende" editable="true" reflow="true" rows="5" emptyMessage="inga incidenter hittades" widgetVar="iTab"
+                              filteredValue="#{ciBean.filteredCases}" globalFilterFunction="#{ciBean.globalFilterFunction}">
+            <f:facet name="header"> Incidenter
+                <p:outputPanel>
+                <h:outputText value="Sök för en incident:" />
+                <p:inputText id="globalFilter1" onkeyup="PF('iTab').filter()" style="width: 150px;" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
+                    
                     <p:ajax event="rowEdit" listener="#{ciBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{ciBean.onRowCancel}" update=":form:msgs" />
-                    
-                    <f:facet name="header">Incidenter</f:facet>                
+                                   
                     <p:column headerText="Ärendenummer" style="width:auto;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
@@ -75,12 +82,18 @@
                 
                  <hr></hr>
             
-                 <p:dataTable value="#{cqBean.questions}" var="arende" editable="true" reflow="true" rows="5" >
-                    
+                 <p:dataTable id="qTab" value="#{cqBean.questions}" var="arende" editable="true" reflow="true" rows="5" emptyMessage="inga frågor hittades" widgetVar="qTab"
+                              filteredValue="#{cqBean.filteredCases}" globalFilterFunction="#{cqBean.globalFilterFunction}">
+                    <f:facet name="header">IT-Frågor
+              <p:outputPanel>
+                <h:outputText value="Sök för en fråga:" />
+                <p:inputText id="globalFilter" onkeyup="PF('qTab').filter()" style="width:150px" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
+                     
                     <p:ajax event="rowEdit" listener="#{cqBean.onRowEdit}" update=":form:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{cqBean.onRowCancel}" update=":form:msgs" />
-                     
-                    <f:facet name="header">IT-Frågor</f:facet>                
+                                    
                     <p:column headerText="Ärendenummer" style="width: auto;">
                         <h:outputText value="#{arende.id}"/>
                     </p:column>
@@ -120,12 +133,19 @@
                  <hr></hr>
                 <h:form id="form2">
                 <p:growl id="msgs" showDetail="true"/>    
-                <p:dataTable id="ptab" value="#{clBean.loans}" var="pcloan" editable="true" reflow="true" rows="5">
-                     
+                <p:dataTable id="Ltab" value="#{clBean.loans}" var="pcloan" editable="true" reflow="true" rows="5" emptyMessage="inga datorlån hittades" widgetVar="LTab"
+                              filteredValue="#{clBean.filteredLoans}" globalFilterFunction="#{clBean.globalFilterFunction}">
+                    
+                      <f:facet name="header">Datorlån
+              <p:outputPanel>
+                <h:outputText value="Sök för ett datorlån:" />
+                <p:inputText id="globalFilter2" onkeyup="PF('LTab').filter()" style="width:150px" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
+                    
                     <p:ajax event="rowEdit" listener="#{clBean.onRowEdit}" update=":form2:msgs"></p:ajax>
                     <p:ajax event="rowEditCancel" listener="#{clBean.onRowCancel}" update=":form2:msgs" />
-                    
-                    <f:facet name="header">Lånade Datorer</f:facet>
+
 
                     <p:column headerText="Ärendenummer" style="width: auto;">
                         <h:outputText value="#{pcloan.id}"/>

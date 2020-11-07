@@ -15,6 +15,7 @@ import Abst.ArendeFacade;
 import Entities.Arende;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -35,7 +36,7 @@ public class ControlQuestionBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private List <Arende> questions;
-    
+    private List <Arende> filteredCases;
     
     @EJB ArendeFacade aFacade;
 
@@ -85,6 +86,37 @@ public class ControlQuestionBean implements Serializable {
         FacesMessage msg = new FacesMessage("Ändringen avbrutten");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+    
+    /**
+     * Sökfunktion
+     * @param value
+     * @param filter
+     * @param locale
+     * @return
+     */
+    public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        }
+        int filterInt = getInteger(filterText);
+ 
+        Arende a = (Arende) value;
+        return a.getUsername().toLowerCase().contains(filterText)
+                || a.getArStatus().toLowerCase().contains(filterText)
+                || a.getDescrip().toLowerCase().contains(filterText)
+                || a.getId() < filterInt;
+    }
+    
+     private int getInteger(String string) {
+        try {
+            return Integer.valueOf(string);
+        }
+        catch (NumberFormatException ex) {
+            return 0;
+        }
+     }
+    
     //Getters n Setters
     public void setQuestions(List <Arende> questions) {
         this.questions = questions;
@@ -92,6 +124,14 @@ public class ControlQuestionBean implements Serializable {
 
     public List <Arende> getQuestions() {
         return questions;
+    }
+
+    public List <Arende> getFilteredCases() {
+        return filteredCases;
+    }
+
+    public void setFilteredCases(List <Arende> filteredCases) {
+        this.filteredCases = filteredCases;
     }
 
 

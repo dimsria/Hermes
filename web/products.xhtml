@@ -1,101 +1,99 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-        <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
-        <h:outputStylesheet name="/css/styles.css" />
-        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-        <title>Hermes-Kiosk</title>
-    </h:head>
-    
-    <h:body>
-        <header>
-            <h1>Produkter</h1>       
-                <img src="img/logo.png" width="180px" class="logo"/>
-        </header>
-        <main>
-            <div class="nav">
- 
-            <h:form id="form">
-    <p:growl id="msgs" showDetail="true"/>
- 
-    <p:dataTable id="prodTable" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true"
-                 emptyMessage="inga produkter hittades" widgetVar="prodTable"
-                 filteredValue="#{protBean.filteredProducts}" globalFilterFunction="#{protBean.globalFilterFunction}">
-        <f:facet name="header">
-            <p:outputPanel>
+  <h:head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/css/styles.css" />
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Hermes-Kiosk</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1>Produkter</h1>
+      <img src="img/logo.png" width="180px" class="logo"/>
+    </header>
+    <main>
+      <div class="nav">
+        <h:form id="form">
+          <p:growl id="msgs" showDetail="true"/>
+          <p:dataTable id="prodTable" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true"
+            emptyMessage="inga produkter hittades" widgetVar="prodTable"
+            filteredValue="#{protBean.filteredProducts}" globalFilterFunction="#{protBean.globalFilterFunction}">
+            <f:facet name="header">
+              <p:outputPanel>
                 <h:outputText value="Sök för en produkt:" />
                 <p:inputText id="globalFilter" onkeyup="PF('prodTable').filter()" style="width:150px" placeholder="Sök"/>
-            </p:outputPanel>
-        </f:facet>
-        
-        <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs"></p:ajax>
-        <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
-         
-        <p:column style="width:50px;">
-        <p:commandButton icon="ui-icon-close" style="width:35px;" process="@this" action="#{protBean.delete(products)}" update=":form:prodTable" >
+              </p:outputPanel>
+            </f:facet>
+            <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs"></p:ajax>
+            <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
+            <p:column style="width:50px;">
+              <p:commandButton icon="ui-icon-close" style="width:35px;" process="@this" action="#{protBean.delete(products)}" update=":form:prodTable" >
                 <p:confirm header="Confirmation" message="Är du säker?" icon="pi pi-exclamation-triangle" />
-        </p:commandButton>
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-            <p:commandButton value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-            <p:commandButton value="Nej" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-        </p:confirmDialog>      
-  
-        </p:column>
- 
-        <p:column headerText="Id">  
-            
-             <h:outputText value="#{products.prodid}"/>
-                
-            
-        </p:column>
- 
-        <p:column headerText="Titel">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{products.title}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{products.title}" style="width:100%" label="Titel"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        <p:column headerText="Beskrivning">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{products.descrip}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{products.descrip}" style="width:100%" label="Beskrivning"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        <p:column headerText="Antal">
-            <p:cellEditor>
-                <f:facet name="output"><h:outputText value="#{products.quantity}" /></f:facet>
-                <f:facet name="input"><p:inputText value="#{products.quantity}" style="width:100%" label="Antal"/></f:facet>
-            </p:cellEditor>
-        </p:column>
-        
-        <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Bild" />
-                        </f:facet>
-                        <h:outputLink value="DisplayImage?prodid=#{products.prodid}" target="_blank">
-                            <p:graphicImage value="DisplayImage?prodid=#{products.prodid}" width="40" height="40"/>
-                        </h:outputLink>
-                    </p:column>
-
-        <p:column style="width:35px">
-            <p:rowEditor/>
-        </p:column>
-        
-    </p:dataTable>
-            </h:form>
-            <h:form>
-                <p:commandButton value="Lägg till en ny" action="addproducts" style="margin-top: 10px;"/>
-            </h:form>
-                <hr></hr>
-                </div>
-        </main>
-
-        <div class="footer">
-            <h:form>
-                <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
-            </h:form>
-        </div>
-    </h:body>
+              </p:commandButton>
+              <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Ja" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                <p:commandButton value="Nej" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+              </p:confirmDialog>
+            </p:column>
+            <p:column headerText="Id">
+              <h:outputText value="#{products.prodid}"/>
+            </p:column>
+            <p:column headerText="Titel">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{products.title}" />
+                </f:facet>
+                <f:facet name="input">
+                  <p:inputText value="#{products.title}" style="width:100%" label="Titel"/>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+            <p:column headerText="Beskrivning">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{products.descrip}" />
+                </f:facet>
+                <f:facet name="input">
+                  <p:inputText value="#{products.descrip}" style="width:100%" label="Beskrivning"/>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+            <p:column headerText="Antal">
+              <p:cellEditor>
+                <f:facet name="output">
+                  <h:outputText value="#{products.quantity}" />
+                </f:facet>
+                <f:facet name="input">
+                  <p:inputText value="#{products.quantity}" style="width:100%" label="Antal"/>
+                </f:facet>
+              </p:cellEditor>
+            </p:column>
+            <p:column>
+              <f:facet name="header">
+                <h:outputText value="Bild" />
+              </f:facet>
+              <h:outputLink value="DisplayImage?prodid=#{products.prodid}" target="_blank">
+                <p:graphicImage value="DisplayImage?prodid=#{products.prodid}" width="40" height="40"/>
+              </h:outputLink>
+            </p:column>
+            <p:column style="width:35px">
+              <p:rowEditor/>
+            </p:column>
+          </p:dataTable>
+        </h:form>
+        <h:form>
+          <p:commandButton value="Lägg till en ny" action="addproducts" style="margin-top: 10px;"/>
+        </h:form>
+        <hr>
+        </hr>
+      </div>
+    </main>
+    <div class="footer">
+      <h:form>
+        <p:button outcome="admin" value="Tillbaka" style="margin-right: 20px;"></p:button>
+      </h:form>
+    </div>
+  </h:body>
 </html>

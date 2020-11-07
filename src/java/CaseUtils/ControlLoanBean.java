@@ -17,6 +17,7 @@ import Entities.Pc;
 import Entities.Pcloan;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -36,6 +37,7 @@ public class ControlLoanBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private List <Pcloan> loans;
+    private List <Pcloan> filteredLoans;
     //Abstrakt class som ersätter entity manager
     @EJB PcloanFacade pcloanFacade;
     @EJB PcFacade pcFacade;
@@ -76,6 +78,36 @@ public class ControlLoanBean implements Serializable {
         FacesMessage msg = new FacesMessage("Ändringen avbrutten");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+    
+    /**
+     * Sökfunktion
+     * @param value
+     * @param filter
+     * @param locale
+     * @return
+     */
+    public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        }
+        int filterInt = getInteger(filterText);
+ 
+        Pcloan p = (Pcloan) value;
+        return p.getUsername().toLowerCase().contains(filterText)
+                || p.getArStatus().toLowerCase().contains(filterText)
+                || p.getPcName().toLowerCase().contains(filterText)
+                || p.getId() < filterInt;
+    }
+    
+     private int getInteger(String string) {
+        try {
+            return Integer.valueOf(string);
+        }
+        catch (NumberFormatException ex) {
+            return 0;
+        }
+     }
     // Getters n setters
     public List <Pcloan> getLoans() {
         return loans;
@@ -83,5 +115,13 @@ public class ControlLoanBean implements Serializable {
 
     public void setLoans(List <Pcloan> loans) {
         this.loans = loans;
+    }
+
+    public List <Pcloan> getFilteredLoans() {
+        return filteredLoans;
+    }
+
+    public void setFilteredLoans(List <Pcloan> filteredLoans) {
+        this.filteredLoans = filteredLoans;
     }
 }

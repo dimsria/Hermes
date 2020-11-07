@@ -15,6 +15,7 @@ import Abst.ArendeFacade;
 import Entities.Arende;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -36,6 +37,7 @@ public class ControlIncidentBean implements Serializable {
 
     private List <Arende> incidents;
     private int count;
+    private List <Arende> filteredCases;
     /**
      *Returnerar en lista med öppna ärenden
      *
@@ -73,6 +75,35 @@ public class ControlIncidentBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
+    /**
+     * Sökfunktion
+     * @param value
+     * @param filter
+     * @param locale
+     * @return
+     */
+    public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        }
+        int filterInt = getInteger(filterText);
+ 
+        Arende a = (Arende) value;
+        return a.getUsername().toLowerCase().contains(filterText)
+                || a.getArStatus().toLowerCase().contains(filterText)
+                || a.getId() < filterInt;
+    }
+    
+     private int getInteger(String string) {
+        try {
+            return Integer.valueOf(string);
+        }
+        catch (NumberFormatException ex) {
+            return 0;
+        }
+     }
+    
     //Getters n Setters
     public List <Arende> getIncidents() {
         return incidents;
@@ -88,6 +119,14 @@ public class ControlIncidentBean implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public List <Arende> getFilteredCases() {
+        return filteredCases;
+    }
+
+    public void setFilteredCases(List <Arende> filteredCases) {
+        this.filteredCases = filteredCases;
     }
 
 }
