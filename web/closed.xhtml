@@ -18,10 +18,17 @@
             <div class="nav">
                 <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closedIncs}" var="arende"  paginator="true" rows="5"
+                <p:dataTable id="iTab" value="#{listBean.closedIncs}" var="arende"  paginator="true" rows="5"
                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                   rowsPerPageTemplate="8,16,24">
-                    <f:facet name="header">Incidenter</f:facet>
+                   rowsPerPageTemplate="8,16,24" emptyMessage="inga incidenter hittades" widgetVar="iTab"
+                              filteredValue="#{ciBean.filteredCases}" globalFilterFunction="#{ciBean.globalFilterFunction}">
+                    
+                   <f:facet name="header">Incidenter
+              <p:outputPanel>
+                <h:outputText value="Sök för en incident:" />
+                <p:inputText id="globalFilter" onkeyup="PF('iTab').filter()" style="width:150px" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
                     <p:column headerText="Ärendenummer">
                         <h:outputText value="#{arende.id}"></h:outputText>                        
                     </p:column>
@@ -45,10 +52,15 @@
             </h:form>
                  <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.allQs}" var="arende" paginator="true" rows="5"
-                   paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                   rowsPerPageTemplate="8,16,24">
-                    <f:facet name="header">IT-Frågor</f:facet>
+                <p:dataTable id="qTab" value="#{listBean.allQs}" var="arende" paginator="true" rows="5"
+                   paginatorTemplate="{CurrentPageReport}{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                   rowsPerPageTemplate="8,16,24" emptyMessage="inga IT-frågor hittades" widgetVar="qTab" filteredValue="#{cqBean.filteredCases}" globalFilterFunction="#{cqBean.globalFilterFunction}">
+                     <f:facet name="header">Incidenter
+              <p:outputPanel>
+                <h:outputText value="Sök för en IT-fråga:" />
+                <p:inputText id="globalFilter" onkeyup="PF('qTab').filter()" style="width:150px" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
                                         <p:column headerText="Ärendenummer">
                         <h:outputText value="#{arende.id}"></h:outputText>                        
                     </p:column>
@@ -72,10 +84,17 @@
             </h:form>
                   <hr></hr>
             <h:form>
-                <p:dataTable value="#{listBean.closed}" var="pcloan"  paginator="true" rows="5"
+                <p:dataTable id="plTab" value="#{listBean.closed}" var="pcloan"  paginator="true" rows="5"
                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                   rowsPerPageTemplate="8,16,24">
-                    <f:facet name="header">Lånade Datorer</f:facet>
+                   rowsPerPageTemplate="8,16,24" emptyMessage="inga datorlån hittades" widgetVar="plTab"
+                              filteredValue="#{clBean.filteredLoans}" globalFilterFunction="#{clBean.globalFilterFunction}">
+                    
+                      <f:facet name="header">Datorlån
+              <p:outputPanel>
+                <h:outputText value="Sök för ett datorlån:" />
+                <p:inputText id="globalFilter" onkeyup="PF('plTab').filter()" style="width:150px" placeholder="Sök"/>
+              </p:outputPanel>
+            </f:facet>
                     <p:column headerText="Ärendenummer">
                         <h:outputText value="#{pcloan.id}"></h:outputText>                        
                     </p:column>
