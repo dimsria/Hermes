@@ -16,6 +16,7 @@ import Beans.ProductBean;
 import Entities.Products;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -41,7 +42,7 @@ public class ProductControlBean implements Serializable {
     
     private static final long serialVersionUID = 1L;
     private List <Products> products;
-    
+    private List <Products> filteredProducts;
     /**
      *Lista med alla produkter
      * 
@@ -89,6 +90,34 @@ public class ProductControlBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
+    /**
+     * Sökfunktion
+     * @param value
+     * @param filter
+     * @param locale
+     * @return
+     */
+    public boolean globalFilterFunction(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim().toLowerCase();
+        if (filterText == null || filterText.equals("")) {
+            return true;
+        }
+        int filterInt = getInteger(filterText);
+ 
+        Products p = (Products) value;
+        return p.getDescrip().toLowerCase().contains(filterText)
+                || p.getTitle().toLowerCase().contains(filterText)
+                || p.getProdid() < filterInt;
+    }
+    
+     private int getInteger(String string) {
+        try {
+            return Integer.valueOf(string);
+        }
+        catch (NumberFormatException ex) {
+            return 0;
+        }
+     }
     
     //Getters n Setters
     public List <Products> getProducts() {
@@ -97,6 +126,14 @@ public class ProductControlBean implements Serializable {
 
     public void setProducts(List <Products> products) {
         this.products = products;
+    }
+
+    public List <Products> getFilteredProducts() {
+        return filteredProducts;
+    }
+
+    public void setFilteredProducts(List <Products> filteredProducts) {
+        this.filteredProducts = filteredProducts;
     }
 
 }

@@ -13,6 +13,12 @@ html {
     font-family: sans-serif;
 }
 
+.saknar {
+    background-color: #FFCC66 !important;
+        background-image: none !important;
+        color: #000000 !important;
+    }
+
 header {
     text-align: center;
     width: fit-content;

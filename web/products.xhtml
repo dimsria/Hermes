@@ -20,13 +20,21 @@
             <h:form id="form">
     <p:growl id="msgs" showDetail="true"/>
  
-    <p:dataTable id="prodtab" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true">
+    <p:dataTable id="prodTable" var="products" value="#{protBean.products}" editable="true" style="margin-bottom:20px" reflow="true"
+                 emptyMessage="inga produkter hittades" widgetVar="prodTable"
+                 filteredValue="#{protBean.filteredProducts}" globalFilterFunction="#{protBean.globalFilterFunction}">
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Sök för en produkt:" />
+                <p:inputText id="globalFilter" onkeyup="PF('prodTable').filter()" style="width:150px" placeholder="Sök"/>
+            </p:outputPanel>
+        </f:facet>
         
         <p:ajax event="rowEdit" listener="#{protBean.onRowEdit}" update=":form:msgs"></p:ajax>
         <p:ajax event="rowEditCancel" listener="#{protBean.onRowCancel}" update=":form:msgs" />
-        
+         
         <p:column style="width:50px;">
-        <p:commandButton icon="ui-icon-close" style="width:35px;" process="@this" action="#{protBean.delete(products)}" update=":form:prodtab" >
+        <p:commandButton icon="ui-icon-close" style="width:35px;" process="@this" action="#{protBean.delete(products)}" update=":form:prodTable" >
                 <p:confirm header="Confirmation" message="Är du säker?" icon="pi pi-exclamation-triangle" />
         </p:commandButton>
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
