@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" charset="utf-8"/>
+    <script src="https://kit.fontawesome.com/915c5590c5.js" crossorigin="anonymous"></script>
+    <h:outputStylesheet name="/css/styles.css" />
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+    <title>Hermes-Kiosk</title>
+  </h:head>
+  <h:body>
+    <header>
+      <h1>Hämta En Beställning</h1>
+      <img src="img/logo.png" width="180px" class="logo"/>
+    </header>
+    <main>
+      <div class="nav">
+        <hr />
+        <h:form>
+          <ul>
+            <li>
+              <h2>Inloggad som: #{login.sentUsername()}</h2>
+              <h3> Ange ärendenummer nedan:</h3>
+            </li>
+            <h:panelGroup>
+            </h:panelGroup>
+            <p:growl id="msgs" showDetail="true"/>
+            <p:dataTable id="oTab" value="#{searchOrderBean.orders}" var="order" reflow="true" rows="1" emptyMessage="inga beställningar hittades" widgetVar="oTab"
+                         filteredValue="#{searchOrderBean.filteredOrders}" globalFilterFunction="#{searchOrderBean.globalFilterFunction}">
+              <f:facet name="header">
+                Beställning
+                <p:outputPanel>
+                  <h:outputText value="Sök för en beställning:" />
+                  <p:inputText id="globalFilter1" onkeyup="PF('oTab').filter()" style="width: 150px;" placeholder="Sök"/>
+                </p:outputPanel>
+              </f:facet>
+              
+              <p:column headerText="Ärendenummer" style="width:auto;">
+                  <h:outputText value="#{order.orderid}"/>
+              </p:column>
+              <p:column headerText="Användare">
+                <h:outputText value="#{order.username}"/>
+              </p:column>
+              <p:column headerText="Kundvagn">
+                  <h:outputText value="#{order.cart}"/>
+              </p:column>
+              <p:column headerText="Datum Skapat">
+                  <h:outputText value="#{order.datecreated}">
+                  <f:convertDateTime locale="SE" timeStyle="short"/>
+                </h:outputText>
+              </p:column>
+              
+            </p:dataTable>
+            <li>
+                <p:commandButton value="Skriv Ut" action="#{searchOrderBean.printOrder(filteredOrders)}" ajax="false" onclick="setTimeout(function(){window.location.href='menu.xhtml'},1500)"
+                style="margin-top: 15px;"/>
+            </li>
+          </ul>
+        </h:form>
+        <hr />
+      </div>
+    </main>
+    <div class="footer">
+      <h:form>
+        <p:button outcome="menu" value="Hem" style="margin-right: 20px;"></p:button>
+        <p:commandButton value="Logga ut" action="#{login.logout()}" />
+      </h:form>
+      <p>
+        <h:link outcome="about">&copy; Dimitrios Sria</h:link>
+      </p>
+    </div>
+  </h:body>
+</html>
