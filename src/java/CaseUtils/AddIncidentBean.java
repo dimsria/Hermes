@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -52,18 +54,23 @@ public class AddIncidentBean implements Serializable {
     public String add() throws IOException, InterruptedException {
         
         FileExport d = new FileExport();
-        
         Arende a = new Arende();
         a.setUsername(login.sentUsername());
         a.setArType("Incident");
         a.setDatecreated(new java.sql.Date(new java.util.Date().getTime()));
         a.setDescrip(aBean.getDescrip());
         a.setArStatus("Öppet");
-
+        
         aFacade.create(a);
+        addMessage("Ärende:" + " " + a.getId() + " " + "skapat!");
         d.FileDownload(a.toString());// Skapa pdf från a-entitet och skicka till nedladdning
         
         return "menu";
+    }
+    
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
 }
