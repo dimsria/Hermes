@@ -1,3 +1,3 @@
 # Hermes
 Hermes-Kiosk projekt
-En webb-baserade applikation som ska automatisera drop-in tjänster hos Leverans och Support kunddesk.
+En webb-baserade applikation för drop-in tjänster hos en kunddesk.
